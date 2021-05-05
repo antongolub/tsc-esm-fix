@@ -1,5 +1,5 @@
 {
-  "name": "blank-ts-repo",
+  "name": "tsc-es2020-fix",
   "out": "./docs",
   "exclude": ["src/test", "**/node_modules/**"],
   "externalPattern": ["**/node_modules/**"],
