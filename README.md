@@ -1,7 +1,66 @@
-# blank-ts-repo
-Template repository for TS OSS projects
+# tsc-es2020-fix
+Make tsc-compiled `es2020` bundles compatible with `"type": "module"` requirements
 
-[![Build Status](https://travis-ci.com/qiwi/blank-ts-repo.svg?branch=master)](https://travis-ci.com/qiwi/blank-ts-repo)
-[![David](https://img.shields.io/david/dev/qiwi/blank-ts-repo?label=deps)](https://david-dm.org/qiwi/blank-ts-repo?type=dev)
-[![Maintainability](https://api.codeclimate.com/v1/badges/0669264f60889955c31c/maintainability)](https://codeclimate.com/github/antongolub/blank-ts-repo/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/0669264f60889955c31c/test_coverage)](https://codeclimate.com/github/antongolub/blank-ts-repo/test_coverage)
+## Motivation
+This workaround is aimed to bypass a pair of **tsc** and **ts-jest** issues _right here and right now_. 
+* [TS/issues/13422](https://github.com/microsoft/TypeScript/issues/13422): TS should add `.js` extensions for rel paths.
+* [ts-jest/issues/1174](https://github.com/kulshekhar/ts-jest/issues/1174): `import.meta` is not allowed.
+
+Hope one day this library will not be needed.
+
+## Install
+```shell
+yarn add -D tsc-es2020-fix
+```
+
+## Usage
+```shell
+tsc-es2020-fix
+```
+
+```typescript
+import { applyFix } from 'tsc-es2020-fix'
+await applyFix({
+  dirnameVar: true,
+  filenameVar: true,
+  relativeModuleExt: true
+})
+```
+
+## API
+### CLI
+```shell
+tsc-es2020-fix [opts]
+```
+| Option | Description | Default
+|---|---|---|
+|`--tsconfig`| Path to project's ts-config(s) | `tsconfig.json`
+|`--include` | Entry points where compiled files are placed for modification | If not specified inherited from tsconfig.json **compilerOptions.outDir**
+|`--dirnameVar` | Replace `__dirname` usages with `import.meta` | true
+|`--filenameVar` | Replace `__filename` var references `import.meta` | true
+|`--relativeModuleExt` | Append extension to relative imports/re-exports | `.js`
+
+### JS/TS
+```ts
+import { applyFix, IFixOptions } from 'tsc-es2020-fix'
+
+const fixOptions: IFixOptions = {
+  tsconfig: 'tsconfig.build.json',
+  dirnameVar: true,
+  filenameVar: true,
+  relativeModuleExt: true
+}
+
+await applyFix(fixOptions)
+```
+```typescript
+export interface IFixOptions {
+  tsconfig?: string | string[]
+  dirnameVar?: boolean
+  filenameVar?: boolean
+  relativeModuleExt?: boolean | string
+}
+```
+
+## License
+[MIT](./LICENSE)
