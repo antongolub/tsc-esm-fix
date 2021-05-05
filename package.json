@@ -1,15 +1,15 @@
 {
-  "name": "blank-ts-repo",
+  "name": "tsc-es2020-fix",
   "version": "0.0.0",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "description": "Blank TS repo",
+  "description": "Make tsc-compiled `es2020` bundles compatible with `\"type\": \"module\"` requirements",
   "source": "src/main/ts/index.ts",
-  "main": "target/bundle/blank-ts-repo.js",
-  "module": "target/bundle/blank-ts-repo.mjs",
-  "unpkg": "target/bundle/blank-ts-repo.umd.js",
+  "main": "target/bundle/tsc-es2020-fix.js",
+  "module": "target/bundle/tsc-es2020-fix.mjs",
+  "unpkg": "target/bundle/tsc-es2020-fix.umd.js",
   "types": "typings/index.d.ts",
   "typescript": {
     "definition": "typings/index.d.ts"
@@ -67,10 +67,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/qiwi/blank-ts-repo.git"
+    "url": "https://github.com/antongolub/tsc-es2020-fix.git"
   },
   "keywords": [
-    "blank-ts-repo"
+    "tsc",
+    "es2020",
+    "tsc-es2020-fix"
   ],
   "files": [
     "README.md",
@@ -80,11 +82,11 @@
     "flow-typed",
     "buildstamp.json"
   ],
-  "author": "Anton Golub <a.golub@qiwi.com>",
+  "author": "Anton Golub <mailbox@antongolub.ru>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/qiwi/blank-ts-monorepo/issues"
+    "url": "https://github.com/antongolub/tsc-es2020-fix/issues"
   },
-  "homepage": "https://github.com/qiwi/blank-ts-monorepo/#readme",
+  "homepage": "https://github.com/antongolub/tsc-es2020-fix/#readme",
   "prettier": "prettier-config-qiwi"
 }
