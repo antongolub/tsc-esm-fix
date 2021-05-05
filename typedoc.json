@@ -1,0 +1,11 @@
+{
+  "name": "blank-ts-repo",
+  "out": "./docs",
+  "exclude": ["src/test", "**/node_modules/**"],
+  "externalPattern": ["**/node_modules/**"],
+  "excludePrivate": false,
+  "hideGenerator": true,
+  "readme": "README.md",
+  "theme": "minimal",
+  "tsconfig": "./tsconfig.es5.json"
+}

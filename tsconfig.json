@@ -1,0 +1,30 @@
+{
+  "compilerOptions": {
+    "rootDir": "./src/main/ts/",
+    "baseUrl": "./src/main/ts/",
+    "moduleResolution": "node",
+    "target": "es5",
+    "module": "ES2015",
+    "lib": [
+      "es6",
+      "esnext",
+      "dom"
+    ],
+    "outDir": "./target/es5",
+    "sourceMap": true,
+    "strict": true,
+    "experimentalDecorators": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": false,
+    "declaration": false,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    "incremental": true,
+    "tsBuildInfoFile": "./buildcache/.tsbuildinfo"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
