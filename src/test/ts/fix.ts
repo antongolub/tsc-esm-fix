@@ -1,4 +1,8 @@
+import {resolve} from 'path'
+
 import {applyFix, DEFAULT_FIX_OPTIONS, normalizeOptions} from '../../main/ts/fix'
+
+const fakeProject = resolve(__dirname, '../fixtures/ts-project')
 
 describe('normalizeOptions()', () => {
   it('merges DEFAULT_FIX_OPTIONS with specified opts input', () => {
@@ -18,6 +22,10 @@ describe('normalizeOptions()', () => {
 
 describe('applyFix()', () => {
   fit('', async () => {
-    await applyFix({})
+    await applyFix({
+      cwd: fakeProject,
+      out: 'fixed',
+      tsconfig: ['tsconfig.es5.json', 'tsconfig.es6.json']
+    })
   })
 })
