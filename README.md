@@ -3,7 +3,7 @@ Make tsc-compiled `es2020` bundles compatible with `"type": "module"` requiremen
 
 ## Motivation
 This workaround is aimed to bypass a pair of **tsc** and **ts-jest** issues _right here and right now_. 
-* [TS/issues/13422](https://github.com/microsoft/TypeScript/issues/13422): TS should add `.js` extensions for rel paths.
+* [TS/issues/13422](https://github.com/microsoft/TypeScript/issues/13422): tsc should add `.js` extensions for rel module paths.
 * [ts-jest/issues/1174](https://github.com/kulshekhar/ts-jest/issues/1174): `import.meta` is not allowed.
 
 Hope one day this library will not be needed.
