@@ -42,7 +42,7 @@ tsc-es2020-fix [opts]
 
 ### JS/TS
 ```ts
-import { applyFix, IFixOptions } from 'tsc-es2020-fix'
+import { fix, IFixOptions } from 'tsc-es2020-fix'
 
 const fixOptions: IFixOptions = {
   tsconfig: 'tsconfig.build.json',
@@ -51,14 +51,17 @@ const fixOptions: IFixOptions = {
   ext: true
 }
 
-await applyFix(fixOptions)
+await fix(fixOptions)
 ```
 ```typescript
 export interface IFixOptions {
-  tsconfig?: string | string[]
-  dirnameVar?: boolean
-  filenameVar?: boolean
-  ext?: boolean | string
+  cwd: string
+  out?: string,
+  target?: string | string[]
+  tsconfig: string | string[]
+  dirnameVar: boolean
+  filenameVar: boolean
+  ext: boolean | string
 }
 ```
 
