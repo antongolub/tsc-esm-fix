@@ -7,7 +7,7 @@ export * from './baz/index.js';
 export const foobaz = foo + 'baz';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
-//# sourceMappingURL=index.js.map"
+// # sourceMappingURL=index.js.map"
 `;
 
 exports[`contents fixDirnameVar() replaces __dirname refs 1`] = `
@@ -17,7 +17,7 @@ export * from './baz';
 export const foobaz = foo + 'baz';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = __filename;
-//# sourceMappingURL=index.js.map"
+// # sourceMappingURL=index.js.map"
 `;
 
 exports[`contents fixFilenameVar() replaces __filename refs 1`] = `
@@ -27,7 +27,7 @@ export * from './baz';
 export const foobaz = foo + 'baz';
 export const dirname = __dirname;
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
-//# sourceMappingURL=index.js.map"
+// # sourceMappingURL=index.js.map"
 `;
 
 exports[`contents fixRelativeModuleReferences() appends file ext to module refs 1`] = `
@@ -37,7 +37,7 @@ export * from './baz/index.js';
 export const foobaz = foo + 'baz';
 export const dirname = __dirname;
 export const filename = __filename;
-//# sourceMappingURL=index.js.map"
+// # sourceMappingURL=index.js.map"
 `;
 
 exports[`fix() patches some files as required by opts 1`] = `
@@ -47,5 +47,5 @@ export * from './baz/index.mjs';
 export const foobaz = foo + 'baz';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
-//# sourceMappingURL=index.js.map"
+// # sourceMappingURL=index.js.map"
 `;

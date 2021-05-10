@@ -1,7 +1,8 @@
-import { foo } from '../../main/ts'
+import {DEFAULT_FIX_OPTIONS, fix} from '../../main/ts'
 
 describe('index', () => {
-  it('foo() result equals bar', () => {
-    expect(foo()).toBe('bar')
+  it('has proper export', () => {
+    expect(fix).toEqual(expect.any(Function))
+    expect(DEFAULT_FIX_OPTIONS).toBeDefined()
   })
 })
