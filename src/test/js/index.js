@@ -1,7 +1,7 @@
-import { fix } from '../../../target/es6.mjs'
+import { fix } from '../../../target/es6'
 
 describe('index (es6)', () => {
-  it('foo() result equals bar', () => {
+  it('has proper export', () => {
     expect(fix).toEqual(expect.any(Function))
   })
 })

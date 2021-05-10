@@ -5,8 +5,8 @@ exports[`contents fixContents() assembles all content modifiers 1`] = `
 export * from './foo.js';
 export * from './baz/index.js';
 export const foobaz = foo + 'baz';
-export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
-export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
+export const dirname = /file://(.+)/[^/]/.exec(import.meta.url)[1];
+export const filename = /file://(.+)/.exec(import.meta.url)[1];
 // # sourceMappingURL=index.js.map"
 `;
 
@@ -15,7 +15,7 @@ exports[`contents fixDirnameVar() replaces __dirname refs 1`] = `
 export * from './foo';
 export * from './baz';
 export const foobaz = foo + 'baz';
-export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
+export const dirname = /file://(.+)/[^/]/.exec(import.meta.url)[1];
 export const filename = __filename;
 // # sourceMappingURL=index.js.map"
 `;
@@ -26,7 +26,7 @@ export * from './foo';
 export * from './baz';
 export const foobaz = foo + 'baz';
 export const dirname = __dirname;
-export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
+export const filename = /file://(.+)/.exec(import.meta.url)[1];
 // # sourceMappingURL=index.js.map"
 `;
 
@@ -45,7 +45,7 @@ exports[`fix() patches some files as required by opts 1`] = `
 export * from './foo.mjs';
 export * from './baz/index.mjs';
 export const foobaz = foo + 'baz';
-export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
-export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
+export const dirname = /file://(.+)/[^/]/.exec(import.meta.url)[1];
+export const filename = /file://(.+)/.exec(import.meta.url)[1];
 // # sourceMappingURL=index.js.map"
 `;

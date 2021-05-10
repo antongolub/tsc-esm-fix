@@ -52,10 +52,10 @@ export const fixRelativeModuleReferences = (file: string, contents: string, file
   )
 
 export const fixDirnameVar = (contents: string): string =>
-  contents.replace(/__dirname/g, '/file:\\/\\/(.+)\\/[^/]/.exec(import.meta.url)[1]')
+  contents.replace(/__dirname/g, '/file:\/\/(.+)\/[^/]/.exec(import.meta.url)[1]') // eslint-disable-line
 
 export const fixFilenameVar = (contents: string): string =>
-  contents.replace(/__filename/g, '/file:\\/\\/(.+)/.exec(import.meta.url)[1]')
+  contents.replace(/__filename/g, '/file:\/\/(.+)/.exec(import.meta.url)[1]') // eslint-disable-line
 
 export const fixContents = (name: string, contents: string, { ext, dirnameVar, filenameVar }: IFixOptionsNormalized, files: string[]): string => {
   let _contents = contents
