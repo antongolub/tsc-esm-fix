@@ -2,14 +2,14 @@
   "testEnvironment": "node",
   "transform": {
     "^.+\\.tsx?$": "ts-jest",
-    "^.+\\.jsx?$": "@swissquote/crafty-preset-jest/src/esm-transformer"
+    "^.+\\.(m|c)?jsx?$": "@swissquote/crafty-preset-jest/src/esm-transformer"
   },
   "collectCoverage": true,
   "collectCoverageFrom": [
     "<rootDir>/src/main/**/*.(j|t)s"
   ],
   "coveragePathIgnorePatterns": [
-    "<rootDir>/src/main/cli.ts"
+    "<rootDir>/src/main/ts/cli.ts"
   ],
   "testMatch": [
     "<rootDir>/src/test/js/**/*.js",
@@ -25,7 +25,9 @@
     "js",
     "jsx",
     "json",
-    "node"
+    "node",
+    "mjs",
+    "cjs"
   ],
   "globals": {
     "ts-jest": {
