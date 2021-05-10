@@ -1,1 +1,2 @@
-export const foo = (): string => 'bar'
+export * from './fix'
+export * from './interface'
