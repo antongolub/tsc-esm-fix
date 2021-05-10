@@ -1,20 +1,26 @@
+import {copySync, removeSync} from 'fs-extra'
+import globby from 'globby'
 import {resolve} from 'path'
-import {copySync} from 'fs-extra'
+import tempy from 'tempy'
 
 import {
-  fixRelativeModuleReferences,
-  fix,
   DEFAULT_FIX_OPTIONS,
-  normalizeOptions,
-  fixDirnameVar, fixFilenameVar, fixContents
-} from '../../main/ts/fix'
+  fix,
+fixContents,
+  fixDirnameVar, fixFilenameVar,   fixRelativeModuleReferences,
+  normalizeOptions} from '../../main/ts/fix'
 import {read} from '../../main/ts/util'
-import globby from 'globby'
 
 const fakeProject = resolve(__dirname, '../fixtures/ts-project')
-const temp = resolve(__dirname, '../temp')
+const temp = tempy.directory()
+
+console.log('temp=', temp)
 
 describe('normalizeOptions()', () => {
+  afterAll(() => {
+    removeSync(temp)
+  })
+
   it('merges DEFAULT_FIX_OPTIONS with specified opts input', () => {
     expect(normalizeOptions()).toEqual(DEFAULT_FIX_OPTIONS)
     expect(normalizeOptions({

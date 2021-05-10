@@ -31,7 +31,7 @@
     "test:depauditfix": "npx yarn-audit-fix --audit-level=moderate",
     "test:report": "yarn test && yarn push:report",
     "prebuild": "yarn clean && npx buildstamp --git --out.path buildstamp.json",
-    "build": "npm-run-all -p -l build:es6 build:es5 build:ts build:libdef build:bundle build:fix docs",
+    "build": "npm-run-all -p -l build:es6 build:es5 build:ts build:libdef build:bundle docs && yarn build:fix",
     "build:es6": "mkdirp target/es6 && tsc -p tsconfig.es6.json",
     "build:es5": "mkdirp target/es5 && tsc -p tsconfig.es5.json",
     "build:ts": "cpy src/main/ts/ target/ts/",
@@ -71,7 +71,8 @@
     "terser": "^5.7.0",
     "ts-jest": "^26.5.6",
     "typedoc": "^0.20.36",
-    "typescript": "4.2.4"
+    "typescript": "4.2.4",
+    "tempy": "^1.0.1"
   },
   "repository": {
     "type": "git",

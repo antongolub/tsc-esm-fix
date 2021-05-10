@@ -8,7 +8,9 @@
   "collectCoverageFrom": [
     "<rootDir>/src/main/**/*.(j|t)s"
   ],
-  "coveragePathIgnorePatterns": [],
+  "coveragePathIgnorePatterns": [
+    "<rootDir>/src/main/cli.ts"
+  ],
   "testMatch": [
     "<rootDir>/src/test/js/**/*.js",
     "<rootDir>/src/test/ts/**/*.ts"

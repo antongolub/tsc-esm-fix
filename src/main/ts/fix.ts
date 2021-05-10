@@ -1,9 +1,8 @@
 import globby from 'globby'
-
-import {resolve, dirname, extname} from 'path'
+import {dirname, extname,resolve} from 'path'
 
 import {IFixOptions, IFixOptionsNormalized} from './interface'
-import {asArray, read, readJson, write, unlink} from './util'
+import {asArray, read, readJson, unlink,write} from './util'
 
 export const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized = {
   cwd: process.cwd(),
