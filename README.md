@@ -23,7 +23,7 @@ import { applyFix } from 'tsc-es2020-fix'
 await applyFix({
   dirnameVar: true,
   filenameVar: true,
-  relativeModuleExt: true
+  ext: true
 })
 ```
 
@@ -38,7 +38,7 @@ tsc-es2020-fix [opts]
 |`--include` | Entry points where compiled files are placed for modification | If not specified inherited from tsconfig.json **compilerOptions.outDir**
 |`--dirnameVar` | Replace `__dirname` usages with `import.meta` | true
 |`--filenameVar` | Replace `__filename` var references `import.meta` | true
-|`--relativeModuleExt` | Append extension to relative imports/re-exports | `.js`
+|`--ext` | Append extension to relative imports/re-exports | `.js`
 
 ### JS/TS
 ```ts
@@ -48,7 +48,7 @@ const fixOptions: IFixOptions = {
   tsconfig: 'tsconfig.build.json',
   dirnameVar: true,
   filenameVar: true,
-  relativeModuleExt: true
+  ext: true
 }
 
 await applyFix(fixOptions)
@@ -58,7 +58,7 @@ export interface IFixOptions {
   tsconfig?: string | string[]
   dirnameVar?: boolean
   filenameVar?: boolean
-  relativeModuleExt?: boolean | string
+  ext?: boolean | string
 }
 ```
 
