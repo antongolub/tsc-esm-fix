@@ -1,11 +1,15 @@
 {
   "name": "tsc-es2020-fix",
-  "version": "0.0.0",
+  "version": "1.0.0-beta.0",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
+  "bin": {
+    "tsc-es2020-fix": "./target/es6/cli.mjs"
+  },
   "description": "Make tsc-compiled `es2020` bundles compatible with `\"type\": \"module\"` requirements",
+  "type": "module",
   "source": "src/main/ts/index.ts",
   "main": "target/bundle/tsc-es2020-fix.js",
   "module": "target/bundle/tsc-es2020-fix.mjs",
@@ -27,12 +31,13 @@
     "test:depauditfix": "npx yarn-audit-fix --audit-level=moderate",
     "test:report": "yarn test && yarn push:report",
     "prebuild": "yarn clean && npx buildstamp --git --out.path buildstamp.json",
-    "build": "npm-run-all -p -l build:es5 build:es6 build:ts build:libdef build:bundle docs",
-    "build:es5": "mkdirp target/es5 && tsc -p tsconfig.es5.json",
+    "build": "npm-run-all -p -l build:es6 build:es5 build:ts build:libdef build:bundle build:fix docs",
     "build:es6": "mkdirp target/es6 && tsc -p tsconfig.es6.json",
+    "build:es5": "mkdirp target/es5 && tsc -p tsconfig.es5.json",
     "build:ts": "cpy src/main/ts/ target/ts/",
-    "build:bundle": "microbundle --tsconfig tsconfig.es5.json build src/main/ts/index.ts -o target/bundle",
-    "build:libdef": "libdefkit --tsconfig=tsconfig.es5.json --tsconfig=tsconfig.es6.json",
+    "build:bundle": "microbundle --tsconfig tsconfig.es6.json build src/main/ts/index.ts -o target/bundle",
+    "build:libdef": "libdefkit --tsconfig=tsconfig.es6.json",
+    "build:fix": "node scripts/js/build-fix.js",
     "docs": "typedoc --options ./typedoc.json ./src/main/ts",
     "coveralls:push": "cat ./coverage/lcov.info | coveralls || exit 0",
     "push:report": "yarn coveralls:push",
@@ -43,7 +48,8 @@
   "dependencies": {
     "tslib": "^2.2.0",
     "globby": "^11.0.3",
-    "fs-extra": "^10.0.0"
+    "fs-extra": "^10.0.0",
+    "meow": "^10.0.0"
   },
   "devDependencies": {
     "@qiwi/libdefkit": "^2.1.8",

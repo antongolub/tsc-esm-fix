@@ -35,10 +35,12 @@ tsc-es2020-fix [opts]
 | Option | Description | Default
 |---|---|---|
 |`--tsconfig`| Path to project's ts-config(s) | `tsconfig.json`
-|`--include` | Entry points where compiled files are placed for modification | If not specified inherited from tsconfig.json **compilerOptions.outDir**
+|`--target` | Entry points where compiled files are placed for modification | If not specified inherited from tsconfig.json **compilerOptions.outDir**
 |`--dirnameVar` | Replace `__dirname` usages with `import.meta` | true
 |`--filenameVar` | Replace `__filename` var references `import.meta` | true
 |`--ext` | Append extension to relative imports/re-exports | `.js`
+|`--cwd`| cwd | `process.cwd()`
+|`--out`| Output dir. Defaults to cwd, so files will be overridden | <cwd>
 
 ### JS/TS
 ```ts
