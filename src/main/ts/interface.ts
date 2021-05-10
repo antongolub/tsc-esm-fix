@@ -5,7 +5,7 @@ export interface IFixOptionsNormalized {
   tsconfig: string | string[]
   dirnameVar: boolean
   filenameVar: boolean
-  relativeModuleExt: boolean | string
+  ext: boolean | string
 }
 
 export type IFixOptions = Partial<IFixOptionsNormalized>

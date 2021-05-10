@@ -42,7 +42,8 @@
   },
   "dependencies": {
     "tslib": "^2.2.0",
-    "globby": "^11.0.3"
+    "globby": "^11.0.3",
+    "fs-extra": "^10.0.0"
   },
   "devDependencies": {
     "@qiwi/libdefkit": "^2.1.8",
