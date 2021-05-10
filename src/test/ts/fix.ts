@@ -1,4 +1,5 @@
 import {resolve} from 'path'
+import {copySync} from 'fs-extra'
 
 import {
   fixRelativeModuleReferences,
@@ -11,6 +12,7 @@ import {read} from '../../main/ts/util'
 import globby from 'globby'
 
 const fakeProject = resolve(__dirname, '../fixtures/ts-project')
+const temp = resolve(__dirname, '../temp')
 
 describe('normalizeOptions()', () => {
   it('merges DEFAULT_FIX_OPTIONS with specified opts input', () => {
@@ -30,14 +32,19 @@ describe('normalizeOptions()', () => {
 
 describe('fix()', () => {
   it('patches some files as required by opts', async () => {
+    const cwd = resolve(temp, 'from')
+    const out = resolve(temp, 'to')
+
+    copySync(fakeProject, cwd)
+
     await fix({
-      cwd: fakeProject,
-      out: 'temp',
+      cwd,
+      out,
       tsconfig: ['tsconfig.es5.json', 'tsconfig.es6.json'],
       ext: '.mjs'
     })
 
-    expect(read(resolve(fakeProject, 'temp/target/es6/index.mjs'))).toMatchSnapshot()
+    expect(read(resolve(temp, 'to/target/es6/index.mjs'))).toMatchSnapshot()
   })
 })
 

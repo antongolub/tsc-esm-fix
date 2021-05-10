@@ -3,7 +3,7 @@ import globby from 'globby'
 import {resolve, dirname, extname} from 'path'
 
 import {IFixOptions, IFixOptionsNormalized} from './interface'
-import {asArray, read, readJson, write} from './util'
+import {asArray, read, readJson, write, unlink} from './util'
 
 export const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized = {
   cwd: process.cwd(),
@@ -93,5 +93,9 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
     const _contents = fixContents(name, contents, _opts, _names)
 
     write(nextName, _contents)
+
+    if (cwd === outDir && nextName !== names[i]) {
+      unlink(names[i])
+    }
   })
 }
