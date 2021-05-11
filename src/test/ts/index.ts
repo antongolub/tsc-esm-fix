@@ -1,4 +1,4 @@
-import {DEFAULT_FIX_OPTIONS, fix} from '../../main/ts'
+import { DEFAULT_FIX_OPTIONS, fix } from '../../main/ts'
 
 describe('index', () => {
   it('has proper export', () => {

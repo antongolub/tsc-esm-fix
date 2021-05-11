@@ -6,5 +6,8 @@
   "exclude": [
     "src/main/ts/cli.ts",
     "node_modules"
-  ]
+  ],
+  "compilerOptions": {
+    "sourceMap": true
+  }
 }

@@ -1,20 +1,25 @@
 import globby from 'globby'
-import {dirname, extname,resolve} from 'path'
+import { dirname, extname, resolve } from 'path'
 
-import {IFixOptions, IFixOptionsNormalized} from './interface'
-import {asArray, read, readJson, unlink,write} from './util'
+import { IFixOptions, IFixOptionsNormalized } from './interface'
+import { asArray, read, readJson, unlink, write } from './util'
 
 export const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized = {
   cwd: process.cwd(),
   tsconfig: './tsconfig.json',
   filenameVar: true,
   dirnameVar: true,
-  ext: true
+  ext: true,
 }
 
-export const normalizeOptions = (opts?: IFixOptions): IFixOptionsNormalized => ({...DEFAULT_FIX_OPTIONS, ...opts})
+export const normalizeOptions = (
+  opts?: IFixOptions,
+): IFixOptionsNormalized => ({ ...DEFAULT_FIX_OPTIONS, ...opts })
 
-export const findTargets = (tsconfig: string | string[], cwd: string): string[] =>
+export const findTargets = (
+  tsconfig: string | string[],
+  cwd: string,
+): string[] =>
   asArray(tsconfig).reduce<string[]>((targets, file) => {
     const tsconfigJson = readJson(resolve(cwd, file))
     const outDir = tsconfigJson?.compilerOptions?.outDir
@@ -27,7 +32,11 @@ export const findTargets = (tsconfig: string | string[], cwd: string): string[] 
     return targets
   }, [])
 
-export const resolveDependency = (parent: string, nested: string, files: string[]): string => {
+export const resolveDependency = (
+  parent: string,
+  nested: string,
+  files: string[],
+): string => {
   const dir = dirname(parent)
   const ext = extname(parent)
   const p1 = `${nested}${ext}`
@@ -44,20 +53,35 @@ export const resolveDependency = (parent: string, nested: string, files: string[
   return nested
 }
 
-export const fixFileExtensions = (files: string[], ext: string): string[] => files.map((file) => file.replace(/\.[^.]+$/, ext))
+export const fixFileExtensions = (files: string[], ext: string): string[] =>
+  files.map((file) => file.replace(/\.[^.]+$/, ext))
 
-export const fixRelativeModuleReferences = (file: string, contents: string, files: string[]): string =>
-  contents.replace(/(\sfrom |\simport\()(["'])(\.\/[^"']+)(["'])/g, (matched, control, q1, from, q2) =>
-    `${control}${q1}${resolveDependency(file, from, files)}${q2}`
+export const fixRelativeModuleReferences = (
+  file: string,
+  contents: string,
+  files: string[],
+): string =>
+  contents.replace(
+    /(\sfrom |\simport\()(["'])(\.\/[^"']+)(["'])/g,
+    (matched, control, q1, from, q2) =>
+      `${control}${q1}${resolveDependency(file, from, files)}${q2}`,
   )
 
 export const fixDirnameVar = (contents: string): string =>
-  contents.replace(/__dirname/g, '/file:\\/\\/(.+)\\/[^/]/.exec(import.meta.url)[1]') // eslint-disable-line
+  contents.replace(
+    /__dirname/g,
+    '/file:\\/\\/(.+)\\/[^/]/.exec(import.meta.url)[1]',
+  ) // eslint-disable-line
 
 export const fixFilenameVar = (contents: string): string =>
   contents.replace(/__filename/g, '/file:\\/\\/(.+)/.exec(import.meta.url)[1]') // eslint-disable-line
 
-export const fixContents = (name: string, contents: string, { ext, dirnameVar, filenameVar }: IFixOptionsNormalized, files: string[]): string => {
+export const fixContents = (
+  name: string,
+  contents: string,
+  { ext, dirnameVar, filenameVar }: IFixOptionsNormalized,
+  files: string[],
+): string => {
   let _contents = contents
 
   if (ext) {
@@ -81,10 +105,12 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   const targets = target ? asArray(target) : findTargets(tsconfig, cwd)
   const patterns = targets.map((target) => `${target}/**/*.js`)
   const outDir = resolve(cwd, out)
-  const names = await globby(patterns,{cwd: cwd, onlyFiles: true, absolute: true})
-  const _names = typeof ext === 'string'
-    ? fixFileExtensions(names, ext)
-    : names
+  const names = await globby(patterns, {
+    cwd: cwd,
+    onlyFiles: true,
+    absolute: true,
+  })
+  const _names = typeof ext === 'string' ? fixFileExtensions(names, ext) : names
 
   _names.forEach((name, i) => {
     const nextName = name.replace(cwd, outDir)
