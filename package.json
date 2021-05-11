@@ -1,6 +1,6 @@
 {
   "name": "tsc-es2020-fix",
-  "version": "1.0.0-beta.3",
+  "version": "0.0.0",
   "private": false,
   "publishConfig": {
     "access": "public"
