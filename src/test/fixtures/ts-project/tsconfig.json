@@ -10,8 +10,7 @@
       "esnext",
       "dom"
     ],
-    "outDir": "./target/es5",
-    "sourceMap": true,
+    "sourceMap": false,
     "strict": true,
     "experimentalDecorators": true,
     "noUnusedLocals": false,
