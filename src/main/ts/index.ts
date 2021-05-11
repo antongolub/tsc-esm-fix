@@ -4,7 +4,7 @@ export {
   fixFilenameVar,
   fixDirnameVar,
   fixRelativeModuleReferences,
-  fixFileExtensions,
+  fixFilenameExtensions,
   DEFAULT_FIX_OPTIONS,
 } from './fix'
 export * from './interface'

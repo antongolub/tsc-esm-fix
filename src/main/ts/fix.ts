@@ -2,7 +2,7 @@ import globby from 'globby'
 import { dirname, extname, resolve } from 'path'
 
 import { IFixOptions, IFixOptionsNormalized } from './interface'
-import {asArray, read, readJson, unixify, unlink, write} from './util'
+import { asArray, read, readJson, unixify, unlink, write } from './util'
 
 export const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized = {
   cwd: process.cwd(),
@@ -53,18 +53,18 @@ export const resolveDependency = (
   return nested
 }
 
-export const fixFileExtensions = (files: string[], ext: string): string[] =>
-  files.map((file) => file.replace(/\.[^.]+$/, ext))
+export const fixFilenameExtensions = (names: string[], ext: string): string[] =>
+  names.map((name) => name.replace(/\.[^.]+$/, ext))
 
 export const fixRelativeModuleReferences = (
-  file: string,
   contents: string,
-  files: string[],
+  filename: string,
+  filenames: string[],
 ): string =>
   contents.replace(
     /(\sfrom |\simport\()(["'])(\.\/[^"']+)(["'])/g,
     (matched, control, q1, from, q2) =>
-      `${control}${q1}${resolveDependency(file, from, files)}${q2}`,
+      `${control}${q1}${resolveDependency(filename, from, filenames)}${q2}`,
   )
 
 export const fixDirnameVar = (contents: string): string =>
@@ -77,15 +77,15 @@ export const fixFilenameVar = (contents: string): string =>
   contents.replace(/__filename/g, '/file:\\/\\/(.+)/.exec(import.meta.url)[1]') // eslint-disable-line
 
 export const fixContents = (
-  name: string,
   contents: string,
+  filename: string,
+  filenames: string[],
   { ext, dirnameVar, filenameVar }: IFixOptionsNormalized,
-  files: string[],
 ): string => {
   let _contents = contents
 
   if (ext) {
-    _contents = fixRelativeModuleReferences(name, _contents, files)
+    _contents = fixRelativeModuleReferences(_contents, filename, filenames)
   }
 
   if (dirnameVar) {
@@ -110,12 +110,12 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
     onlyFiles: true,
     absolute: true,
   })
-  const _names = typeof ext === 'string' ? fixFileExtensions(names, ext) : names
+  const _names = typeof ext === 'string' ? fixFilenameExtensions(names, ext) : names
 
   _names.forEach((name, i) => {
     const nextName = name.replace(unixify(cwd), unixify(outDir))
     const contents = read(names[i])
-    const _contents = fixContents(name, contents, _opts, _names)
+    const _contents = fixContents(contents, name, _names, _opts)
 
     write(nextName, _contents)
 
