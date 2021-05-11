@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/antongolub/tsc-es2020-fix/compare/v1.0.0...v1.1.0) (2021-05-11)
+
+
+### Features
+
+* **pkg:** provide dual export ([1257ca0](https://github.com/antongolub/tsc-es2020-fix/commit/1257ca075ea335c3885d2740aedd40d87081a805))
+
 # 1.0.0 (2021-05-11)
 
 
