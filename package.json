@@ -1,6 +1,6 @@
 {
   "name": "tsc-es2020-fix",
-  "version": "1.0.0-beta.0",
+  "version": "1.0.0-beta.3",
   "private": false,
   "publishConfig": {
     "access": "public"
@@ -43,7 +43,9 @@
     "push:report": "yarn coveralls:push",
     "uglify": "for f in $(find target -name '*.js'); do short=${f%.js}; terser -c -m -o $short.js -- $f; done",
     "postupdate": "yarn && yarn test:deps && yarn build && yarn test",
-    "updeps": "npm_config_yes=true npx npm-upgrade"
+    "updeps": "npm_config_yes=true npx npm-upgrade",
+    "publish:beta": "npm publish --no-git-tag-version --tag beta",
+    "publish:rc": "npm publish --no-git-tag-version --tag rc"
   },
   "resolutions": {
     "**/postcss": "^8.2.15"
