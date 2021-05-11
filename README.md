@@ -8,6 +8,12 @@ This workaround is aimed to bypass a pair of **tsc** and **ts-jest** issues _rig
 
 Hope one day this library will not be needed.
 
+## Features
+* Finds and replaces `__dirname` and `__filename` refs with `import.meta`.
+* Injects extentions to relative imports/re-exports statements.
+`import {foo} from './foo'` → `import {foo} from './foo.js'`
+* Changes files extentions to `.mjs` if specified by ops.
+
 ## Install
 ```shell
 yarn add -D tsc-es2020-fix
@@ -15,7 +21,7 @@ yarn add -D tsc-es2020-fix
 
 ## Usage
 ```shell
-tsc-es2020-fix
+tsc-es2020-fix [options]
 ```
 
 ```typescript
