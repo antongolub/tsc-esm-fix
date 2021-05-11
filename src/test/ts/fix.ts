@@ -67,7 +67,7 @@ describe('contents', () => {
   const content = read(file)
 
   it('fixRelativeModuleReferences() appends file ext to module refs', () => {
-    expect(fixRelativeModuleReferences(file, content, files)).toMatchSnapshot()
+    expect(fixRelativeModuleReferences(content, file, files)).toMatchSnapshot()
   })
 
   it('fixDirnameVar() replaces __dirname refs', () => {
@@ -80,7 +80,7 @@ describe('contents', () => {
 
   it('fixContents() assembles all content modifiers', () => {
     expect(
-      fixContents(file, content, DEFAULT_FIX_OPTIONS, files),
+      fixContents(content, file, files, DEFAULT_FIX_OPTIONS),
     ).toMatchSnapshot()
   })
 })
