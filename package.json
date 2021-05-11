@@ -10,6 +10,10 @@
   },
   "description": "Make tsc-compiled `es2020` bundles compatible with `\"type\": \"module\"` requirements",
   "type": "module",
+  "exports": {
+    "import": "./target/es6/index.mjs",
+    "require": "./target/es5/index.js"
+  },
   "source": "src/main/ts/index.ts",
   "main": "target/bundle/tsc-es2020-fix.js",
   "module": "target/bundle/tsc-es2020-fix.mjs",
