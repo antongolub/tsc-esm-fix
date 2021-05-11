@@ -15,6 +15,7 @@ Hope one day this library will not be needed.
     * Pays attention to index files: `import {bar} from './bar'` → `import {bar} from './bar/index.js'`
 * Follows `outDir` found in tsconfig.json.  
 * Changes files extentions if specified by opts.
+* Supports Windows-based runtimes.
 
 ## Install
 ```shell
@@ -27,8 +28,8 @@ tsc-es2020-fix [options]
 ```
 
 ```typescript
-import { applyFix } from 'tsc-es2020-fix'
-await applyFix({
+import { fix } from 'tsc-es2020-fix'
+await fix({
   dirnameVar: true,
   filenameVar: true,
   ext: true
