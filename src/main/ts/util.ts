@@ -13,3 +13,5 @@ export const asArray = <T>(value: T): T extends any[] ? T : T[] =>
   (Array.isArray(value) ? value : [value]) as T extends any[] ? T : T[]
 
 export const unlink = unlinkSync
+
+export const unixify = (path: string): string => path.replace(/\\/g, '/')

@@ -2,7 +2,7 @@ import globby from 'globby'
 import { dirname, extname, resolve } from 'path'
 
 import { IFixOptions, IFixOptionsNormalized } from './interface'
-import { asArray, read, readJson, unlink, write } from './util'
+import {asArray, read, readJson, unixify, unlink, write} from './util'
 
 export const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized = {
   cwd: process.cwd(),
@@ -42,11 +42,11 @@ export const resolveDependency = (
   const p1 = `${nested}${ext}`
   const p2 = `${nested}/index${ext}`
 
-  if (files.includes(resolve(dir, p1))) {
+  if (files.includes(unixify(resolve(dir, p1)))) {
     return p1
   }
 
-  if (files.includes(resolve(dir, p2))) {
+  if (files.includes(unixify(resolve(dir, p2)))) {
     return p2
   }
 
@@ -113,7 +113,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   const _names = typeof ext === 'string' ? fixFileExtensions(names, ext) : names
 
   _names.forEach((name, i) => {
-    const nextName = name.replace(cwd, outDir)
+    const nextName = name.replace(unixify(cwd), unixify(outDir))
     const contents = read(names[i])
     const _contents = fixContents(name, contents, _opts, _names)
 
