@@ -2,9 +2,10 @@
 
 import meow from 'meow'
 
-import {fix} from './fix'
+import { fix } from './fix'
 
-const cli = meow(`
+const cli = meow(
+  `
 	Usage
 	  $ tsc-es2020-fix [options]
 
@@ -19,32 +20,34 @@ const cli = meow(`
 
 	Examples
 	  $ tsc-es2020-fix --ext=.mjs --out=foo
-`, {
-  importMeta: import.meta,
-  flags: {
-    ext: {
-      type: 'string'
+`,
+  {
+    importMeta: import.meta,
+    flags: {
+      ext: {
+        type: 'string',
+      },
+      tsconfig: {
+        isMultiple: true,
+        type: 'string',
+      },
+      dirnameVar: {
+        type: 'boolean',
+        default: true,
+      },
+      filenameVar: {
+        type: 'boolean',
+        default: true,
+      },
+      cwd: {
+        type: 'string',
+      },
+      target: {
+        type: 'string',
+        isMultiple: true,
+      },
     },
-    tsconfig: {
-      isMultiple: true,
-      type: 'string'
-    },
-    dirnameVar: {
-      type: 'boolean',
-      default: true
-    },
-    filenameVar: {
-      type: 'boolean',
-      default: true
-    },
-    cwd: {
-      type: 'string'
-    },
-    target: {
-      type: 'string',
-      isMultiple: true
-    }
-  }
-})
+  },
+)
 
 fix(cli.flags)

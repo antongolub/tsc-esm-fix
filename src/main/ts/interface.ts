@@ -1,6 +1,6 @@
 export interface IFixOptionsNormalized {
   cwd: string
-  out?: string,
+  out?: string
   target?: string | string[]
   tsconfig: string | string[]
   dirnameVar: boolean
