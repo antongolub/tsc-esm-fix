@@ -4,6 +4,7 @@ exports[`contents fixContents() assembles all content modifiers 1`] = `
 "import { foo } from './foo.js';
 export * from './foo.js';
 export * from './baz/index.js';
+export * from './q/u/x/index.js';
 export const foobaz = foo + 'baz';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
@@ -14,6 +15,7 @@ exports[`contents fixDirnameVar() replaces __dirname refs 1`] = `
 "import { foo } from './foo';
 export * from './foo';
 export * from './baz';
+export * from './q/u/x';
 export const foobaz = foo + 'baz';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = __filename;
@@ -24,6 +26,7 @@ exports[`contents fixFilenameVar() replaces __filename refs 1`] = `
 "import { foo } from './foo';
 export * from './foo';
 export * from './baz';
+export * from './q/u/x';
 export const foobaz = foo + 'baz';
 export const dirname = __dirname;
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
@@ -34,6 +37,7 @@ exports[`contents fixRelativeModuleReferences() appends file ext to module refs 
 "import { foo } from './foo.js';
 export * from './foo.js';
 export * from './baz/index.js';
+export * from './q/u/x/index.js';
 export const foobaz = foo + 'baz';
 export const dirname = __dirname;
 export const filename = __filename;
@@ -44,6 +48,7 @@ exports[`fix() patches some files as required by opts 1`] = `
 "import { foo } from './foo.mjs';
 export * from './foo.mjs';
 export * from './baz/index.mjs';
+export * from './q/u/x/index.mjs';
 export const foobaz = foo + 'baz';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
