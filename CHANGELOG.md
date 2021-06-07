@@ -1,3 +1,20 @@
+# [2.0.0](https://github.com/antongolub/tsc-es2020-fix/compare/v1.1.2...v2.0.0) (2021-06-07)
+
+
+### Bug Fixes
+
+* **pkg:** add missed @types/fs-extra ([71e704c](https://github.com/antongolub/tsc-es2020-fix/commit/71e704ca97eb0def785579371976d20f96d82695))
+
+
+### Performance Improvements
+
+* update deps, migrate to mjs modules ([c9f6c4e](https://github.com/antongolub/tsc-es2020-fix/commit/c9f6c4e314cbfde761c65facaaa58c2b7e8a0c84))
+
+
+### BREAKING CHANGES
+
+* repack as mjs, require Node.js >= 14
+
 ## [1.1.2](https://github.com/antongolub/tsc-es2020-fix/compare/v1.1.1...v1.1.2) (2021-06-07)
 
 
