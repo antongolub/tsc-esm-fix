@@ -62,7 +62,7 @@ export const fixRelativeModuleReferences = (
   filenames: string[],
 ): string =>
   contents.replace(
-    /(\sfrom |\simport\()(["'])(\.\/[^"']+)(["'])/g,
+    /(\sfrom |\simport\()(["'])(\.{0,2}\/{0,1}[^"']+)(["'])/g,
     (matched, control, q1, from, q2) =>
       `${control}${q1}${resolveDependency(filename, from, filenames)}${q2}`,
   )
