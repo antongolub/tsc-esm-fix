@@ -22,6 +22,9 @@ Hope one day this library will not be needed.
 * Changes files extentions if specified by opts.
 * Supports Windows-based runtimes.
 
+## Requirements
+Node.js >= 14
+
 ## Install
 ```shell
 yarn add -D tsc-es2020-fix
