@@ -1,3 +1,10 @@
+## [1.1.2](https://github.com/antongolub/tsc-es2020-fix/compare/v1.1.1...v1.1.2) (2021-06-07)
+
+
+### Bug Fixes
+
+* add upper relative paths for repl regex ([#9](https://github.com/antongolub/tsc-es2020-fix/issues/9)) ([3e2c476](https://github.com/antongolub/tsc-es2020-fix/commit/3e2c4769044824ef976ae9cef8d2fcea41935185))
+
 ## [1.1.1](https://github.com/antongolub/tsc-es2020-fix/compare/v1.1.0...v1.1.1) (2021-05-11)
 
 # [1.1.0](https://github.com/antongolub/tsc-es2020-fix/compare/v1.0.0...v1.1.0) (2021-05-11)
