@@ -1,3 +1,10 @@
+## [2.0.1](https://github.com/antongolub/tsc-es2020-fix/compare/v2.0.0...v2.0.1) (2021-06-07)
+
+
+### Performance Improvements
+
+* mention requirements, deps revision ([8d0f0d8](https://github.com/antongolub/tsc-es2020-fix/commit/8d0f0d82e7e8f17e7bba71b5f3f242ec133cdc3b))
+
 # [2.0.0](https://github.com/antongolub/tsc-es2020-fix/compare/v1.1.2...v2.0.0) (2021-06-07)
 
 
