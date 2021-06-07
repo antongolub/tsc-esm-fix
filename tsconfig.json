@@ -4,10 +4,9 @@
     "baseUrl": "./src/main/ts/",
     "moduleResolution": "node",
     "target": "es5",
+    "module": "esnext",
     "lib": [
-      "es6",
       "esnext",
-      "dom"
     ],
     "sourceMap": false,
     "strict": true,
@@ -16,7 +15,7 @@
     "noUnusedParameters": false,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": false,
-    "declaration": false,
+    "declaration": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
 
