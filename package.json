@@ -51,6 +51,7 @@
     "**/postcss": "^8.2.15"
   },
   "dependencies": {
+    "@types/fs-extra": "^9.0.11",
     "fs-extra": "^10.0.0",
     "globby": "^11.0.3",
     "meow": "^10.0.0",
