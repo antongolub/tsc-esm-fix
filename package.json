@@ -11,17 +11,15 @@
   "description": "Make tsc-compiled `es2020` bundles compatible with `\"type\": \"module\"` requirements",
   "type": "module",
   "exports": {
-    "import": "./target/es6/index.mjs",
-    "require": "./target/es5/index.js"
+    "import": "./target/es6/index.mjs"
+  },
+  "engines": {
+    "node": ">=14.8"
   },
   "source": "src/main/ts/index.ts",
   "main": "target/bundle/tsc-es2020-fix.js",
   "module": "target/bundle/tsc-es2020-fix.mjs",
   "unpkg": "target/bundle/tsc-es2020-fix.umd.js",
-  "types": "typings/index.d.ts",
-  "typescript": {
-    "definition": "typings/index.d.ts"
-  },
   "scripts": {
     "clean": "rimraf target typings flow-typed buildcache docs coverage buildstamp.json",
     "lint": "eslint src/**/*.{ts,js}",
@@ -30,17 +28,15 @@
     "test": "npm-run-all -p -l lint test:unit test:depcheck test:depaudit",
     "test:unit": "jest --config=jest.config.json --runInBand",
     "test:deps": "npm-run-all -p -l test:depcheck test:depauditfix",
-    "test:depcheck": "npx depcheck --ignores tslib,@swissquote/crafty-preset-jest,@types/jest,@types/node,eslint-config-*",
+    "test:depcheck": "npm_config_yes=true npx depcheck --ignores tslib,@swissquote/crafty-preset-jest,@types/jest,@types/node,eslint-config-*",
     "test:depaudit": "yarn audit --level=moderate; [[ $? -ge 4 ]] && exit 1 || exit 0",
-    "test:depauditfix": "npx yarn-audit-fix --audit-level=moderate",
+    "test:depauditfix": "npm_config_yes=true npx yarn-audit-fix --audit-level=moderate",
     "test:report": "yarn test && yarn push:report",
     "prebuild": "yarn clean && npx buildstamp --git --out.path buildstamp.json",
-    "build": "npm-run-all -p -l build:es6 build:es5 build:ts build:libdef build:bundle docs && yarn build:fix",
+    "build": "npm-run-all -p -l build:es6 build:ts build:bundle docs && yarn build:fix",
     "build:es6": "mkdirp target/es6 && tsc -p tsconfig.es6.json",
-    "build:es5": "mkdirp target/es5 && tsc -p tsconfig.es5.json",
     "build:ts": "cpy src/main/ts/ target/ts/",
     "build:bundle": "microbundle --tsconfig tsconfig.es6.json build src/main/ts/index.ts -o target/bundle",
-    "build:libdef": "libdefkit --tsconfig=tsconfig.es6.json",
     "build:fix": "node scripts/js/build-fix.js",
     "docs": "typedoc --options ./typedoc.json ./src/main/ts",
     "coveralls:push": "cat ./coverage/lcov.info | coveralls || exit 0",
@@ -55,33 +51,32 @@
     "**/postcss": "^8.2.15"
   },
   "dependencies": {
-    "tslib": "^2.2.0",
-    "globby": "^11.0.3",
     "fs-extra": "^10.0.0",
-    "meow": "^10.0.0"
+    "globby": "^11.0.3",
+    "meow": "^10.0.0",
+    "tslib": "^2.2.0"
   },
   "devDependencies": {
-    "@qiwi/libdefkit": "^2.1.8",
-    "@qiwi/npm-run-all": "^4.1.6",
-    "@swissquote/crafty-preset-jest": "^1.14.0",
+    "@qiwi/npm-run-all": "^4.1.7",
+    "@swissquote/crafty-preset-jest": "^1.15.0",
     "@types/jest": "^26.0.23",
-    "@types/node": "^15.0.2",
+    "@types/node": "^15.12.1",
     "coveralls": "^3.1.0",
     "cpy-cli": "^3.1.1",
-    "eslint": "^7.26.0",
+    "eslint": "^7.28.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-config-qiwi": "^1.11.4",
-    "jest": "^26.6.3",
-    "microbundle": "^0.13.0",
+    "eslint-config-qiwi": "^1.13.0",
+    "jest": "^27.0.4",
+    "microbundle": "^0.13.1",
     "mkdirp": "^1.0.4",
-    "prettier": "^2.3.0",
+    "prettier": "^2.3.1",
     "prettier-config-qiwi": "^1.4.1",
     "rimraf": "^3.0.2",
+    "tempy": "^1.0.1",
     "terser": "^5.7.0",
-    "ts-jest": "^26.5.6",
+    "ts-jest": "^27.0.3",
     "typedoc": "^0.20.36",
-    "typescript": "4.2.4",
-    "tempy": "^1.0.1"
+    "typescript": "4.2"
   },
   "repository": {
     "type": "git",
