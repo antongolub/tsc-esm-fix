@@ -66,8 +66,15 @@ describe('contents', () => {
   const file = resolve(fakeProject, 'target/es6/index.js')
   const content = read(file)
 
+  const fileDeep = resolve(fakeProject, 'target/es6/q/u/x/index.js')
+  const contentDepp = read(fileDeep)
+
   it('fixRelativeModuleReferences() appends file ext to module refs', () => {
     expect(fixRelativeModuleReferences(content, file, files)).toMatchSnapshot()
+  })
+  
+  it('upper relative paths case', () => {
+    expect(fixRelativeModuleReferences(contentDepp, fileDeep, files)).toMatchSnapshot()
   })
 
   it('fixDirnameVar() replaces __dirname refs', () => {

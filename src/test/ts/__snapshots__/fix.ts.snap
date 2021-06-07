@@ -44,6 +44,14 @@ export const filename = __filename;
 // # sourceMappingURL=index.js.map"
 `;
 
+exports[`contents upper relative paths case 1`] = `
+"import { foo } from '../../../foo.js';
+import { baz } from '../../../baz/index.js';
+export const qux = foo;
+export const quxbaz = baz;
+// # sourceMappingURL=index.js.map"
+`;
+
 exports[`fix() patches some files as required by opts 1`] = `
 "import { foo } from './foo.mjs';
 export * from './foo.mjs';
