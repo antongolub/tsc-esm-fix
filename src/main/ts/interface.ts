@@ -1,4 +1,4 @@
-export interface IFixOptionsNormalized {
+export type IFixOptionsNormalized = {
   cwd: string
   out?: string
   target?: string | string[]
