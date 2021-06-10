@@ -9,4 +9,3 @@ export type IFixOptionsNormalized = {
 }
 
 export type IFixOptions = Partial<IFixOptionsNormalized>
-

@@ -1,5 +1,5 @@
-import {foo} from '../../../foo'
-import {baz} from '../../../baz'
+import { foo } from '../../../foo'
+import { baz } from '../../../baz'
 
 export const qux = foo
-export const quxbaz = baz;
+export const quxbaz = baz

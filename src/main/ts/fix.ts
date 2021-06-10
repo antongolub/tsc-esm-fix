@@ -1,5 +1,5 @@
 import globby from 'globby'
-import { dirname, relative, resolve } from 'path'
+import { dirname, resolve } from 'path'
 
 import { IFixOptions, IFixOptionsNormalized } from './interface'
 import { asArray, read, readJson, unixify, unlink, write } from './util'
@@ -43,10 +43,15 @@ export const resolveDependency = (
   const alt = ['.js', '.cjs', '.mjs'].reduce<string[]>((m, e) => {
     m.push(`${nested}${e}`, `${nested}/index${e}`)
     return m
-  },
-  [])
+  }, [])
 
-  return alt.find(f => files.includes(unixify(resolve(nmdir, f))) || files.includes(unixify(resolve(dir, f)))) || nested
+  return (
+    alt.find(
+      (f) =>
+        files.includes(unixify(resolve(nmdir, f))) ||
+        files.includes(unixify(resolve(dir, f))),
+    ) || nested
+  )
 }
 
 export const fixFilenameExtensions = (names: string[], ext: string): string[] =>
@@ -56,12 +61,17 @@ export const fixRelativeModuleReferences = (
   contents: string,
   filename: string,
   filenames: string[],
-  cwd: string
+  cwd: string,
 ): string =>
   contents.replace(
     /(\sfrom |\simport\()(["'])([^"']+\/[^"']+)(["'])/g,
     (matched, control, q1, from, q2) =>
-      `${control}${q1}${resolveDependency(filename, from, filenames, cwd)}${q2}`,
+      `${control}${q1}${resolveDependency(
+        filename,
+        from,
+        filenames,
+        cwd,
+      )}${q2}`,
   )
 
 export const fixDirnameVar = (contents: string): string =>
@@ -107,12 +117,19 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
     onlyFiles: true,
     absolute: true,
   })
-  const externalNames = await globby(['node_modules/**/*.(m|c)?js', '!node_modules/**/node_modules/**/*.(m|c)?js'], {
-    cwd: cwd,
-    onlyFiles: true,
-    absolute: true,
-  })
-  const _names = typeof ext === 'string' ? fixFilenameExtensions(names, ext) : names
+  const externalNames = await globby(
+    [
+      'node_modules/**/*.(m|c)?js',
+      '!node_modules/**/node_modules/**/*.(m|c)?js',
+    ],
+    {
+      cwd: cwd,
+      onlyFiles: true,
+      absolute: true,
+    },
+  )
+  const _names =
+    typeof ext === 'string' ? fixFilenameExtensions(names, ext) : names
   const allNames = [...externalNames, ..._names]
 
   _names.forEach((name, i) => {
