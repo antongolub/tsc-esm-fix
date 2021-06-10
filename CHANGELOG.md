@@ -1,3 +1,15 @@
+# [2.1.0](https://github.com/antongolub/tsc-es2020-fix/compare/v2.0.1...v2.1.0) (2021-06-10)
+
+
+### Bug Fixes
+
+* **pkg:** up deps ([750039f](https://github.com/antongolub/tsc-es2020-fix/commit/750039ffead0d3737e04709b50f1c26716b6f6a5))
+
+
+### Features
+
+* handle external modules relative paths ([82f287a](https://github.com/antongolub/tsc-es2020-fix/commit/82f287ac7aa9d5876380cd96063d16e5ee80792e)), closes [#5](https://github.com/antongolub/tsc-es2020-fix/issues/5)
+
 ## [2.0.1](https://github.com/antongolub/tsc-es2020-fix/compare/v2.0.0...v2.0.1) (2021-06-07)
 
 
