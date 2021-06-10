@@ -2733,6 +2733,7 @@ img {
 				<li>Finds and replaces <code>__dirname</code> and <code>__filename</code> refs with <code>import.meta</code>.</li>
 				<li>Injects extentions to relative imports/re-exports statements.<ul>
 						<li><code>import {foo} from &#39;./foo&#39;</code> → <code>import {foo} from &#39;./foo.js&#39;</code></li>
+						<li><code>import {baz} from &#39;external/baz&#39;</code> → <code>import {baz} from &#39;external/baz.js&#39;</code></li>
 						<li>Pays attention to index files: <code>import {bar} from &#39;./bar&#39;</code> → <code>import {bar} from &#39;./bar/index.js&#39;</code></li>
 					</ul>
 				</li>
