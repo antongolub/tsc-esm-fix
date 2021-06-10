@@ -1,3 +1,10 @@
+## [2.2.2](https://github.com/antongolub/tsc-es2020-fix/compare/v2.2.1...v2.2.2) (2021-06-10)
+
+
+### Bug Fixes
+
+* fix target resolution ([5ff6341](https://github.com/antongolub/tsc-es2020-fix/commit/5ff6341772a6a3c8a50b7c68ca6b09f138b34097))
+
 ## [2.2.1](https://github.com/antongolub/tsc-es2020-fix/compare/v2.2.0...v2.2.1) (2021-06-10)
 
 
