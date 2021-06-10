@@ -2,63 +2,70 @@
 
 exports[`contents fixContents() assembles all content modifiers 1`] = `
 "import { foo } from './foo.js';
+export { e1 } from 'e1/a/b/c';
+export { e2 } from 'e2';
+export { e2 as es3 } from 'e2/index';
 export * from './foo.js';
 export * from './baz/index.js';
 export * from './q/u/x/index.js';
 export const foobaz = foo + 'baz';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
-// # sourceMappingURL=index.js.map"
+"
 `;
 
 exports[`contents fixDirnameVar() replaces __dirname refs 1`] = `
 "import { foo } from './foo';
+export { e1 } from 'e1/a/b/c';
+export { e2 } from 'e2';
+export { e2 as es3 } from 'e2/index';
 export * from './foo';
 export * from './baz';
 export * from './q/u/x';
 export const foobaz = foo + 'baz';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = __filename;
-// # sourceMappingURL=index.js.map"
+"
 `;
 
 exports[`contents fixFilenameVar() replaces __filename refs 1`] = `
 "import { foo } from './foo';
+export { e1 } from 'e1/a/b/c';
+export { e2 } from 'e2';
+export { e2 as es3 } from 'e2/index';
 export * from './foo';
 export * from './baz';
 export * from './q/u/x';
 export const foobaz = foo + 'baz';
 export const dirname = __dirname;
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
-// # sourceMappingURL=index.js.map"
+"
 `;
 
 exports[`contents fixRelativeModuleReferences() appends file ext to module refs 1`] = `
 "import { foo } from './foo.js';
+export { e1 } from 'e1/a/b/c/index.js';
+export { e2 } from 'e2';
+export { e2 as es3 } from 'e2/index.js';
 export * from './foo.js';
 export * from './baz/index.js';
 export * from './q/u/x/index.js';
 export const foobaz = foo + 'baz';
 export const dirname = __dirname;
 export const filename = __filename;
-// # sourceMappingURL=index.js.map"
-`;
-
-exports[`contents upper relative paths case 1`] = `
-"import { foo } from '../../../foo.js';
-import { baz } from '../../../baz/index.js';
-export const qux = foo;
-export const quxbaz = baz;
-// # sourceMappingURL=index.js.map"
+"
 `;
 
 exports[`fix() patches some files as required by opts 1`] = `
 "import { foo } from './foo.mjs';
+export { e1 } from 'e1/a/b/c/index.js';
+export { e2 } from 'e2';
+export { e2 as es3 } from 'e2/index.js';
 export * from './foo.mjs';
 export * from './baz/index.mjs';
 export * from './q/u/x/index.mjs';
 export const foobaz = foo + 'baz';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
-// # sourceMappingURL=index.js.map"
+"
 `;

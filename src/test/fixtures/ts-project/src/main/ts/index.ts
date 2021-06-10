@@ -1,5 +1,11 @@
 import { foo } from './foo'
 
+export { e1 } from 'e1/a/b/c'
+
+export { e2 } from 'e2'
+
+export { e2 as es3 } from 'e2/index'
+
 export * from './foo'
 
 export * from './baz'
