@@ -124,7 +124,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   const _opts = normalizeOptions(opts)
   const { cwd, target, tsconfig, out = cwd, ext, debug } = _opts
   const dbg = debug ? console.log : () => {} // eslint-disable-line
-  const targets = target ? asArray(target) : findTargets(tsconfig, cwd)
+  const targets = [...asArray(target), ...findTargets(tsconfig, cwd)]
   dbg('debug:cwd', cwd)
   dbg('debug:targets', targets)
 
