@@ -58,16 +58,25 @@ describe('fix()', () => {
 })
 
 describe('contents', () => {
-  const files = globby.sync(['target/**/*.(m|c)?js', 'node_modules/**/*.(m|c)?js', '!node_modules/**/node_modules/**/*.(m|c)?js'], {
-    cwd: fakeProject,
-    onlyFiles: true,
-    absolute: true,
-  })
+  const files = globby.sync(
+    [
+      'target/**/*.(m|c)?js',
+      'node_modules/**/*.(m|c)?js',
+      '!node_modules/**/node_modules/**/*.(m|c)?js',
+    ],
+    {
+      cwd: fakeProject,
+      onlyFiles: true,
+      absolute: true,
+    },
+  )
   const file = resolve(fakeProject, 'target/es6/index.js')
   const content = read(file)
 
   it('fixRelativeModuleReferences() appends file ext to module refs', () => {
-    expect(fixRelativeModuleReferences(content, file, files, fakeProject)).toMatchSnapshot()
+    expect(
+      fixRelativeModuleReferences(content, file, files, fakeProject),
+    ).toMatchSnapshot()
   })
 
   it('fixDirnameVar() replaces __dirname refs', () => {
