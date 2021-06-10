@@ -9,4 +9,9 @@ export type IFixOptionsNormalized = {
   ext: boolean | string
 }
 
+export type TSConfig = {
+  extends?: string
+  compilerOptions?: Record<string, any>
+}
+
 export type IFixOptions = Partial<IFixOptionsNormalized>

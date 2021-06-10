@@ -2,7 +2,7 @@ import globby from 'globby'
 import { dirname, resolve } from 'path'
 
 import { IFixOptions, IFixOptionsNormalized } from './interface'
-import { asArray, read, readJson, unixify, unlink, write } from './util'
+import { asArray, read, resolveTsConfig, unixify, unlink, write } from './util'
 
 export const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized = {
   cwd: process.cwd(),
@@ -22,7 +22,7 @@ export const findTargets = (
   cwd: string,
 ): string[] =>
   asArray(tsconfig).reduce<string[]>((targets, file) => {
-    const tsconfigJson = readJson(resolve(cwd, file))
+    const tsconfigJson = resolveTsConfig(resolve(cwd, file))
     const outDir = tsconfigJson?.compilerOptions?.outDir
     const module = tsconfigJson?.compilerOptions?.module?.toLowerCase()
 
@@ -107,6 +107,19 @@ export const fixContents = (
   return _contents
 }
 
+const getExtModules = (cwd: string): Promise<string[]> =>
+  globby(
+    [
+      'node_modules/**/*.(m|c)?js',
+      '!node_modules/**/node_modules/**/*.(m|c)?js',
+    ],
+    {
+      cwd: cwd,
+      onlyFiles: true,
+      absolute: true,
+    },
+  )
+
 export const fix = async (opts?: IFixOptions): Promise<void> => {
   const _opts = normalizeOptions(opts)
   const { cwd, target, tsconfig, out = cwd, ext, debug } = _opts
@@ -124,18 +137,9 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
     onlyFiles: true,
     absolute: true,
   })
-  const externalNames = await globby(
-    [
-      'node_modules/**/*.(m|c)?js',
-      '!node_modules/**/node_modules/**/*.(m|c)?js',
-    ],
-    {
-      cwd: cwd,
-      onlyFiles: true,
-      absolute: true,
-    },
-  )
+  const externalNames = await getExtModules(cwd)
   dbg('debug:external-names', externalNames)
+
   const _names =
     typeof ext === 'string' ? fixFilenameExtensions(names, ext) : names
   dbg('debug:local-names', _names)

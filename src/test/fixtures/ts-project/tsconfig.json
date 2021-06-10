@@ -4,7 +4,7 @@
     "baseUrl": "./src/main/ts/",
     "moduleResolution": "node",
     "target": "es5",
-    "module": "ES2015",
+    "module": "ES2020",
     "lib": [
       "es6",
       "esnext",

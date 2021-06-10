@@ -1,5 +1,8 @@
 import { readFileSync, unlinkSync } from 'fs'
-import { default as fse } from 'fs-extra' // eslint-disable-line
+import fse from 'fs-extra'
+import { dirname, resolve } from 'path'
+
+import { TSConfig } from './interface'
 
 export const read = (file: string): string =>
   readFileSync(file, { encoding: 'utf8' })
@@ -15,3 +18,18 @@ export const asArray = <T>(value: T): T extends any[] ? T : T[] =>
 export const unlink = unlinkSync
 
 export const unixify = (path: string): string => path.replace(/\\/g, '/')
+
+export const resolveTsConfig = (file: string): TSConfig => {
+  const data = readJson<TSConfig>(file)
+
+  if (data.extends) {
+    const parent = resolveTsConfig(resolve(dirname(file), data.extends))
+
+    return {
+      ...parent,
+      compilerOptions: { ...parent.compilerOptions, ...data.compilerOptions },
+    }
+  }
+
+  return data
+}
