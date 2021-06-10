@@ -58,6 +58,7 @@ tsc-es2020-fix [opts]
 |`--ext` | Append extension to relative imports/re-exports | `.js`
 |`--cwd`| cwd | `process.cwd()`
 |`--out`| Output dir. Defaults to cwd, so files will be overridden | <cwd>
+|`--debug` | Prints debug notes
 
 ### JS/TS
 ```ts

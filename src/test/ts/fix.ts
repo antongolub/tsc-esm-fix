@@ -32,6 +32,7 @@ describe('normalizeOptions()', () => {
     ).toEqual({
       cwd: process.cwd(),
       tsconfig: ['foo.json'],
+      debug: false,
       dirnameVar: false,
       filenameVar: true,
       ext: true,

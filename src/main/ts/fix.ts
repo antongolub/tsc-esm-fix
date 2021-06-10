@@ -10,6 +10,7 @@ export const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized = {
   filenameVar: true,
   dirnameVar: true,
   ext: true,
+  debug: false,
 }
 
 export const normalizeOptions = (
@@ -108,10 +109,16 @@ export const fixContents = (
 
 export const fix = async (opts?: IFixOptions): Promise<void> => {
   const _opts = normalizeOptions(opts)
-  const { cwd, target, tsconfig, out = cwd, ext } = _opts
+  const { cwd, target, tsconfig, out = cwd, ext, debug } = _opts
+  const dbg = debug ? console.log : () => {} // eslint-disable-line
   const targets = target ? asArray(target) : findTargets(tsconfig, cwd)
+  dbg('debug:cwd', cwd)
+  dbg('debug:targets', targets)
+
   const patterns = targets.map((target) => `${target}/**/*.js`)
   const outDir = resolve(cwd, out)
+  dbg('debug:outdir', outDir)
+
   const names = await globby(patterns, {
     cwd: cwd,
     onlyFiles: true,
@@ -128,10 +135,12 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
       absolute: true,
     },
   )
+  dbg('debug:external-names', externalNames)
   const _names =
     typeof ext === 'string' ? fixFilenameExtensions(names, ext) : names
-  const allNames = [...externalNames, ..._names]
+  dbg('debug:local-names', _names)
 
+  const allNames = [...externalNames, ..._names]
   _names.forEach((name, i) => {
     const nextName = name.replace(unixify(cwd), unixify(outDir))
     const contents = read(names[i])

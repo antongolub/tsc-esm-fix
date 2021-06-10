@@ -1,5 +1,6 @@
 export type IFixOptionsNormalized = {
   cwd: string
+  debug?: boolean
   out?: string
   target?: string | string[]
   tsconfig: string | string[]
