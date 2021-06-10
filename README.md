@@ -17,6 +17,7 @@ Hope one day this library will not be needed.
 * Finds and replaces `__dirname` and `__filename` refs with `import.meta`.
 * Injects extentions to relative imports/re-exports statements.
     * `import {foo} from './foo'` → `import {foo} from './foo.js'`
+    * `import {baz} from 'external/baz'` → `import {baz} from 'external/baz.js'`
     * Pays attention to index files: `import {bar} from './bar'` → `import {bar} from './bar/index.js'`
 * Follows `outDir` found in tsconfig.json.  
 * Changes files extentions if specified by opts.
