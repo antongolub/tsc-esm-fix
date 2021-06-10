@@ -1452,10 +1452,15 @@
   resolved "https://registry.yarnpkg.com/@types/minimist/-/minimist-1.2.1.tgz#283f669ff76d7b8260df8ab7a4262cc83d988256"
   integrity sha512-fZQQafSREFyuZcdWFAExYjBiCL7AUCdgsk80iO0q4yihYYdcIiH28CcuPTGFgLOCC8RlW49GSQxdHwZP+I7CNg==
 
-"@types/node@*", "@types/node@^15.12.1":
+"@types/node@*":
   version "15.12.1"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-15.12.1.tgz#9b60797dee1895383a725f828a869c86c6caa5c2"
   integrity sha512-zyxJM8I1c9q5sRMtVF+zdd13Jt6RU4r4qfhTd7lQubyThvLfx6yYekWSQjGCGV2Tkecgxnlpl/DNlb6Hg+dmEw==
+
+"@types/node@^15.12.2":
+  version "15.12.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-15.12.2.tgz#1f2b42c4be7156ff4a6f914b2fb03d05fa84e38d"
+  integrity sha512-zjQ69G564OCIWIOHSXyQEEDpdpGl+G348RAKY0XXy9Z5kU9Vzv1GMNnkar/ZJ8dzXB3COzD9Mo9NtRZ4xfgUww==
 
 "@types/normalize-package-data@^2.4.0":
   version "2.4.0"
@@ -5173,10 +5178,10 @@ memorystream@^0.3.1:
   resolved "https://registry.yarnpkg.com/memorystream/-/memorystream-0.3.1.tgz#86d7090b30ce455d63fbae12dda51a47ddcaf9b2"
   integrity sha1-htcJCzDORV1j+64S3aUaR93K+bI=
 
-meow@^10.0.0:
-  version "10.0.0"
-  resolved "https://registry.yarnpkg.com/meow/-/meow-10.0.0.tgz#fe0561da4cb0e52c46b6ac6ffa0536ab60d66e73"
-  integrity sha512-29Fk3U5HIBe/ytHxAFKRWIi3Lz63LejnP7UxivXOA1ZCq/viNeJo2fiXLqIveCe6IxlC1J/BrxoSB47Bifzxlg==
+meow@^10.0.1:
+  version "10.0.1"
+  resolved "https://registry.yarnpkg.com/meow/-/meow-10.0.1.tgz#3252e728f4d8603ecae3a5b6460aaae4aea44ae0"
+  integrity sha512-65vCCdUI8wS5upK24fDFo25FcViNExdTGAR/vaWN4E6fXsWQ8fGdbkjCWp3nDTuJMlIYuEoAEMiB2/b81DBJjg==
   dependencies:
     "@types/minimist" "^1.2.1"
     camelcase-keys "^6.2.2"
@@ -5187,7 +5192,7 @@ meow@^10.0.0:
     normalize-package-data "^3.0.2"
     read-pkg-up "^8.0.0"
     redent "^4.0.0"
-    trim-newlines "^4.0.0"
+    trim-newlines "^4.0.1"
     type-fest "^1.0.2"
     yargs-parser "^20.2.7"
 
@@ -5218,10 +5223,10 @@ merge2@^1.2.3, merge2@^1.3.0:
   resolved "https://registry.yarnpkg.com/merge2/-/merge2-1.4.1.tgz#4368892f885e907455a6fd7dc55c0c9d404990ae"
   integrity sha512-8q7VEgMJW4J8tcfVPy8g09NcQwZdbwFEqhe/WZkoIzjn/3TGDwtOCYtXGxA3O8tPzpczCCDgv+P2P5y00ZJOOg==
 
-microbundle@^0.13.1:
-  version "0.13.1"
-  resolved "https://registry.yarnpkg.com/microbundle/-/microbundle-0.13.1.tgz#c65307026f2862147bd4dcea267eb2f3eaa9e79d"
-  integrity sha512-dwwSJp5WjQ3eRievTItnZtqa2blufQJgeExUWCwvKFYKB3L4xOAZ6bPdRVgzq1rKmi8RybNo6eukJU3Zcx+1JA==
+microbundle@^0.13.2:
+  version "0.13.2"
+  resolved "https://registry.yarnpkg.com/microbundle/-/microbundle-0.13.2.tgz#e624aefa745eaff5ea0638e78a20b9c7ad81c284"
+  integrity sha512-LJN69gY7osa+KoLcR6J1pGTmH+CRWUI73sRc6BKpAwtJjjYWNhiCDXglB0yRBEyw1DTF9ZMH/VXkbf2o2AjLXA==
   dependencies:
     "@babel/core" "^7.12.10"
     "@babel/plugin-proposal-class-properties" "7.12.1"
@@ -5259,6 +5264,7 @@ microbundle@^0.13.1:
     rollup-plugin-terser "^7.0.2"
     rollup-plugin-typescript2 "^0.29.0"
     sade "^1.7.4"
+    terser "^5.7.0"
     tiny-glob "^0.2.8"
     tslib "^2.0.3"
     typescript "^4.1.3"
@@ -7345,7 +7351,7 @@ trim-newlines@^3.0.0:
   resolved "https://registry.yarnpkg.com/trim-newlines/-/trim-newlines-3.0.1.tgz#260a5d962d8b752425b32f3a7db0dcacd176c144"
   integrity sha512-c1PTsA3tYrIsLGkJkzHF+w9F2EyxfXGo4UyJc4pFL++FMjnq0HJS69T3M7d//gKrFKwy429bouPescbjecU+Zw==
 
-trim-newlines@^4.0.0:
+trim-newlines@^4.0.1:
   version "4.0.1"
   resolved "https://registry.yarnpkg.com/trim-newlines/-/trim-newlines-4.0.1.tgz#caa1a0c92e86282c9cc8485ccd3ee5a6a4fbd958"
   integrity sha512-5n5GIW0uEbjCB2PO6OoaG11rscJmLOLw12ZG9e0vBKNMToDJ2n1+AkUhJpGO2bLj3jXKa/gYTGVmilX5CCxqmA==
