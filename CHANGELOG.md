@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/antongolub/tsc-es2020-fix/compare/v2.2.0...v2.2.1) (2021-06-10)
+
+
+### Bug Fixes
+
+* tweak up tsconfig resolver ([b5829f8](https://github.com/antongolub/tsc-es2020-fix/commit/b5829f83182bce41740be884922986839bc47427)), closes [#13](https://github.com/antongolub/tsc-es2020-fix/issues/13)
+
 # [2.2.0](https://github.com/antongolub/tsc-es2020-fix/compare/v2.1.0...v2.2.0) (2021-06-10)
 
 
