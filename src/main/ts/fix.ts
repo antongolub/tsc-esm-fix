@@ -1,8 +1,7 @@
-import { globby } from 'globby'
 import { dirname, resolve } from 'path'
 
 import { IFixOptions, IFixOptionsNormalized } from './interface'
-import { asArray, read, resolveTsConfig, unixify, unlink, write } from './util'
+import { asArray, globby, read, resolveTsConfig, unixify, unlink, write } from './util'
 
 export const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized = {
   cwd: process.cwd(),
@@ -65,7 +64,7 @@ export const fixRelativeModuleReferences = (
   cwd: string,
 ): string =>
   contents.replace(
-    /(\sfrom |\simport\()(["'])([^"']+\/[^"']+)(["'])/g,
+    /(\sfrom |\simport[ (])(["'])([^"']+\/[^"']+)(["'])/g,
     (matched, control, q1, from, q2) =>
       `${control}${q1}${resolveDependency(
         filename,

@@ -1,8 +1,13 @@
 import { readFileSync, unlinkSync } from 'fs'
 import fse from 'fs-extra'
+import globby from 'globby'
 import { dirname, resolve } from 'path'
 
 import { TSConfig } from './interface'
+
+export const globbySync = globby.sync
+
+export {globby}
 
 export const read = (file: string): string =>
   readFileSync(file, { encoding: 'utf8' })

@@ -1,5 +1,7 @@
 import { foo } from './foo'
 
+import './bar'
+
 export { e1 } from 'e1/a/b/c'
 
 export { e2 } from 'e2'
