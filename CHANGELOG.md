@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/antongolub/tsc-es2020-fix/compare/v2.2.2...v2.3.0) (2021-07-28)
+
+
+### Features
+
+* handle import with no vars, downgrade globby to v11 ([b934041](https://github.com/antongolub/tsc-es2020-fix/commit/b9340414f75fa5af98dd220207a98c5ed1005a0c))
+
 ## [2.2.2](https://github.com/antongolub/tsc-es2020-fix/compare/v2.2.1...v2.2.2) (2021-06-10)
 
 
