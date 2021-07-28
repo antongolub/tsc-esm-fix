@@ -2705,16 +2705,19 @@ img {
 <nav class="tsd-navigation secondary">
 	<ul>
 		<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
-			<a href="util.html#asarray" class="tsd-kind-icon">as<wbr>Array</a>
+			<a href="util.html#asArray" class="tsd-kind-icon">as<wbr>Array</a>
+		</li>
+		<li class=" tsd-kind-function tsd-parent-kind-module">
+			<a href="util.html#globbySync" class="tsd-kind-icon">globby<wbr>Sync</a>
 		</li>
 		<li class=" tsd-kind-function tsd-parent-kind-module">
 			<a href="util.html#read" class="tsd-kind-icon">read</a>
 		</li>
 		<li class=" tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
-			<a href="util.html#readjson" class="tsd-kind-icon">read<wbr>Json</a>
+			<a href="util.html#readJson" class="tsd-kind-icon">read<wbr>Json</a>
 		</li>
 		<li class=" tsd-kind-function tsd-parent-kind-module">
-			<a href="util.html#resolvetsconfig" class="tsd-kind-icon">resolve<wbr>TsConfig</a>
+			<a href="util.html#resolveTsConfig" class="tsd-kind-icon">resolve<wbr>TsConfig</a>
 		</li>
 		<li class=" tsd-kind-function tsd-parent-kind-module">
 			<a href="util.html#unixify" class="tsd-kind-icon">unixify</a>
@@ -2736,10 +2739,11 @@ img {
 					<section class="tsd-index-section ">
 						<h3>Functions</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="util.html#asarray" class="tsd-kind-icon">as<wbr>Array</a></li>
+							<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="util.html#asArray" class="tsd-kind-icon">as<wbr>Array</a></li>
+							<li class="tsd-kind-function tsd-parent-kind-module"><a href="util.html#globbySync" class="tsd-kind-icon">globby<wbr>Sync</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-module"><a href="util.html#read" class="tsd-kind-icon">read</a></li>
-							<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="util.html#readjson" class="tsd-kind-icon">read<wbr>Json</a></li>
-							<li class="tsd-kind-function tsd-parent-kind-module"><a href="util.html#resolvetsconfig" class="tsd-kind-icon">resolve<wbr>TsConfig</a></li>
+							<li class="tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter"><a href="util.html#readJson" class="tsd-kind-icon">read<wbr>Json</a></li>
+							<li class="tsd-kind-function tsd-parent-kind-module"><a href="util.html#resolveTsConfig" class="tsd-kind-icon">resolve<wbr>TsConfig</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-module"><a href="util.html#unixify" class="tsd-kind-icon">unixify</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-module"><a href="util.html#unlink" class="tsd-kind-icon">unlink</a></li>
 							<li class="tsd-kind-function tsd-parent-kind-module"><a href="util.html#write" class="tsd-kind-icon">write</a></li>
@@ -2751,7 +2755,7 @@ img {
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Functions</h2>
 			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
-				<a name="asarray" class="tsd-anchor"></a>
+				<a name="asArray" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> as<wbr>Array</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
 					<li class="tsd-signature tsd-kind-icon">as<wbr>Array&lt;T&gt;<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> extends </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> ? </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> : </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span></li>
@@ -2760,7 +2764,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/92b2e74/src/main/ts/util.ts#L15">util.ts:15</a></li>
+								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/b934041/src/main/ts/util.ts#L20">util.ts:20</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2780,6 +2784,50 @@ img {
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
+				<a name="globbySync" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagConst">Const</span> globby<wbr>Sync</h3>
+				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
+					<li class="tsd-signature tsd-kind-icon">globby<wbr>Sync<span class="tsd-signature-symbol">(</span>patterns<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">GlobbyOptions</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{}</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Entry</span><span class="tsd-signature-symbol">[]</span></li>
+					<li class="tsd-signature tsd-kind-icon">globby<wbr>Sync<span class="tsd-signature-symbol">(</span>patterns<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">GlobbyOptions</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/b934041/src/main/ts/util.ts#L8">util.ts:8</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>patterns: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+							</li>
+							<li>
+								<h5>options: <span class="tsd-signature-type">GlobbyOptions</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-symbol">{}</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Entry</span><span class="tsd-signature-symbol">[]</span></h4>
+					</li>
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/b934041/src/main/ts/util.ts#L8">util.ts:8</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>patterns: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">readonly </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">GlobbyOptions</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">[]</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
 				<a name="read" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> read</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
@@ -2789,7 +2837,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/92b2e74/src/main/ts/util.ts#L7">util.ts:7</a></li>
+								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/b934041/src/main/ts/util.ts#L12">util.ts:12</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2803,7 +2851,7 @@ img {
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
-				<a name="readjson" class="tsd-anchor"></a>
+				<a name="readJson" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> read<wbr>Json</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module tsd-has-type-parameter">
 					<li class="tsd-signature tsd-kind-icon">read<wbr>Json&lt;D&gt;<span class="tsd-signature-symbol">(</span>file<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">D</span></li>
@@ -2812,7 +2860,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/92b2e74/src/main/ts/util.ts#L13">util.ts:13</a></li>
+								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/b934041/src/main/ts/util.ts#L18">util.ts:18</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -2832,16 +2880,16 @@ img {
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-function tsd-parent-kind-module">
-				<a name="resolvetsconfig" class="tsd-anchor"></a>
+				<a name="resolveTsConfig" class="tsd-anchor"></a>
 				<h3><span class="tsd-flag ts-flagConst">Const</span> resolve<wbr>TsConfig</h3>
 				<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-module">
-					<li class="tsd-signature tsd-kind-icon">resolve<wbr>TsConfig<span class="tsd-signature-symbol">(</span>file<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interface.html#tsconfig-1" class="tsd-signature-type" data-tsd-kind="Type alias">TSConfig</a></li>
+					<li class="tsd-signature tsd-kind-icon">resolve<wbr>TsConfig<span class="tsd-signature-symbol">(</span>file<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="interface.html#TSConfig" class="tsd-signature-type" data-tsd-kind="Type alias">TSConfig</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/92b2e74/src/main/ts/util.ts#L22">util.ts:22</a></li>
+								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/b934041/src/main/ts/util.ts#L27">util.ts:27</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2850,7 +2898,7 @@ img {
 								<h5>file: <span class="tsd-signature-type">string</span></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="interface.html#tsconfig-1" class="tsd-signature-type" data-tsd-kind="Type alias">TSConfig</a></h4>
+						<h4 class="tsd-returns-title">Returns <a href="interface.html#TSConfig" class="tsd-signature-type" data-tsd-kind="Type alias">TSConfig</a></h4>
 					</li>
 				</ul>
 			</section>
@@ -2864,7 +2912,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/92b2e74/src/main/ts/util.ts#L20">util.ts:20</a></li>
+								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/b934041/src/main/ts/util.ts#L25">util.ts:25</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2887,7 +2935,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/92b2e74/src/main/ts/util.ts#L18">util.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/b934041/src/main/ts/util.ts#L23">util.ts:23</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -2910,7 +2958,7 @@ img {
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/92b2e74/src/main/ts/util.ts#L10">util.ts:10</a></li>
+								<li>Defined in <a href="https://github.com/antongolub/tsc-es2020-fix/blob/b934041/src/main/ts/util.ts#L15">util.ts:15</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
