@@ -1,5 +1,5 @@
 import { copySync, removeSync } from 'fs-extra'
-import globby from 'globby'
+import { globbySync } from 'globby'
 import { resolve } from 'path'
 import tempy from 'tempy'
 
@@ -59,7 +59,7 @@ describe('fix()', () => {
 })
 
 describe('contents', () => {
-  const files = globby.sync(
+  const files = globbySync(
     [
       'target/**/*.(m|c)?js',
       'node_modules/**/*.(m|c)?js',

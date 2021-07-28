@@ -4,6 +4,10 @@
     "^.+\\.tsx?$": "ts-jest",
     "^.+\\.(m|c)?jsx?$": "@swissquote/crafty-preset-jest/src/esm-transformer"
   },
+  "transformIgnorePatterns": [
+    "/!node_modules\\/globby/",
+    "<roodDir>/node_modules/(?!globby)"
+  ],
   "collectCoverage": true,
   "collectCoverageFrom": [
     "<rootDir>/src/main/**/*.(j|t)s"
