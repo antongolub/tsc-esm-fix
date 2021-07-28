@@ -1,5 +1,4 @@
 import { copySync, removeSync } from 'fs-extra'
-import { globbySync } from 'globby'
 import { resolve } from 'path'
 import tempy from 'tempy'
 
@@ -12,7 +11,7 @@ import {
   fixRelativeModuleReferences,
   normalizeOptions,
 } from '../../main/ts/fix'
-import { read } from '../../main/ts/util'
+import { globbySync,read } from '../../main/ts/util'
 
 const fakeProject = resolve(__dirname, '../fixtures/ts-project')
 const temp = tempy.directory()

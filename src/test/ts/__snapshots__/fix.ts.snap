@@ -2,6 +2,7 @@
 
 exports[`contents fixContents() assembles all content modifiers 1`] = `
 "import { foo } from './foo.js';
+import './bar.js';
 export { e1 } from 'e1/a/b/c';
 export { e2 } from 'e2';
 export { e2 as es3 } from 'e2/index';
@@ -16,6 +17,7 @@ export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
 
 exports[`contents fixDirnameVar() replaces __dirname refs 1`] = `
 "import { foo } from './foo';
+import './bar';
 export { e1 } from 'e1/a/b/c';
 export { e2 } from 'e2';
 export { e2 as es3 } from 'e2/index';
@@ -30,6 +32,7 @@ export const filename = __filename;
 
 exports[`contents fixFilenameVar() replaces __filename refs 1`] = `
 "import { foo } from './foo';
+import './bar';
 export { e1 } from 'e1/a/b/c';
 export { e2 } from 'e2';
 export { e2 as es3 } from 'e2/index';
@@ -44,6 +47,7 @@ export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
 
 exports[`contents fixRelativeModuleReferences() appends file ext to module refs 1`] = `
 "import { foo } from './foo.js';
+import './bar.js';
 export { e1 } from 'e1/a/b/c/index.js';
 export { e2 } from 'e2';
 export { e2 as es3 } from 'e2/index.js';
@@ -58,6 +62,7 @@ export const filename = __filename;
 
 exports[`fix() patches some files as required by opts 1`] = `
 "import { foo } from './foo.mjs';
+import './bar.mjs';
 export { e1 } from 'e1/a/b/c/index.js';
 export { e2 } from 'e2';
 export { e2 as es3 } from 'e2/index.js';
