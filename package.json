@@ -60,7 +60,7 @@
   "devDependencies": {
     "@qiwi/npm-run-all": "^4.1.7",
     "@swissquote/crafty-preset-jest": "^1.15.0",
-    "@types/jest": "^26.0.24",
+    "@types/jest": "^27.0.0",
     "@types/node": "^16.4.4",
     "coveralls": "^3.1.1",
     "cpy-cli": "^3.1.1",
