@@ -21,6 +21,7 @@
   "module": "target/bundle/tsc-es2020-fix.mjs",
   "unpkg": "target/bundle/tsc-es2020-fix.umd.js",
   "scripts": {
+    "postinstall": "patch-package",
     "clean": "rimraf target typings flow-typed buildcache docs coverage buildstamp.json",
     "lint": "eslint src/**/*.{ts,js}",
     "lint:fix": "yarn lint --fix",
@@ -70,6 +71,7 @@
     "jest": "^27.0.6",
     "microbundle": "^0.13.3",
     "mkdirp": "^1.0.4",
+    "patch-package": "^6.4.7",
     "prettier": "^2.3.2",
     "prettier-config-qiwi": "^1.4.2",
     "rimraf": "^3.0.2",
