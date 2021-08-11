@@ -1,3 +1,10 @@
+## [2.3.1](https://github.com/antongolub/tsc-es2020-fix/compare/v2.3.0...v2.3.1) (2021-08-11)
+
+
+### Bug Fixes
+
+* **deps:** update dependency globby to v12 ([3801cc2](https://github.com/antongolub/tsc-es2020-fix/commit/3801cc2ae3f675250646fde9f583345a4c95441c))
+
 # [2.3.0](https://github.com/antongolub/tsc-es2020-fix/compare/v2.2.2...v2.3.0) (2021-07-28)
 
 
