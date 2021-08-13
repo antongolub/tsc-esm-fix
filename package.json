@@ -1,12 +1,12 @@
 {
-  "name": "tsc-es2020-fix",
+  "name": "tsc-esm-fix",
   "version": "2.3.1",
   "private": false,
   "publishConfig": {
     "access": "public"
   },
   "bin": {
-    "tsc-es2020-fix": "./target/es6/cli.mjs"
+    "tsc-esm-fix": "./target/es6/cli.mjs"
   },
   "description": "Make tsc-compiled `es2020` bundles compatible with `\"type\": \"module\"` requirements",
   "type": "module",
@@ -17,9 +17,9 @@
     "node": ">=14.8"
   },
   "source": "src/main/ts/index.ts",
-  "main": "target/bundle/tsc-es2020-fix.js",
-  "module": "target/bundle/tsc-es2020-fix.mjs",
-  "unpkg": "target/bundle/tsc-es2020-fix.umd.js",
+  "main": "target/bundle/tsc-esm-fix.js",
+  "module": "target/bundle/tsc-esm-fix.mjs",
+  "unpkg": "target/bundle/tsc-esm-fix.umd.js",
   "scripts": {
     "postinstall": "patch-package",
     "clean": "rimraf target typings flow-typed buildcache docs coverage buildstamp.json",
@@ -56,13 +56,13 @@
     "fs-extra": "^10.0.0",
     "globby": "^12.0.0",
     "meow": "^10.1.1",
-    "tslib": "^2.3.0"
+    "tslib": "^2.3.1"
   },
   "devDependencies": {
     "@qiwi/npm-run-all": "^4.1.7",
     "@swissquote/crafty-preset-jest": "^1.15.0",
-    "@types/jest": "^27.0.0",
-    "@types/node": "^16.4.13",
+    "@types/jest": "^27.0.1",
+    "@types/node": "^16.6.1",
     "coveralls": "^3.1.1",
     "cpy-cli": "^3.1.1",
     "eslint": "^7.32.0",
@@ -83,12 +83,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/antongolub/tsc-es2020-fix.git"
+    "url": "https://github.com/antongolub/tsc-esm-fix.git"
   },
   "keywords": [
     "tsc",
     "es2020",
-    "tsc-es2020-fix"
+    "tsc-esm-fix"
   ],
   "files": [
     "README.md",
@@ -101,8 +101,8 @@
   "author": "Anton Golub <mailbox@antongolub.ru>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/antongolub/tsc-es2020-fix/issues"
+    "url": "https://github.com/antongolub/tsc-esm-fix/issues"
   },
-  "homepage": "https://github.com/antongolub/tsc-es2020-fix/#readme",
+  "homepage": "https://github.com/antongolub/tsc-esm-fix/#readme",
   "prettier": "prettier-config-qiwi"
 }
