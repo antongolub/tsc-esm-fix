@@ -1,5 +1,5 @@
 {
-  "name": "tsc-es2020-fix",
+  "name": "tsc-esm-fix",
   "out": "./docs",
   "entryPoints": ["./src/main/ts/"],
   "exclude": ["src/test", "**/node_modules/**"],
