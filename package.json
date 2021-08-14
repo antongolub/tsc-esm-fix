@@ -87,8 +87,12 @@
   },
   "keywords": [
     "tsc",
+    "esm",
+    "mjs",
     "es2020",
-    "tsc-esm-fix"
+    "esnext",
+    "tsc-esm-fix",
+    "tsc-es2020-fix"
   ],
   "files": [
     "README.md",
