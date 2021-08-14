@@ -1,6 +1,6 @@
 {
   "name": "tsc-esm-fix",
-  "version": "2.3.1",
+  "version": "2.3.2",
   "private": false,
   "publishConfig": {
     "access": "public"
