@@ -1,5 +1,5 @@
 # tsc-esm-fix
-Make tsc-compiled `es2020` bundles compatible with `"type": "module"` requirements
+Make tsc-compiled [`es2020/esnext`](https://www.typescriptlang.org/tsconfig/#module) bundles compatible with [esm/mjs requirements](https://nodejs.org/api/esm.html#esm_packages)
 
 [![CI](https://github.com/antongolub/tsc-esm-fix/workflows/CI/badge.svg)](https://github.com/antongolub/tsc-esm-fix/actions)
 [![David](https://img.shields.io/david/dev/antongolub/tsc-esm-fix?label=deps)](https://david-dm.org/antongolub/tsc-esm-fix?type=dev)
@@ -8,7 +8,7 @@ Make tsc-compiled `es2020` bundles compatible with `"type": "module"` requiremen
 
 ### Motivation
 This workaround is aimed to bypass a pair of **tsc** and **ts-jest** issues _right here and right now_. 
-* [TS/issues/13422](https://github.com/microsoft/TypeScript/issues/13422): tsc should add `.js` extensions for rel module paths.
+* [TS/issues/13422](https://github.com/microsoft/TypeScript/issues/13422): tsc should add `.js` extensions for relative module paths.
 * [ts-jest/issues/1174](https://github.com/kulshekhar/ts-jest/issues/1174): `import.meta` is not allowed.
 
 Hope one day this library will not be needed.
