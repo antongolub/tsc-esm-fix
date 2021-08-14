@@ -3,8 +3,8 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>tsc-es2020-fix | tsc-es2020-fix</title>
-	<meta name="description" content="Documentation for tsc-es2020-fix">
+	<title>tsc-esm-fix | tsc-esm-fix</title>
+	<meta name="description" content="Documentation for tsc-esm-fix">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">:root {
   --color-background: #fdfdfd;
@@ -2674,7 +2674,7 @@ img {
 		<div class="container">
 			<div class="table-wrap">
 				<div class="table-cell">
-					<strong><a href="index.html">tsc-es2020-fix</a></strong>
+					<strong><a href="index.html">tsc-esm-fix</a></strong>
 				</div>
 				<div class="table-cell" id="tsd-widgets">
 					<div id="tsd-filter">
@@ -2709,20 +2709,20 @@ img {
 <div class="container container-main">
 	<div class="content-wrap">
 		<div class="tsd-panel tsd-typography">
-			<a href="#tsc-es2020-fix" id="tsc-es2020-fix" style="color: inherit; text-decoration: none;">
-				<h1>tsc-es2020-fix</h1>
+			<a href="#tsc-esm-fix" id="tsc-esm-fix" style="color: inherit; text-decoration: none;">
+				<h1>tsc-esm-fix</h1>
 			</a>
-			<p>Make tsc-compiled <code>es2020</code> bundles compatible with <code>&quot;type&quot;: &quot;module&quot;</code> requirements</p>
-			<p><a href="https://github.com/antongolub/tsc-es2020-fix/actions"><img src="https://github.com/antongolub/tsc-es2020-fix/workflows/CI/badge.svg" alt="CI"></a>
-				<a href="https://david-dm.org/antongolub/tsc-es2020-fix?type=dev"><img src="https://img.shields.io/david/dev/antongolub/tsc-es2020-fix?label=deps" alt="David"></a>
-				<a href="https://codeclimate.com/github/antongolub/tsc-es2020-fix/maintainability"><img src="https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/maintainability" alt="Maintainability"></a>
-			<a href="https://codeclimate.com/github/antongolub/tsc-es2020-fix/test_coverage"><img src="https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/test_coverage" alt="Test Coverage"></a></p>
+			<p>Make tsc-compiled <a href="https://www.typescriptlang.org/tsconfig/#module"><code>es2020/esnext</code></a> bundles compatible with <a href="https://nodejs.org/api/esm.html#esm_packages">esm/mjs requirements</a></p>
+			<p><a href="https://github.com/antongolub/tsc-esm-fix/actions"><img src="https://github.com/antongolub/tsc-esm-fix/workflows/CI/badge.svg" alt="CI"></a>
+				<a href="https://david-dm.org/antongolub/tsc-esm-fix?type=dev"><img src="https://img.shields.io/david/dev/antongolub/tsc-esm-fix?label=deps" alt="David"></a>
+				<a href="https://codeclimate.com/github/antongolub/tsc-esm-fix/maintainability"><img src="https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/maintainability" alt="Maintainability"></a>
+			<a href="https://codeclimate.com/github/antongolub/tsc-esm-fix/test_coverage"><img src="https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/test_coverage" alt="Test Coverage"></a></p>
 			<a href="#motivation" id="motivation" style="color: inherit; text-decoration: none;">
 				<h3>Motivation</h3>
 			</a>
 			<p>This workaround is aimed to bypass a pair of <strong>tsc</strong> and <strong>ts-jest</strong> issues <em>right here and right now</em>. </p>
 			<ul>
-				<li><a href="https://github.com/microsoft/TypeScript/issues/13422">TS/issues/13422</a>: tsc should add <code>.js</code> extensions for rel module paths.</li>
+				<li><a href="https://github.com/microsoft/TypeScript/issues/13422">TS/issues/13422</a>: tsc should add <code>.js</code> extensions for relative module paths.</li>
 				<li><a href="https://github.com/kulshekhar/ts-jest/issues/1174">ts-jest/issues/1174</a>: <code>import.meta</code> is not allowed.</li>
 			</ul>
 			<p>Hope one day this library will not be needed.</p>
@@ -2748,14 +2748,14 @@ img {
 			<a href="#install" id="install" style="color: inherit; text-decoration: none;">
 				<h2>Install</h2>
 			</a>
-			<pre><code class="language-shell"><span style="color: #000000">yarn add -D tsc-es2020-fix</span>
+			<pre><code class="language-shell"><span style="color: #000000">yarn add -D tsc-esm-fix</span>
 </code></pre>
 			<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
 				<h2>Usage</h2>
 			</a>
-			<pre><code class="language-shell"><span style="color: #000000">tsc-es2020-fix [options]</span>
+			<pre><code class="language-shell"><span style="color: #000000">tsc-esm-fix [options]</span>
 </code></pre>
-			<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">fix</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;tsc-es2020-fix&#039;</span>
+			<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">fix</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;tsc-esm-fix&#039;</span>
 <span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">fix</span><span style="color: #000000">({</span>
 <span style="color: #000000">  </span><span style="color: #001080">dirnameVar:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
 <span style="color: #000000">  </span><span style="color: #001080">filenameVar:</span><span style="color: #000000"> </span><span style="color: #0000FF">true</span><span style="color: #000000">,</span>
@@ -2768,7 +2768,7 @@ img {
 			<a href="#cli" id="cli" style="color: inherit; text-decoration: none;">
 				<h3>CLI</h3>
 			</a>
-			<pre><code class="language-shell"><span style="color: #000000">tsc-es2020-fix [opts]</span>
+			<pre><code class="language-shell"><span style="color: #000000">tsc-esm-fix [opts]</span>
 </code></pre>
 			<table>
 				<thead>
@@ -2822,7 +2822,7 @@ img {
 			<a href="#jsts" id="jsts" style="color: inherit; text-decoration: none;">
 				<h3>JS/TS</h3>
 			</a>
-			<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">fix</span><span style="color: #000000">, </span><span style="color: #001080">IFixOptions</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;tsc-es2020-fix&#039;</span>
+			<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">fix</span><span style="color: #000000">, </span><span style="color: #001080">IFixOptions</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;tsc-esm-fix&#039;</span>
 
 <span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">fixOptions</span><span style="color: #000000">: </span><span style="color: #267F99">IFixOptions</span><span style="color: #000000"> = {</span>
 <span style="color: #000000">  </span><span style="color: #001080">tsconfig:</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;tsconfig.build.json&#039;</span><span style="color: #000000">,</span>
