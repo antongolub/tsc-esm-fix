@@ -1,3 +1,10 @@
+## [2.4.2](https://github.com/antongolub/tsc-esm-fix/compare/v2.4.1...v2.4.2) (2021-08-15)
+
+
+### Bug Fixes
+
+* update fast-glob, fix vuls ([cc2f898](https://github.com/antongolub/tsc-esm-fix/commit/cc2f898890b52a0397686c7ac0c9be5a2922dc89))
+
 ## [2.4.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.4.0...v2.4.1) (2021-08-15)
 
 # [2.4.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.3.3...v2.4.0) (2021-08-15)
