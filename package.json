@@ -8,7 +8,7 @@
   "bin": {
     "tsc-esm-fix": "./target/es6/cli.mjs"
   },
-  "description": "Make tsc-compiled `es2020` bundles compatible with `\"type\": \"module\"` requirements",
+  "description": "Make tsc-compiled `es2020/esnext` bundles compatible with esm/mjs requirements",
   "type": "module",
   "exports": {
     "import": "./target/es6/index.mjs"
@@ -67,7 +67,7 @@
     "cpy-cli": "^3.1.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
-    "eslint-config-qiwi": "^1.13.4",
+    "eslint-config-qiwi": "^1.13.5",
     "jest": "^27.0.6",
     "microbundle": "^0.13.3",
     "mkdirp": "^1.0.4",
