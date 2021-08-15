@@ -2731,14 +2731,14 @@ img {
 			</a>
 			<ul>
 				<li>Finds and replaces <code>__dirname</code> and <code>__filename</code> refs with <code>import.meta</code>.</li>
-				<li>Injects extentions to relative imports/re-exports statements.<ul>
+				<li>Injects extensions to imports/re-exports statements.<ul>
 						<li><code>import {foo} from &#39;./foo&#39;</code> → <code>import {foo} from &#39;./foo.js&#39;</code></li>
 						<li><code>import {baz} from &#39;external/baz&#39;</code> → <code>import {baz} from &#39;external/baz.js&#39;</code></li>
 						<li>Pays attention to index files: <code>import {bar} from &#39;./bar&#39;</code> → <code>import {bar} from &#39;./bar/index.js&#39;</code></li>
 					</ul>
 				</li>
-				<li>Follows <code>outDir</code> found in tsconfig.json.  </li>
-				<li>Changes files extentions if specified by opts.</li>
+				<li>Follows <code>outDir</code> found in <strong>tsconfig.json</strong>.  </li>
+				<li>Changes file extensions if specified by opts.</li>
 				<li>Supports Windows-based runtimes.</li>
 			</ul>
 			<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
@@ -2810,8 +2810,8 @@ img {
 					</tr>
 					<tr>
 						<td><code>--out</code></td>
-						<td>Output dir. Defaults to cwd, so files will be overridden</td>
-						<td><cwd></td>
+						<td>Output dir. Defaults to <code>cwd</code>, so files would be overwritten</td>
+						<td><code>process.cwd()</code></td>
 					</tr>
 					<tr>
 						<td><code>--debug</code></td>
@@ -2843,6 +2843,11 @@ img {
 <span style="color: #000000">  </span><span style="color: #001080">ext</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span><span style="color: #000000"> | </span><span style="color: #267F99">string</span>
 <span style="color: #000000">}</span>
 </code></pre>
+			<a href="#alternatives" id="alternatives" style="color: inherit; text-decoration: none;">
+				<h2>Alternatives</h2>
+			</a>
+			<p><a href="https://github.com/mothepro/tsc-esm">https://github.com/mothepro/tsc-esm</a>
+			<a href="https://github.com/digital-loukoum/tsc-esm">https://github.com/digital-loukoum/tsc-esm</a></p>
 			<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 				<h2>License</h2>
 			</a>
