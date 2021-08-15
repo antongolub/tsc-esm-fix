@@ -87,8 +87,8 @@ export interface IFixOptions {
 ```
 
 ## Alternatives
-https://github.com/mothepro/tsc-esm
-https://github.com/digital-loukoum/tsc-esm
+* https://github.com/mothepro/tsc-esm
+* https://github.com/digital-loukoum/tsc-esm
 
 ## License
 [MIT](./LICENSE)
