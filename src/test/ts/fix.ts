@@ -10,8 +10,8 @@ import {
   fixDirnameVar,
   fixFilenameVar,
   fixRelativeModuleReferences,
-  normalizeOptions,
-} from '../../main/ts/fix'
+} from '../../main/ts'
+import { normalizeOptions } from '../../main/ts/fix'
 import { globbySync, read } from '../../main/ts/util'
 
 const fakeProject = resolve(__dirname, '../fixtures/ts-project')
@@ -52,6 +52,7 @@ describe('fix()', () => {
       out,
       tsconfig: ['tsconfig.es5.json', 'tsconfig.es6.json'],
       ext: '.mjs',
+      debug: false,
     })
 
     const res = resolve(temp, 'from/target/es6/index.mjs')
@@ -98,5 +99,17 @@ describe('contents', () => {
     expect(
       fixContents(content, file, files, {...DEFAULT_FIX_OPTIONS, cwd: fakeProject}),
     ).toMatchSnapshot()
+  })
+
+  it('fixContents() with no flags does not provide any effects', () => {
+    expect(
+      fixContents(content, file, files, {
+        ext: false,
+        cwd: fakeProject,
+        filenameVar: false,
+        dirnameVar: false,
+        tsconfig: './tsconfig.json'
+      }),
+    ).toEqual(content)
   })
 })
