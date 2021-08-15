@@ -1,7 +1,16 @@
-import { dirname, resolve } from 'path'
+import { basename,dirname, resolve } from 'path'
 
 import { IFixOptions, IFixOptionsNormalized } from './interface'
-import { asArray, globby, read, resolveTsConfig, unixify, unlink, write } from './util'
+import {
+  asArray,
+  globby,
+  read,
+  readJson,
+  resolveTsConfig,
+  unixify,
+  unlink,
+  write,
+} from './util'
 
 export const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized = {
   cwd: process.cwd(),
@@ -106,11 +115,25 @@ export const fixContents = (
   return _contents
 }
 
-const getExtModules = (cwd: string): Promise<string[]> =>
+const getExtModulesWithExports = (cwd: string): Promise<string[]> =>
+  globby(['node_modules/*/package.json'], {
+    cwd: cwd,
+    onlyFiles: true,
+    absolute: true,
+  }).then((files: string[]) =>
+    files
+      .filter((f: string) => readJson(f).exports)
+      .map((f: string) => basename(dirname(f))),
+  )
+
+const getExtModules = async (cwd: string): Promise<string[]> =>
   globby(
     [
       'node_modules/**/*.(m|c)?js',
-      '!node_modules/**/node_modules/**/*.(m|c)?js',
+      '!node_modules/**/node_modules',
+      ...(await getExtModulesWithExports(cwd)).map(
+        (m: string) => `!node_modules/${m}`,
+      ),
     ],
     {
       cwd: cwd,

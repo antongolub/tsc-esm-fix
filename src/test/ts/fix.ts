@@ -1,3 +1,4 @@
+import * as cp from 'child_process'
 import { copySync, removeSync } from 'fs-extra'
 import { resolve } from 'path'
 import tempy from 'tempy'
@@ -11,7 +12,7 @@ import {
   fixRelativeModuleReferences,
   normalizeOptions,
 } from '../../main/ts/fix'
-import { globbySync,read } from '../../main/ts/util'
+import { globbySync, read } from '../../main/ts/util'
 
 const fakeProject = resolve(__dirname, '../fixtures/ts-project')
 const temp = tempy.directory()
@@ -42,7 +43,7 @@ describe('normalizeOptions()', () => {
 describe('fix()', () => {
   it('patches some files as required by opts', async () => {
     const cwd = resolve(temp, 'from')
-    const out = resolve(temp, 'to')
+    const out = resolve(temp, 'from')
 
     copySync(fakeProject, cwd)
 
@@ -53,7 +54,12 @@ describe('fix()', () => {
       ext: '.mjs',
     })
 
-    expect(read(resolve(temp, 'to/target/es6/index.mjs'))).toMatchSnapshot()
+    const res = resolve(temp, 'from/target/es6/index.mjs')
+
+    expect(read(res)).toMatchSnapshot()
+    expect(cp.execSync(`node ${res}`).toString().trim()).toBe(
+      'barbaz',
+    )
   })
 })
 
@@ -62,6 +68,7 @@ describe('contents', () => {
     [
       'target/**/*.(m|c)?js',
       'node_modules/**/*.(m|c)?js',
+      '!node_modules/e2',
       '!node_modules/**/node_modules/**/*.(m|c)?js',
     ],
     {
@@ -73,7 +80,7 @@ describe('contents', () => {
   const file = resolve(fakeProject, 'target/es6/index.js')
   const content = read(file)
 
-  it('fixRelativeModuleReferences() appends file ext to module refs', () => {
+  it('fixRelativeModuleReferences() appends file ext to module refs except for the ones that declare "exports" in pkg.json', () => {
     expect(
       fixRelativeModuleReferences(content, file, files, fakeProject),
     ).toMatchSnapshot()
@@ -89,7 +96,7 @@ describe('contents', () => {
 
   it('fixContents() assembles all content modifiers', () => {
     expect(
-      fixContents(content, file, files, DEFAULT_FIX_OPTIONS),
+      fixContents(content, file, files, {...DEFAULT_FIX_OPTIONS, cwd: fakeProject}),
     ).toMatchSnapshot()
   })
 })
