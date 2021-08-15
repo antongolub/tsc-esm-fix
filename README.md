@@ -15,12 +15,12 @@ Hope one day this library will not be needed.
 
 ### Features
 * Finds and replaces `__dirname` and `__filename` refs with `import.meta`.
-* Injects extentions to relative imports/re-exports statements.
+* Injects extensions to imports/re-exports statements.
     * `import {foo} from './foo'` → `import {foo} from './foo.js'`
     * `import {baz} from 'external/baz'` → `import {baz} from 'external/baz.js'`
     * Pays attention to index files: `import {bar} from './bar'` → `import {bar} from './bar/index.js'`
-* Follows `outDir` found in tsconfig.json.  
-* Changes files extentions if specified by opts.
+* Follows `outDir` found in **tsconfig.json**.  
+* Changes file extensions if specified by opts.
 * Supports Windows-based runtimes.
 
 ## Requirements
@@ -58,7 +58,7 @@ tsc-esm-fix [opts]
 |`--filenameVar` | Replace `__filename` var references `import.meta` | true
 |`--ext` | Append extension to relative imports/re-exports | `.js`
 |`--cwd`| cwd | `process.cwd()`
-|`--out`| Output dir. Defaults to cwd, so files will be overridden | <cwd>
+|`--out`| Output dir. Defaults to `cwd`, so files would be overwritten | `process.cwd()`
 |`--debug` | Prints debug notes
 
 ### JS/TS
@@ -85,6 +85,10 @@ export interface IFixOptions {
   ext: boolean | string
 }
 ```
+
+## Alternatives
+https://github.com/mothepro/tsc-esm
+https://github.com/digital-loukoum/tsc-esm
 
 ## License
 [MIT](./LICENSE)
