@@ -1,5 +1,6 @@
 import { readFileSync, unlinkSync } from 'fs'
 import fse from 'fs-extra'
+import json5 from 'json5'
 import { dirname, resolve } from 'path'
 
 import { TSConfig } from './interface'
@@ -12,7 +13,7 @@ export const read = (file: string): string =>
 export const write = (file: string, contents: string): void =>
   fse.outputFileSync(file, contents, { encoding: 'utf8' })
 
-export const readJson = <D = any>(file: string): D => JSON.parse(read(file))
+export const readJson = <D = any>(file: string): D => json5.parse(read(file))
 
 export const asArray = <T>(value: T): T extends any[] ? T : T[] =>
   (Array.isArray(value) ? value : [value]) as T extends any[] ? T : T[]
