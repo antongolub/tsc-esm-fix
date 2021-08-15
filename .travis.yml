@@ -1,6 +1,6 @@
 language: node_js
 cache: yarn
-node_js: 14
+node_js: 16
 install: skip
 os: linux
 dist: focal
@@ -16,6 +16,7 @@ jobs:
         - if [ "$CI_TEST" != "false" ]; then
             yarn test;
           fi
+
     - &build
       stage: build
       if: branch = master
@@ -31,6 +32,7 @@ jobs:
             - typings
             - docs
             - node_modules
+
     - <<: *build
       os: windows
       if: branch = master AND env(CI_WIN_BUILD) = true AND type = pull_request
@@ -50,8 +52,13 @@ jobs:
       script: yarn test
       workspaces:
         use: linux-shared
+
+    - <<: *test
+      node_js: 14
+
     - <<: *test
       node_js: 12
+
     - <<: *test
       if: branch = master AND type != pull_request AND env(CI_TEST) != false
       before_script:
@@ -71,6 +78,7 @@ jobs:
             ./cc-test-reporter format-coverage -t lcov ./coverage/lcov.info;
             ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT;
           fi
+
     - <<: *test
       if: branch = master AND type = pull_request AND env(CI_WIN_BUILD) = true AND env(CI_TEST) != false
       os: windows
