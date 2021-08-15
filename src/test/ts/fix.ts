@@ -58,9 +58,16 @@ describe('fix()', () => {
     const res = resolve(temp, 'from/target/es6/index.mjs')
 
     expect(read(res)).toMatchSnapshot()
-    expect(cp.execSync(`node ${res}`).toString().trim()).toBe(
-      'barbaz',
-    )
+    expect(
+      cp
+        .execSync(`node from/target/es6/index.mjs`, {
+          cwd: temp,
+          env: {},
+          timeout: 5000,
+        })
+        .toString()
+        .trim(),
+    ).toBe('barbaz')
   })
 })
 
@@ -97,7 +104,10 @@ describe('contents', () => {
 
   it('fixContents() assembles all content modifiers', () => {
     expect(
-      fixContents(content, file, files, {...DEFAULT_FIX_OPTIONS, cwd: fakeProject}),
+      fixContents(content, file, files, {
+        ...DEFAULT_FIX_OPTIONS,
+        cwd: fakeProject,
+      }),
     ).toMatchSnapshot()
   })
 
@@ -108,7 +118,7 @@ describe('contents', () => {
         cwd: fakeProject,
         filenameVar: false,
         dirnameVar: false,
-        tsconfig: './tsconfig.json'
+        tsconfig: './tsconfig.json',
       }),
     ).toEqual(content)
   })
