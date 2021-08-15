@@ -3,74 +3,124 @@
 exports[`contents fixContents() assembles all content modifiers 1`] = `
 "import { foo } from './foo.js';
 import './bar.js';
-export { e1 } from 'e1/a/b/c';
+import * as e1def from 'e1/a/b/c/index.js';
+import * as e1root from 'e1';
+const { e1 } = e1def;
+const { e1: e1x } = e1root;
+export { e1, e1x };
+export { m1 } from 'm1';
+export { m1 as m1x } from 'm1/index.js';
 export { e2 } from 'e2';
 export { e2 as es3 } from 'e2/index';
+export { e2 as es4 } from 'e2/alias';
+export { e2foo } from 'e2/foo';
+export { e2bar } from 'e2/bar-bundle';
 export * from './foo.js';
 export * from './baz/index.js';
 export * from './q/u/x/index.js';
 export const foobaz = foo + 'baz';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
+console.log(foobaz);
 "
 `;
 
 exports[`contents fixDirnameVar() replaces __dirname refs 1`] = `
 "import { foo } from './foo';
 import './bar';
-export { e1 } from 'e1/a/b/c';
+import * as e1def from 'e1/a/b/c';
+import * as e1root from 'e1';
+const { e1 } = e1def;
+const { e1: e1x } = e1root;
+export { e1, e1x };
+export { m1 } from 'm1';
+export { m1 as m1x } from 'm1/index';
 export { e2 } from 'e2';
 export { e2 as es3 } from 'e2/index';
+export { e2 as es4 } from 'e2/alias';
+export { e2foo } from 'e2/foo';
+export { e2bar } from 'e2/bar-bundle';
 export * from './foo';
 export * from './baz';
 export * from './q/u/x';
 export const foobaz = foo + 'baz';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = __filename;
+console.log(foobaz);
 "
 `;
 
 exports[`contents fixFilenameVar() replaces __filename refs 1`] = `
 "import { foo } from './foo';
 import './bar';
-export { e1 } from 'e1/a/b/c';
+import * as e1def from 'e1/a/b/c';
+import * as e1root from 'e1';
+const { e1 } = e1def;
+const { e1: e1x } = e1root;
+export { e1, e1x };
+export { m1 } from 'm1';
+export { m1 as m1x } from 'm1/index';
 export { e2 } from 'e2';
 export { e2 as es3 } from 'e2/index';
+export { e2 as es4 } from 'e2/alias';
+export { e2foo } from 'e2/foo';
+export { e2bar } from 'e2/bar-bundle';
 export * from './foo';
 export * from './baz';
 export * from './q/u/x';
 export const foobaz = foo + 'baz';
 export const dirname = __dirname;
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
+console.log(foobaz);
 "
 `;
 
-exports[`contents fixRelativeModuleReferences() appends file ext to module refs 1`] = `
+exports[`contents fixRelativeModuleReferences() appends file ext to module refs except for the ones that declare "exports" in pkg.json 1`] = `
 "import { foo } from './foo.js';
 import './bar.js';
-export { e1 } from 'e1/a/b/c/index.js';
+import * as e1def from 'e1/a/b/c/index.js';
+import * as e1root from 'e1';
+const { e1 } = e1def;
+const { e1: e1x } = e1root;
+export { e1, e1x };
+export { m1 } from 'm1';
+export { m1 as m1x } from 'm1/index.js';
 export { e2 } from 'e2';
-export { e2 as es3 } from 'e2/index.js';
+export { e2 as es3 } from 'e2/index';
+export { e2 as es4 } from 'e2/alias';
+export { e2foo } from 'e2/foo';
+export { e2bar } from 'e2/bar-bundle';
 export * from './foo.js';
 export * from './baz/index.js';
 export * from './q/u/x/index.js';
 export const foobaz = foo + 'baz';
 export const dirname = __dirname;
 export const filename = __filename;
+console.log(foobaz);
 "
 `;
 
 exports[`fix() patches some files as required by opts 1`] = `
 "import { foo } from './foo.mjs';
 import './bar.mjs';
-export { e1 } from 'e1/a/b/c/index.js';
+import * as e1def from 'e1/a/b/c/index.js';
+import * as e1root from 'e1';
+const { e1 } = e1def;
+const { e1: e1x } = e1root;
+export { e1, e1x };
+export { m1 } from 'm1';
+export { m1 as m1x } from 'm1/index.js';
 export { e2 } from 'e2';
-export { e2 as es3 } from 'e2/index.js';
+export { e2 as es3 } from 'e2/index';
+export { e2 as es4 } from 'e2/alias';
+export { e2foo } from 'e2/foo';
+export { e2bar } from 'e2/bar-bundle';
 export * from './foo.mjs';
 export * from './baz/index.mjs';
 export * from './q/u/x/index.mjs';
 export const foobaz = foo + 'baz';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
+console.log(foobaz);
 "
 `;
