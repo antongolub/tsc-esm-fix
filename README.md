@@ -8,8 +8,8 @@ Make tsc-compiled [`es2020/esnext`](https://www.typescriptlang.org/tsconfig/#mod
 
 ### Motivation
 This workaround is aimed to bypass a pair of **tsc** and **ts-jest** issues _right here and right now_. 
-* [TS/issues/13422](https://github.com/microsoft/TypeScript/issues/13422): tsc should add `.js` extensions for relative module paths.
-* [ts-jest/issues/1174](https://github.com/kulshekhar/ts-jest/issues/1174): `import.meta` is not allowed.
+* [TS/13422](https://github.com/microsoft/TypeScript/issues/13422) / [TS/16577](https://github.com/microsoft/TypeScript/issues/16577): tsc should add `.js` extensions for relative module paths.
+* [ts-jest/1174](https://github.com/kulshekhar/ts-jest/issues/1174): `import.meta` is not allowed.
 
 Hope one day this library will not be needed.
 

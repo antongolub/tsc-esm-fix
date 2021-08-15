@@ -115,7 +115,7 @@ export const fixContents = (
   return _contents
 }
 
-const getExtModulesWithExports = (cwd: string): Promise<string[]> =>
+const getExtModulesWithPkgJsonExports = (cwd: string): Promise<string[]> =>
   globby(['node_modules/*/package.json'], {
     cwd: cwd,
     onlyFiles: true,
@@ -131,7 +131,7 @@ const getExtModules = async (cwd: string): Promise<string[]> =>
     [
       'node_modules/**/*.(m|c)?js',
       '!node_modules/**/node_modules',
-      ...(await getExtModulesWithExports(cwd)).map(
+      ...(await getExtModulesWithPkgJsonExports(cwd)).map(
         (m: string) => `!node_modules/${m}`,
       ),
     ],
