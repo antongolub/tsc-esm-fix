@@ -49,7 +49,9 @@
     "publish:rc": "npm publish --no-git-tag-version --tag rc"
   },
   "resolutions": {
-    "**/postcss": "^8.2.15"
+    "**/postcss": "^8.2.15",
+    "**/globby/fast-glob": "^3.2.7",
+    "**/glob-parent": "^6.0.1"
   },
   "dependencies": {
     "@types/fs-extra": "^9.0.12",
