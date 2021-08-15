@@ -1,3 +1,15 @@
+# [2.4.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.3.3...v2.4.0) (2021-08-15)
+
+
+### Bug Fixes
+
+* dont add ext prefix for modules that use `exports` pkg.json directive ([31fdb35](https://github.com/antongolub/tsc-esm-fix/commit/31fdb35b9f7541682aaffc7f29a938cdae8724cc)), closes [#24](https://github.com/antongolub/tsc-esm-fix/issues/24)
+
+
+### Features
+
+* support json5-formatted tsconfigs ([625a9cb](https://github.com/antongolub/tsc-esm-fix/commit/625a9cb8bff4f2bd9ad5dc6f1ef05f80743b078b)), closes [#17](https://github.com/antongolub/tsc-esm-fix/issues/17)
+
 ## [2.3.3](https://github.com/antongolub/tsc-esm-fix/compare/v2.3.2...v2.3.3) (2021-08-15)
 
 ## [2.3.2](https://github.com/antongolub/tsc-esm-fix/compare/v2.3.1...v2.3.2) (2021-08-14)
