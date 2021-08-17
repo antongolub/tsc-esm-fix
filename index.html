@@ -2716,7 +2716,8 @@ img {
 			<p><a href="https://github.com/antongolub/tsc-esm-fix/actions"><img src="https://github.com/antongolub/tsc-esm-fix/workflows/CI/badge.svg" alt="CI"></a>
 				<a href="https://david-dm.org/antongolub/tsc-esm-fix?type=dev"><img src="https://img.shields.io/david/dev/antongolub/tsc-esm-fix?label=deps" alt="David"></a>
 				<a href="https://codeclimate.com/github/antongolub/tsc-esm-fix/maintainability"><img src="https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/maintainability" alt="Maintainability"></a>
-			<a href="https://codeclimate.com/github/antongolub/tsc-esm-fix/test_coverage"><img src="https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/test_coverage" alt="Test Coverage"></a></p>
+				<a href="https://codeclimate.com/github/antongolub/tsc-esm-fix/test_coverage"><img src="https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/test_coverage" alt="Test Coverage"></a>
+			<a href="https://www.npmjs.com/package/tsc-esm-fix"><img src="https://img.shields.io/npm/v/tsc-esm-fix" alt="npm (tag)"></a></p>
 			<a href="#motivation" id="motivation" style="color: inherit; text-decoration: none;">
 				<h3>Motivation</h3>
 			</a>
@@ -2730,15 +2731,16 @@ img {
 				<h3>Features</h3>
 			</a>
 			<ul>
-				<li>Finds and replaces <code>__dirname</code> and <code>__filename</code> refs with <code>import.meta</code>.</li>
 				<li>Injects extensions to imports/re-exports statements.<ul>
 						<li><code>import {foo} from &#39;./foo&#39;</code> → <code>import {foo} from &#39;./foo.js&#39;</code></li>
 						<li><code>import {baz} from &#39;external/baz&#39;</code> → <code>import {baz} from &#39;external/baz.js&#39;</code></li>
+						<li>Note, <a href="https://nodejs.org/api/esm.html#esm_packages">including the file extension is only necessary for packages without an &quot;exports&quot; field</a>. So in this case all the external refs remain as are.</li>
 						<li>Pays attention to index files: <code>import {bar} from &#39;./bar&#39;</code> → <code>import {bar} from &#39;./bar/index.js&#39;</code></li>
 					</ul>
 				</li>
 				<li>Follows <code>outDir</code> found in <strong>tsconfig.json</strong>.  </li>
-				<li>Changes file extensions if specified by opts.</li>
+				<li>Finds and replaces <code>__dirname</code> and <code>__filename</code> refs with <code>import.meta</code>.</li>
+				<li>Changes file extensions (applied to local deps only).</li>
 				<li>Supports Windows-based runtimes.</li>
 			</ul>
 			<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
