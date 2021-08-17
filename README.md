@@ -5,6 +5,7 @@ Make tsc-compiled [`es2020/esnext`](https://www.typescriptlang.org/tsconfig/#mod
 [![David](https://img.shields.io/david/dev/antongolub/tsc-esm-fix?label=deps)](https://david-dm.org/antongolub/tsc-esm-fix?type=dev)
 [![Maintainability](https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/maintainability)](https://codeclimate.com/github/antongolub/tsc-esm-fix/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/test_coverage)](https://codeclimate.com/github/antongolub/tsc-esm-fix/test_coverage)
+[![npm (tag)](https://img.shields.io/npm/v/tsc-esm-fix)](https://www.npmjs.com/package/tsc-esm-fix)
 
 ### Motivation
 This workaround is aimed to bypass a pair of **tsc** and **ts-jest** issues _right here and right now_. 
@@ -14,13 +15,14 @@ This workaround is aimed to bypass a pair of **tsc** and **ts-jest** issues _rig
 Hope one day this library will not be needed.
 
 ### Features
-* Finds and replaces `__dirname` and `__filename` refs with `import.meta`.
 * Injects extensions to imports/re-exports statements.
     * `import {foo} from './foo'` → `import {foo} from './foo.js'`
     * `import {baz} from 'external/baz'` → `import {baz} from 'external/baz.js'`
+    * Note, [including the file extension is only necessary for packages without an "exports" field](https://nodejs.org/api/esm.html#esm_packages). So in this case all the external refs remain as are.
     * Pays attention to index files: `import {bar} from './bar'` → `import {bar} from './bar/index.js'`
 * Follows `outDir` found in **tsconfig.json**.  
-* Changes file extensions if specified by opts.
+* Finds and replaces `__dirname` and `__filename` refs with `import.meta`.
+* Changes file extensions (applied to local deps only).
 * Supports Windows-based runtimes.
 
 ## Requirements
