@@ -78,7 +78,7 @@
     "prettier": "^2.3.2",
     "prettier-config-qiwi": "^1.4.2",
     "rimraf": "^3.0.2",
-    "tempy": "^1.0.1",
+    "tempy": "^2.0.0",
     "terser": "^5.7.1",
     "ts-jest": "^27.0.5",
     "typedoc": "^0.21.5",
