@@ -17,6 +17,7 @@ export * from './baz';
 export * from './q/u/x';
 export var foobaz = foo + 'baz';
 export { foo as foo1 } from './foo.js';
+export { qux } from './qux.js';
 export var dirname = __dirname;
 export var filename = __filename;
 console.log(foobaz);

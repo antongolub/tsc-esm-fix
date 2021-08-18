@@ -9,7 +9,7 @@ import {
   fixContents,
   fixDirnameVar,
   fixFilenameVar,
-  fixRelativeModuleReferences,
+  fixModuleReferences,
 } from '../../main/ts'
 import { normalizeOptions } from '../../main/ts/fix'
 import { globbySync, read } from '../../main/ts/util'
@@ -90,7 +90,7 @@ describe('contents', () => {
 
   it('fixRelativeModuleReferences() appends file ext to module refs except for the ones that declare "exports" in pkg.json', () => {
     expect(
-      fixRelativeModuleReferences(content, file, files, fakeProject),
+      fixModuleReferences(content, file, files, fakeProject),
     ).toMatchSnapshot()
   })
 
