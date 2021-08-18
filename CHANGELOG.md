@@ -1,3 +1,10 @@
+# [2.6.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.5.1...v2.6.0) (2021-08-18)
+
+
+### Features
+
+* provide ts-sources patching ([8bc4ab0](https://github.com/antongolub/tsc-esm-fix/commit/8bc4ab0d2ed1fee46669673eaba8e375a229a945))
+
 ## [2.5.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.5.0...v2.5.1) (2021-08-18)
 
 # [2.5.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.4.4...v2.5.0) (2021-08-18)
