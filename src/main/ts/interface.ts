@@ -2,6 +2,7 @@ export type IFixOptionsNormalized = {
   cwd: string
   debug?: boolean
   out?: string
+  src?: string | string[]
   target?: string | string[]
   tsconfig: string | string[]
   dirnameVar: boolean
