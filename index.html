@@ -2712,21 +2712,28 @@ img {
 			<a href="#tsc-esm-fix" id="tsc-esm-fix" style="color: inherit; text-decoration: none;">
 				<h1>tsc-esm-fix</h1>
 			</a>
-			<p>Make tsc-compiled <a href="https://www.typescriptlang.org/tsconfig/#module"><code>es2020/esnext</code></a> bundles compatible with <a href="https://nodejs.org/api/esm.html#esm_packages">esm/mjs requirements</a></p>
+			<p>Make TS projects compatible with <a href="https://nodejs.org/api/esm.html#esm_packages">esm/mjs requirements</a></p>
 			<p><a href="https://github.com/antongolub/tsc-esm-fix/actions"><img src="https://github.com/antongolub/tsc-esm-fix/workflows/CI/badge.svg" alt="CI"></a>
 				<a href="https://david-dm.org/antongolub/tsc-esm-fix?type=dev"><img src="https://img.shields.io/david/dev/antongolub/tsc-esm-fix?label=deps" alt="David"></a>
 				<a href="https://codeclimate.com/github/antongolub/tsc-esm-fix/maintainability"><img src="https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/maintainability" alt="Maintainability"></a>
 				<a href="https://codeclimate.com/github/antongolub/tsc-esm-fix/test_coverage"><img src="https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/test_coverage" alt="Test Coverage"></a>
 			<a href="https://www.npmjs.com/package/tsc-esm-fix"><img src="https://img.shields.io/npm/v/tsc-esm-fix" alt="npm (tag)"></a></p>
-			<a href="#motivation" id="motivation" style="color: inherit; text-decoration: none;">
-				<h3>Motivation</h3>
+			<a href="#problem" id="problem" style="color: inherit; text-decoration: none;">
+				<h3>Problem</h3>
 			</a>
 			<p>This workaround is aimed to bypass a pair of <strong>tsc</strong> and <strong>ts-jest</strong> issues <em>right here and right now</em>. </p>
 			<ul>
-				<li><a href="https://github.com/microsoft/TypeScript/issues/13422">TS/13422</a> / <a href="https://github.com/microsoft/TypeScript/issues/16577">TS/16577</a>: tsc should add <code>.js</code> extensions for relative module paths.</li>
+				<li><a href="https://github.com/microsoft/TypeScript/issues/13422">TS/13422</a> / <a href="https://github.com/microsoft/TypeScript/issues/16577">TS/16577</a>: <strong>tsc</strong> should add <code>.js</code> extensions for relative module paths if compiled as <a href="https://www.typescriptlang.org/tsconfig/#module"><code>es2020/esnext</code></a>.</li>
 				<li><a href="https://github.com/kulshekhar/ts-jest/issues/1174">ts-jest/1174</a>: <code>import.meta</code> is not allowed.</li>
 			</ul>
-			<p>Hope one day this library will not be needed.</p>
+			<a href="#solutions" id="solutions" style="color: inherit; text-decoration: none;">
+				<h3>Solutions</h3>
+			</a>
+			<ol>
+				<li>Post-process tsc-compiled outputs everytime after the build.</li>
+				<li>Patch project sources once as Sindre recommends in <a href="https://github.com/sindresorhus/meta/discussions/15">ESM migration guide</a></li>
+			</ol>
+			<p>This lib may be applied in both cases.</p>
 			<a href="#features" id="features" style="color: inherit; text-decoration: none;">
 				<h3>Features</h3>
 			</a>
@@ -2756,6 +2763,12 @@ img {
 				<h2>Usage</h2>
 			</a>
 			<pre><code class="language-shell"><span style="color: #000000">tsc-esm-fix [options]</span>
+
+<span style="color: #008000"># to post-process outputs everytime</span>
+<span style="color: #000000">tsc-esm-fix --target=</span><span style="color: #A31515">&#039;target/es6&#039;</span>
+
+<span style="color: #008000"># to patch ts sources once</span>
+<span style="color: #000000">tsc-esm-fix --target=</span><span style="color: #A31515">&#039;src/main/ts&#039;</span><span style="color: #000000"> --ext=</span><span style="color: #A31515">&#039;.js&#039;</span>
 </code></pre>
 			<pre><code class="language-typescript"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">fix</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;tsc-esm-fix&#039;</span>
 <span style="color: #AF00DB">await</span><span style="color: #000000"> </span><span style="color: #795E26">fix</span><span style="color: #000000">({</span>
@@ -2852,8 +2865,13 @@ img {
 						<td><code>tsconfig.json</code></td>
 					</tr>
 					<tr>
+						<td><code>--src</code></td>
+						<td>Entry points where the ts-source files are placed. If defined <code>src</code> option suppresses <code>target</code></td>
+						<td></td>
+					</tr>
+					<tr>
 						<td><code>--target</code></td>
-						<td>Entry points where compiled files are placed for modification</td>
+						<td>tsc-compiled output directory</td>
 						<td>If not specified inherited from tsconfig.json <strong>compilerOptions.outDir</strong></td>
 					</tr>
 					<tr>
@@ -2908,8 +2926,9 @@ img {
 </code></pre>
 			<pre><code class="language-typescript"><span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">interface</span><span style="color: #000000"> </span><span style="color: #267F99">IFixOptions</span><span style="color: #000000"> {</span>
 <span style="color: #000000">  </span><span style="color: #001080">cwd</span><span style="color: #000000">: </span><span style="color: #267F99">string</span>
-<span style="color: #000000">  </span><span style="color: #001080">out</span><span style="color: #000000">?: </span><span style="color: #267F99">string</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">src</span><span style="color: #000000">?: </span><span style="color: #267F99">string</span><span style="color: #000000"> | </span><span style="color: #267F99">string</span><span style="color: #000000">[]</span>
 <span style="color: #000000">  </span><span style="color: #001080">target</span><span style="color: #000000">?: </span><span style="color: #267F99">string</span><span style="color: #000000"> | </span><span style="color: #267F99">string</span><span style="color: #000000">[]</span>
+<span style="color: #000000">  </span><span style="color: #001080">out</span><span style="color: #000000">?: </span><span style="color: #267F99">string</span>
 <span style="color: #000000">  </span><span style="color: #001080">tsconfig</span><span style="color: #000000">?: </span><span style="color: #267F99">string</span><span style="color: #000000"> | </span><span style="color: #267F99">string</span><span style="color: #000000">[]</span>
 <span style="color: #000000">  </span><span style="color: #001080">dirnameVar</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span>
 <span style="color: #000000">  </span><span style="color: #001080">filenameVar</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span>
