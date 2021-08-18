@@ -1,5 +1,5 @@
 # tsc-esm-fix
-Make tsc-compiled [`es2020/esnext`](https://www.typescriptlang.org/tsconfig/#module) bundles compatible with [esm/mjs requirements](https://nodejs.org/api/esm.html#esm_packages)
+Make TS projects compatible with [esm/mjs requirements](https://nodejs.org/api/esm.html#esm_packages)
 
 [![CI](https://github.com/antongolub/tsc-esm-fix/workflows/CI/badge.svg)](https://github.com/antongolub/tsc-esm-fix/actions)
 [![David](https://img.shields.io/david/dev/antongolub/tsc-esm-fix?label=deps)](https://david-dm.org/antongolub/tsc-esm-fix?type=dev)
@@ -7,12 +7,16 @@ Make tsc-compiled [`es2020/esnext`](https://www.typescriptlang.org/tsconfig/#mod
 [![Test Coverage](https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/test_coverage)](https://codeclimate.com/github/antongolub/tsc-esm-fix/test_coverage)
 [![npm (tag)](https://img.shields.io/npm/v/tsc-esm-fix)](https://www.npmjs.com/package/tsc-esm-fix)
 
-### Motivation
+### Problem
 This workaround is aimed to bypass a pair of **tsc** and **ts-jest** issues _right here and right now_. 
-* [TS/13422](https://github.com/microsoft/TypeScript/issues/13422) / [TS/16577](https://github.com/microsoft/TypeScript/issues/16577): tsc should add `.js` extensions for relative module paths.
+* [TS/13422](https://github.com/microsoft/TypeScript/issues/13422) / [TS/16577](https://github.com/microsoft/TypeScript/issues/16577): **tsc** should add `.js` extensions for relative module paths if compiled as [`es2020/esnext`](https://www.typescriptlang.org/tsconfig/#module).
 * [ts-jest/1174](https://github.com/kulshekhar/ts-jest/issues/1174): `import.meta` is not allowed.
 
-Hope one day this library will not be needed.
+### Solutions
+1. Post-process tsc-compiled outputs everytime after the build.
+2. Patch project sources once as Sindre recommends in [ESM migration guide](https://github.com/sindresorhus/meta/discussions/15)
+
+This lib may be applied in both cases.
 
 ### Features
 * Injects extensions to imports/re-exports statements.
@@ -36,6 +40,12 @@ yarn add -D tsc-esm-fix
 ## Usage
 ```shell
 tsc-esm-fix [options]
+
+# to post-process outputs
+tsc-esm-fix --target='target/es6'
+
+# to patch ts sources
+tsc-esm-fix --target='src/main/ts' --ext='.js'
 ```
 
 ```typescript
@@ -126,7 +136,8 @@ tsc-esm-fix [opts]
 | Option | Description | Default
 |---|---|---|
 |`--tsconfig`| Path to project's ts-config(s) | `tsconfig.json`
-|`--target` | Entry points where compiled files are placed for modification | If not specified inherited from tsconfig.json **compilerOptions.outDir**
+|`--src` | Entry points where the source files are placed. If defined `src` option suppresses `target` |
+|`--target` | Entry points where the compiled files are placed | If not specified inherited from tsconfig.json **compilerOptions.outDir**
 |`--dirnameVar` | Replace `__dirname` usages with `import.meta` | true
 |`--filenameVar` | Replace `__filename` var references `import.meta` | true
 |`--ext` | Append extension to relative imports/re-exports | `.js`
@@ -151,8 +162,9 @@ await fix(fixOptions)
 ```typescript
 export interface IFixOptions {
   cwd: string
-  out?: string,
+  src?: string | string[]
   target?: string | string[]
+  out?: string
   tsconfig?: string | string[]
   dirnameVar: boolean
   filenameVar: boolean

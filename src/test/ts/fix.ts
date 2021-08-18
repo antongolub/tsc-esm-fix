@@ -41,86 +41,105 @@ describe('normalizeOptions()', () => {
   })
 })
 
-describe('fix()', () => {
-  it('patches some files as required by opts', async () => {
-    const cwd = resolve(temp, 'from')
-    const out = resolve(temp, 'from')
+describe('patches', () => {
+  describe('fix()', () => {
+    it('patches ts sources as required by opts', async () => {
+      const cwd = resolve(temp, 't1')
 
-    copySync(fakeProject, cwd)
+      copySync(fakeProject, cwd)
 
-    await fix({
-      cwd,
-      out,
-      tsconfig: ['tsconfig.es5.json', 'tsconfig.es6.json'],
-      ext: '.mjs',
-      debug: false,
+      await fix({
+        cwd,
+        src: ['src'],
+        ext: '.js',
+        debug: true,
+        dirnameVar: false,
+        filenameVar: false,
+      })
+
+      expect(read(resolve(temp, 't1/src/main/ts/index.ts'))).toMatchSnapshot()
     })
 
-    const res = resolve(temp, 'from/target/es6/index.mjs')
+    it('patches target (tsc-compiled) files as required by opts', async () => {
+      const cwd = resolve(temp, 'from')
+      const out = resolve(temp, 'from')
 
-    expect(read(res)).toMatchSnapshot()
-    expect(
-      cp
-        .execSync(`node from/target/es6/index.mjs`, {
-          cwd: temp,
-          env: {},
-          timeout: 5000,
-        })
-        .toString()
-        .trim(),
-    ).toBe('barbaz')
-  })
-})
+      copySync(fakeProject, cwd)
 
-describe('contents', () => {
-  const files = globbySync(
-    [
-      'target/**/*.(m|c)?js',
-      'node_modules/**/*.(m|c)?js',
-      '!node_modules/e2',
-      '!node_modules/**/node_modules/**/*.(m|c)?js',
-    ],
-    {
-      cwd: fakeProject,
-      onlyFiles: true,
-      absolute: true,
-    },
-  )
-  const file = resolve(fakeProject, 'target/es6/index.js')
-  const content = read(file)
+      await fix({
+        cwd,
+        out,
+        tsconfig: ['tsconfig.es5.json', 'tsconfig.es6.json'],
+        ext: '.mjs',
+        debug: false,
+      })
 
-  it('fixRelativeModuleReferences() appends file ext to module refs except for the ones that declare "exports" in pkg.json', () => {
-    expect(
-      fixModuleReferences(content, file, files, fakeProject),
-    ).toMatchSnapshot()
+      const res = resolve(temp, 'from/target/es6/index.mjs')
+
+      expect(read(res)).toMatchSnapshot()
+      expect(
+        cp
+          .execSync(`node from/target/es6/index.mjs`, {
+            cwd: temp,
+            env: {},
+            timeout: 5000,
+          })
+          .toString()
+          .trim(),
+      ).toBe('barbaz')
+    })
   })
 
-  it('fixDirnameVar() replaces __dirname refs', () => {
-    expect(fixDirnameVar(content)).toMatchSnapshot()
-  })
-
-  it('fixFilenameVar() replaces __filename refs', () => {
-    expect(fixFilenameVar(content)).toMatchSnapshot()
-  })
-
-  it('fixContents() assembles all content modifiers', () => {
-    expect(
-      fixContents(content, file, files, {
-        ...DEFAULT_FIX_OPTIONS,
+  describe('contents', () => {
+    const files = globbySync(
+      [
+        'target/**/*.(m|c)?js',
+        'node_modules/**/*.(m|c)?js',
+        '!node_modules/e2',
+        '!node_modules/**/node_modules/**/*.(m|c)?js',
+      ],
+      {
         cwd: fakeProject,
-      }),
-    ).toMatchSnapshot()
-  })
+        onlyFiles: true,
+        absolute: true,
+      },
+    )
+    const file = resolve(fakeProject, 'target/es6/index.js')
+    const content = read(file)
 
-  it('fixContents() with no flags does not provide any effects', () => {
-    expect(
-      fixContents(content, file, files, {
-        ext: false,
-        cwd: fakeProject,
-        filenameVar: false,
-        dirnameVar: false,
-        tsconfig: './tsconfig.json',
-      }),
-    ).toEqual(content)
+    it('fixRelativeModuleReferences() appends file ext to module refs except for the ones that declare "exports" in pkg.json', () => {
+      expect(
+        fixModuleReferences(content, file, files, fakeProject),
+      ).toMatchSnapshot()
+    })
+
+    it('fixDirnameVar() replaces __dirname refs', () => {
+      expect(fixDirnameVar(content)).toMatchSnapshot()
+    })
+
+    it('fixFilenameVar() replaces __filename refs', () => {
+      expect(fixFilenameVar(content)).toMatchSnapshot()
+    })
+
+    it('fixContents() assembles all content modifiers', () => {
+      expect(
+        fixContents(content, file, files, {
+          ...DEFAULT_FIX_OPTIONS,
+          cwd: fakeProject,
+        }),
+      ).toMatchSnapshot()
+    })
+
+    it('fixContents() with no flags does not provide any effects', () => {
+      expect(
+        fixContents(content, file, files, {
+          ext: false,
+          cwd: fakeProject,
+          filenameVar: false,
+          dirnameVar: false,
+          tsconfig: './tsconfig.json',
+        }),
+      ).toEqual(content)
+    })
   })
 })

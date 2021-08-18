@@ -148,15 +148,19 @@ const getExtModules = async (cwd: string): Promise<string[]> =>
 
 export const fix = async (opts?: IFixOptions): Promise<void> => {
   const _opts = normalizeOptions(opts)
-  const { cwd, target, tsconfig, out = cwd, ext, debug, unlink } = _opts
+  const { cwd, target, src, tsconfig, out = cwd, ext, debug, unlink } = _opts
+  const outDir = resolve(cwd, out)
   const dbg = debug ? console.log : () => {} // eslint-disable-line
-  const targets = [...asArray(target), ...findTargets(tsconfig, cwd)]
+  const sources = asArray<string>(src)
+  const targets = [...asArray<string>(target), ...findTargets(tsconfig, cwd)]
   dbg('debug:cwd', cwd)
+  dbg('debug:outdir', outDir)
+  dbg('debug:sources', sources)
   dbg('debug:targets', targets)
 
-  const patterns = targets.map((target) => `${target}/**/*.js`)
-  const outDir = resolve(cwd, out)
-  dbg('debug:outdir', outDir)
+  const patterns = sources.length > 0
+    ? sources.map((src) => `${src}/**/*.ts`)
+    : targets.map((target) => `${target}/**/*.js`)
 
   const names = await globby(patterns, {
     cwd: cwd,
@@ -172,13 +176,13 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
 
   const allNames = [...externalNames, ..._names]
   _names.forEach((name, i) => {
-    const nextName = name.replace(unixify(cwd), unixify(outDir))
+    const nextName = (!src ? name : names[i]).replace(unixify(cwd), unixify(outDir))
     const contents = read(names[i])
     const _contents = fixContents(contents, name, allNames, _opts)
 
     write(nextName, _contents)
 
-    if (unlink && cwd === outDir && nextName !== names[i]) {
+    if (!src && unlink && cwd === outDir && nextName !== names[i]) {
       remove(names[i])
     }
   })
