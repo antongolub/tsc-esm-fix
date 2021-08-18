@@ -18,7 +18,7 @@ export const readJson = <D = any>(file: string): D => json5.parse(read(file))
 export const asArray = <T>(value: T): T extends any[] ? T : T[] =>
   (Array.isArray(value) ? value : [value]) as T extends any[] ? T : T[]
 
-export const unlink = unlinkSync
+export const remove = unlinkSync
 
 export const unixify = (path: string): string => path.replace(/\\/g, '/')
 

@@ -13,6 +13,7 @@ const cli = meow(
 	  --tsconfig    Prod/bundle tsconfig path to search for 'outDir'
 	  --target      Specify target/outDir by hand. Suppresses 'tsconfig.compilerOptions.outDir'.
 	  --ext         Append extension (like '.mjs') to relative imports/re-exports
+	  --unlink      Remove original files if ext changes
 	  --dirnameVar  Replace __dirname refs with import.meta
 	  --filenameVar Replace __filename with import.meta
 	  --out         Output dir. Defaults to cwd, so files will be overridden
@@ -26,6 +27,10 @@ const cli = meow(
     flags: {
       ext: {
         type: 'string',
+      },
+      unlink: {
+        type: 'boolean',
+        default: true,
       },
       tsconfig: {
         isMultiple: true,
