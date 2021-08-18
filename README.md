@@ -77,7 +77,7 @@ export * from './q/u/x';
 export const foobaz = foo + 'baz';
 export { foo as foo1 } from './foo.js';
 
-// Dir with index.file ./qux.js/index.js
+// Dir with index.js file inside: ./qux.js/index.js
 export { qux } from './qux.js';
 
 export const dirname = __dirname;
