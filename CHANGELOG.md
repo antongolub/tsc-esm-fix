@@ -1,3 +1,15 @@
+# [2.5.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.4.4...v2.5.0) (2021-08-18)
+
+
+### Bug Fixes
+
+* handle directories with file-like names ([8c60d3f](https://github.com/antongolub/tsc-esm-fix/commit/8c60d3f4b1913b7880f92017dbbd0f347a8ce4bf))
+
+
+### Features
+
+* introduce `unlink` CLI flag ([af31516](https://github.com/antongolub/tsc-esm-fix/commit/af31516e3a6af55a293955c0202dc4ed9d37ced4))
+
 ## [2.4.4](https://github.com/antongolub/tsc-esm-fix/compare/v2.4.3...v2.4.4) (2021-08-17)
 
 ## [2.4.3](https://github.com/antongolub/tsc-esm-fix/compare/v2.4.2...v2.4.3) (2021-08-15)
