@@ -41,10 +41,10 @@ yarn add -D tsc-esm-fix
 ```shell
 tsc-esm-fix [options]
 
-# to post-process outputs
+# to post-process outputs everytime
 tsc-esm-fix --target='target/es6'
 
-# to patch ts sources
+# to patch ts sources once
 tsc-esm-fix --target='src/main/ts' --ext='.js'
 ```
 
@@ -136,8 +136,8 @@ tsc-esm-fix [opts]
 | Option | Description | Default
 |---|---|---|
 |`--tsconfig`| Path to project's ts-config(s) | `tsconfig.json`
-|`--src` | Entry points where the source files are placed. If defined `src` option suppresses `target` |
-|`--target` | Entry points where the compiled files are placed | If not specified inherited from tsconfig.json **compilerOptions.outDir**
+|`--src` | Entry points where the ts-source files are placed. If defined `src` option suppresses `target` |
+|`--target` | tsc-compiled output directory | If not specified inherited from tsconfig.json **compilerOptions.outDir**
 |`--dirnameVar` | Replace `__dirname` usages with `import.meta` | true
 |`--filenameVar` | Replace `__filename` var references `import.meta` | true
 |`--ext` | Append extension to relative imports/re-exports | `.js`
