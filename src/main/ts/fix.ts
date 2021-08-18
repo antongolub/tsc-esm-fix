@@ -49,13 +49,16 @@ export const resolveDependency = (
 ): string => {
   const dir = dirname(parent)
   const nmdir = resolve(cwd, 'node_modules')
-  const alt = ['.js', '.cjs', '.mjs'].reduce<string[]>((m, e) => {
-    m.push(`${nested}${e}`, `${nested}/index${e}`)
+  const bases = /^\..+\.[^./\\]+$/.test(nested)
+    ? [nested, nested.replace(/\.[^./\\]+$/, '')]
+    : [nested]
+  const variants = ['.js', '.cjs', '.mjs'].reduce<string[]>((m, e) => {
+    bases.forEach(v => m.push(`${v}${e}`, `${v}/index${e}`))
     return m
   }, [])
 
   return (
-    alt.find(
+    variants.find(
       (f) =>
         files.includes(unixify(resolve(nmdir, f))) ||
         files.includes(unixify(resolve(dir, f))),
@@ -64,9 +67,9 @@ export const resolveDependency = (
 }
 
 export const fixFilenameExtensions = (names: string[], ext: string): string[] =>
-  names.map((name) => name.replace(/\.[^.]+$/, ext))
+  names.map((name) => name.replace(/\.[^./\\]+$/, ext))
 
-export const fixRelativeModuleReferences = (
+export const fixModuleReferences = (
   contents: string,
   filename: string,
   filenames: string[],
@@ -101,7 +104,7 @@ export const fixContents = (
   let _contents = contents
 
   if (ext) {
-    _contents = fixRelativeModuleReferences(_contents, filename, filenames, cwd)
+    _contents = fixModuleReferences(_contents, filename, filenames, cwd)
   }
 
   if (dirnameVar) {

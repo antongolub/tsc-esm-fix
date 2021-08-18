@@ -3,7 +3,7 @@ export {
   fixContents,
   fixFilenameVar,
   fixDirnameVar,
-  fixRelativeModuleReferences,
+  fixModuleReferences,
   fixFilenameExtensions,
   DEFAULT_FIX_OPTIONS,
 } from './fix'
