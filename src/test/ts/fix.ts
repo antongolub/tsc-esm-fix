@@ -36,6 +36,7 @@ describe('normalizeOptions()', () => {
       dirnameVar: false,
       filenameVar: true,
       ext: true,
+      unlink: true,
     })
   })
 })

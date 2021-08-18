@@ -6,9 +6,9 @@ import {
   globby,
   read,
   readJson,
+  remove,
   resolveTsConfig,
   unixify,
-  unlink,
   write,
 } from './util'
 
@@ -18,6 +18,7 @@ export const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized = {
   filenameVar: true,
   dirnameVar: true,
   ext: true,
+  unlink: true,
   debug: false,
 }
 
@@ -53,7 +54,7 @@ export const resolveDependency = (
     ? [nested, nested.replace(/\.[^./\\]+$/, '')]
     : [nested]
   const variants = ['.js', '.cjs', '.mjs'].reduce<string[]>((m, e) => {
-    bases.forEach(v => m.push(`${v}${e}`, `${v}/index${e}`))
+    bases.forEach((v) => m.push(`${v}${e}`, `${v}/index${e}`))
     return m
   }, [])
 
@@ -147,7 +148,7 @@ const getExtModules = async (cwd: string): Promise<string[]> =>
 
 export const fix = async (opts?: IFixOptions): Promise<void> => {
   const _opts = normalizeOptions(opts)
-  const { cwd, target, tsconfig, out = cwd, ext, debug } = _opts
+  const { cwd, target, tsconfig, out = cwd, ext, debug, unlink } = _opts
   const dbg = debug ? console.log : () => {} // eslint-disable-line
   const targets = [...asArray(target), ...findTargets(tsconfig, cwd)]
   dbg('debug:cwd', cwd)
@@ -177,8 +178,8 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
 
     write(nextName, _contents)
 
-    if (cwd === outDir && nextName !== names[i]) {
-      unlink(names[i])
+    if (unlink && cwd === outDir && nextName !== names[i]) {
+      remove(names[i])
     }
   })
 }

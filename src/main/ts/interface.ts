@@ -7,6 +7,7 @@ export type IFixOptionsNormalized = {
   dirnameVar: boolean
   filenameVar: boolean
   ext: boolean | string
+  unlink?: boolean
 }
 
 export type TSConfig = {

@@ -130,6 +130,7 @@ tsc-esm-fix [opts]
 |`--dirnameVar` | Replace `__dirname` usages with `import.meta` | true
 |`--filenameVar` | Replace `__filename` var references `import.meta` | true
 |`--ext` | Append extension to relative imports/re-exports | `.js`
+|`--unlink` | Remove original files if ext changes | true
 |`--cwd`| cwd | `process.cwd()`
 |`--out`| Output dir. Defaults to `cwd`, so files would be overwritten | `process.cwd()`
 |`--debug` | Prints debug notes
@@ -152,10 +153,11 @@ export interface IFixOptions {
   cwd: string
   out?: string,
   target?: string | string[]
-  tsconfig: string | string[]
+  tsconfig?: string | string[]
   dirnameVar: boolean
   filenameVar: boolean
   ext: boolean | string
+  unlink?: boolean
 }
 ```
 
