@@ -47,6 +47,77 @@ await fix({
 })
 ```
 
+**Input**  
+[code ref](https://github.com/antongolub/tsc-esm-fix/blob/master/src/test/fixtures/ts-project/src/main/ts/index.ts)
+```js
+import { foo } from './foo';
+import './bar';
+
+// external cjs module
+import * as e1def from 'e1/a/b/c';
+import * as e1root from 'e1';
+const { e1 } = e1def;
+const { e1: e1x } = e1root;
+export { e1, e1x };
+
+// external esm module with `main` in pkg.json
+export { m1 } from 'm1';
+export { m1 as m1x } from 'm1/index';
+
+// external esm module with `exports` in pkg.json
+export { e2 } from 'e2';
+export { e2 as es3 } from 'e2/index';
+export { e2 as es4 } from 'e2/alias';
+export { e2foo } from 'e2/foo';
+export { e2bar } from 'e2/bar-bundle';
+
+export * from './foo';
+export * from './baz';
+export * from './q/u/x';
+export const foobaz = foo + 'baz';
+export { foo as foo1 } from './foo.js';
+
+// Dir with index.file ./qux.js/index.js
+export { qux } from './qux.js';
+
+export const dirname = __dirname;
+export const filename = __filename;
+
+console.log(foobaz);
+```
+
+**Output**
+```js
+import { foo } from './foo.js';
+import './bar.js';
+
+import * as e1def from 'e1/a/b/c/index.js';
+import * as e1root from 'e1';
+const { e1 } = e1def;
+const { e1: e1x } = e1root;
+export { e1, e1x };
+
+export { m1 } from 'm1';
+export { m1 as m1x } from 'm1/index.js';
+
+export { e2 } from 'e2';
+export { e2 as es3 } from 'e2/index';
+export { e2 as es4 } from 'e2/alias';
+export { e2foo } from 'e2/foo';
+export { e2bar } from 'e2/bar-bundle';
+
+export * from './foo.js';
+export * from './baz/index.js';
+export * from './q/u/x/index.js';
+export const foobaz = foo + 'baz';
+export { foo as foo1 } from './foo.js';
+
+export { qux } from './qux.js/index.js';
+
+export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
+export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
+```
+
 ## API
 ### CLI
 ```shell
