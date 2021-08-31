@@ -45,8 +45,6 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
       - name: Restore target
         uses: actions/download-artifact@v2
         with:
@@ -99,6 +97,8 @@ jobs:
     runs-on: ubuntu-20.04
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       - name: Restore target
         uses: actions/download-artifact@v2
         with:
