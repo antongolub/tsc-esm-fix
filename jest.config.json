@@ -1,13 +1,9 @@
 {
   "testEnvironment": "node",
   "transform": {
-    "^.+\\.tsx?$": "ts-jest",
-    "^.+\\.(m|c)?jsx?$": "@swissquote/crafty-preset-jest/src/esm-transformer"
+    "^.+\\.tsx?$": "ts-jest"
   },
-  "transformIgnorePatterns": [
-    "/!node_modules\\/globby/",
-    "<roodDir>/node_modules/(?!globby)"
-  ],
+  "extensionsToTreatAsEsm": [".ts"],
   "collectCoverage": true,
   "collectCoverageFrom": [
     "<rootDir>/src/main/**/*.(j|t)s"
@@ -35,6 +31,7 @@
   ],
   "globals": {
     "ts-jest": {
+      "useESM": true,
       "tsconfig": "<rootDir>/tsconfig.test.json"
     }
   }

@@ -1,11 +1,12 @@
 import { readFileSync, unlinkSync } from 'fs'
 import fse from 'fs-extra'
+import { globby, globbySync } from 'globby'
 import json5 from 'json5'
 import { dirname, resolve } from 'path'
 
 import { TSConfig } from './interface'
 
-export { globby, globbySync } from 'globby'
+export { globby, globbySync }
 
 export const read = (file: string): string =>
   readFileSync(file, { encoding: 'utf8' })
