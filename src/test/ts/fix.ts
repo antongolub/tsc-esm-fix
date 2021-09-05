@@ -1,6 +1,7 @@
 import * as cp from 'child_process'
-import { copySync, removeSync } from 'fs-extra'
-import { resolve } from 'path'
+import fse from 'fs-extra'
+import { dirname,resolve } from 'node:path'
+import { fileURLToPath } from 'node:url'
 import tempy from 'tempy'
 
 import {
@@ -14,11 +15,12 @@ import {
 import { normalizeOptions } from '../../main/ts/fix'
 import { globbySync, read } from '../../main/ts/util'
 
+const __dirname = dirname(fileURLToPath(import.meta.url))
 const fakeProject = resolve(__dirname, '../fixtures/ts-project')
 const temp = tempy.directory()
 
 afterAll(() => {
-  removeSync(temp)
+  fse.removeSync(temp)
 })
 
 describe('normalizeOptions()', () => {
@@ -46,7 +48,7 @@ describe('patches', () => {
     it('patches ts sources as required by opts', async () => {
       const cwd = resolve(temp, 't1')
 
-      copySync(fakeProject, cwd)
+      fse.copySync(fakeProject, cwd)
 
       await fix({
         cwd,
@@ -64,7 +66,7 @@ describe('patches', () => {
       const cwd = resolve(temp, 'from')
       const out = resolve(temp, 'from')
 
-      copySync(fakeProject, cwd)
+      fse.copySync(fakeProject, cwd)
 
       await fix({
         cwd,
