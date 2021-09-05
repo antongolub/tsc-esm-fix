@@ -1,6 +1,6 @@
 import * as cp from 'child_process'
 import fse from 'fs-extra'
-import { dirname,resolve } from 'node:path'
+import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import tempy from 'tempy'
 

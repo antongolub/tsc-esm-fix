@@ -92,4 +92,3 @@ jobs:
         use: linux-shared
       install: skip
       script: npx -p @qiwi/semrel-toolkit semrel -e @qiwi/semrel-config
-      # script: echo 'Deploy step is disabled' && exit 0
