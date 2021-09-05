@@ -7,6 +7,19 @@ Make TS projects compatible with [esm/mjs requirements](https://nodejs.org/api/e
 [![Test Coverage](https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/test_coverage)](https://codeclimate.com/github/antongolub/tsc-esm-fix/test_coverage)
 [![npm (tag)](https://img.shields.io/npm/v/tsc-esm-fix)](https://www.npmjs.com/package/tsc-esm-fix)
 
+- [Problem](#problem)
+- [Solutions](#solutions)
+- [Features](#features)
+- [Getting started](#getting-started)
+  - [Requirements](#requirements)
+  - [Install](#install)
+  - [Usage examples](#usage-examples)
+  - [CLI](#cli)
+  - [JS/TS API](#js-ts-api)
+- [Alternatives](#alternatives)
+- [Contributing](#contributing)
+- [License](#license)
+
 ### Problem
 This workaround is aimed to bypass a pair of **tsc** and **ts-jest** issues _right here and right now_. 
 * [TS/13422](https://github.com/microsoft/TypeScript/issues/13422) / [TS/16577](https://github.com/microsoft/TypeScript/issues/16577): **tsc** should add `.js` extensions for relative module paths if compiled as [`es2020/esnext`](https://www.typescriptlang.org/tsconfig/#module).
@@ -29,19 +42,20 @@ This lib may be applied in both cases.
 * Changes file extensions (applied to local deps only).
 * Supports Windows-based runtimes.
 
-## Requirements
+## Getting started
+### Requirements
 Node.js `^12.20.0 || ^14.13.1 || >=16.0.0`
 
-## Install
+### Install
 ```shell
 yarn add -D tsc-esm-fix
 ```
 
-## Usage
+### Usage examples
 ```shell
 tsc-esm-fix [options]
 
-# to post-process outputs everytime
+# to post-process outputs each time
 tsc-esm-fix --target='target/es6'
 
 # to patch ts sources once
@@ -128,7 +142,6 @@ export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
 ```
 
-## API
 ### CLI
 ```shell
 tsc-esm-fix [opts]
@@ -139,14 +152,14 @@ tsc-esm-fix [opts]
 |`--src` | Entry points where the ts-source files are placed. If defined `src` option suppresses `target` |
 |`--target` | tsc-compiled output directory | If not specified inherited from tsconfig.json **compilerOptions.outDir**
 |`--dirnameVar` | Replace `__dirname` usages with `import.meta` | true
-|`--filenameVar` | Replace `__filename` var references `import.meta` | true
+|`--filenameVar` | Replace `__filename` var references with `import.meta` statements | true
 |`--ext` | Append extension to relative imports/re-exports | `.js`
 |`--unlink` | Remove original files if ext changes | true
 |`--cwd`| cwd | `process.cwd()`
 |`--out`| Output dir. Defaults to `cwd`, so files would be overwritten | `process.cwd()`
 |`--debug` | Prints debug notes
 
-### JS/TS
+### JS/TS API
 ```ts
 import { fix, IFixOptions } from 'tsc-esm-fix'
 
@@ -176,6 +189,11 @@ export interface IFixOptions {
 ## Alternatives
 * https://github.com/mothepro/tsc-esm
 * https://github.com/digital-loukoum/tsc-esm
+
+## Contributing
+Feel free to open any issues: for bugs, feature requests or questions.
+You're always welcome to suggest a PR. Just fork this repo, write some code, add some tests and push your changes.
+Any feedback is appreciated.
 
 ## License
 [MIT](./LICENSE)
