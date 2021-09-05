@@ -14,7 +14,7 @@
     "import": "./target/es6/index.mjs"
   },
   "engines": {
-    "node": ">=14.8"
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "source": "src/main/ts/index.ts",
   "main": "target/bundle/tsc-esm-fix.js",

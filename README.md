@@ -30,7 +30,7 @@ This lib may be applied in both cases.
 * Supports Windows-based runtimes.
 
 ## Requirements
-Node.js >= 14
+Node.js `^12.20.0 || ^14.13.1 || >=16.0.0`
 
 ## Install
 ```shell
