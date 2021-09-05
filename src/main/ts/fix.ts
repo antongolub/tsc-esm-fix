@@ -158,9 +158,10 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   dbg('debug:sources', sources)
   dbg('debug:targets', targets)
 
-  const patterns = sources.length > 0
-    ? sources.map((src) => `${src}/**/*.ts`)
-    : targets.map((target) => `${target}/**/*.js`)
+  const patterns =
+    sources.length > 0
+      ? sources.map((src) => `${src}/**/*.ts`)
+      : targets.map((target) => `${target}/**/*.js`)
 
   const names = await globby(patterns, {
     cwd: cwd,
@@ -176,7 +177,10 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
 
   const allNames = [...externalNames, ..._names]
   _names.forEach((name, i) => {
-    const nextName = (!src ? name : names[i]).replace(unixify(cwd), unixify(outDir))
+    const nextName = (!src ? name : names[i]).replace(
+      unixify(cwd),
+      unixify(outDir),
+    )
     const contents = read(names[i])
     const _contents = fixContents(contents, name, allNames, _opts)
 

@@ -17,11 +17,7 @@ export const write = (file: string, contents: string): void =>
 export const readJson = <D = any>(file: string): D => json5.parse(read(file))
 
 export const asArray = <T>(value: T[] | T | undefined): T[] =>
-  (value
-    ? Array.isArray(value)
-      ? value
-      : [value]
-    : [])
+  value ? (Array.isArray(value) ? value : [value]) : []
 
 export const remove = unlinkSync
 
