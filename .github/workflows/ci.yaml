@@ -69,7 +69,7 @@ jobs:
     strategy:
       matrix:
         os: [ windows-2019, ubuntu-20.04 ]
-        node-version: [ 14, 16 ]
+        node-version: [ 12, 14, 16 ]
     name: Test (Node v${{ matrix.node-version }}, OS ${{ matrix.os }})
     runs-on: ${{ matrix.os }}
     steps:
@@ -82,9 +82,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: yarn
-      - name: Unit test only
+      - name: Integration test only
         if: matrix.node-version != '16' || matrix.os != 'ubuntu-20.04'
-        run: yarn jest -v && yarn test:unit
+        run: yarn jest -v && yarn test:it
       - name: Full test
         if: matrix.node-version == '16' && matrix.os == 'ubuntu-20.04'
         run: yarn test

@@ -49,7 +49,7 @@ jobs:
       if: branch = master AND type = pull_request AND env(CI_TEST) != false
       stage: test
       install: skip
-      script: yarn test
+      script: yarn test:it
       workspaces:
         use: linux-shared
 

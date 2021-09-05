@@ -17,7 +17,8 @@
   ],
   "testPathIgnorePatterns": [
     "/node_modules/",
-    "<rootDir>/src/test/stub"
+    "<rootDir>/src/test/stub",
+    "<rootDir>/src/test/js/.+it\\.js"
   ],
   "moduleFileExtensions": [
     "ts",

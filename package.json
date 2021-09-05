@@ -22,10 +22,10 @@
   "unpkg": "target/bundle/tsc-esm-fix.umd.js",
   "scripts": {
     "clean": "rimraf target typings flow-typed buildcache docs coverage buildstamp.json",
-    "lint": "eslint src/**/*.{ts|js}",
+    "lint": "eslint src/**/*.{ts,js} scripts",
     "lint:fix": "yarn lint --fix",
     "format": "prettier --write \"scripts/**/*.js\" \"src/main/**/*.ts\" \"src/test/(js|ts)**/*.(t|j)s\"",
-    "test": "npm-run-all -p -l lint test:unit test:depcheck test:depaudit",
+    "test": "npm-run-all -p -l lint test:unit test:it test:depcheck test:depaudit",
     "test:unit": "NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.json --runInBand",
     "test:it": "NODE_OPTIONS=--experimental-vm-modules node scripts/js/glob-script-runner.js src/test/**/*.it.js",
     "test:deps": "npm-run-all -p -l test:depcheck test:depauditfix",
