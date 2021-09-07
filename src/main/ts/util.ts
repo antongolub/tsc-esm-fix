@@ -1,6 +1,6 @@
 import { readFileSync, unlinkSync } from 'fs'
 import fse from 'fs-extra'
-import { globby, globbySync } from 'globby'
+import { globby } from 'globby'
 import json5 from 'json5'
 import { dirname, resolve } from 'path'
 

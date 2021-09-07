@@ -1,5 +1,6 @@
 import * as cp from 'child_process'
 import fse from 'fs-extra'
+import { globbySync } from 'globby'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import tempy from 'tempy'
@@ -13,7 +14,7 @@ import {
   fixModuleReferences,
 } from '../../main/ts'
 import { normalizeOptions } from '../../main/ts/fix'
-import { globbySync, read } from '../../main/ts/util'
+import { read } from '../../main/ts/util'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const fakeProject = resolve(__dirname, '../fixtures/ts-project')
