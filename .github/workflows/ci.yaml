@@ -108,11 +108,11 @@ jobs:
 
       - name: Integration tests
         if: matrix.node-version != '16' || matrix.os != 'ubuntu-20.04'
-        run: yarn jest -v && yarn test:it
+        run: yarn test:it
 
       - name: Full test suite
         if: matrix.node-version == '16' && matrix.os == 'ubuntu-20.04'
-        run: yarn test
+        run: yarn jest -v && yarn test
 
   release:
     name: Release

@@ -11,7 +11,8 @@
   "description": "Make tsc-compiled `es2020/esnext` bundles compatible with esm/mjs requirements",
   "type": "module",
   "exports": {
-    "import": "./target/es6/index.mjs"
+    "import": "./target/es6/index.mjs",
+    "require": "./target/bundle/tsc-esm-fix.cjs"
   },
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
@@ -27,7 +28,7 @@
     "format": "prettier --write \"scripts/**/*.js\" \"src/main/**/*.ts\" \"src/test/(js|ts)**/*.(t|j)s\"",
     "test": "npm-run-all -p -l lint test:unit test:it test:depcheck test:depaudit",
     "test:unit": "NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.json --runInBand",
-    "test:it": "NODE_OPTIONS=--experimental-vm-modules node scripts/js/glob-script-runner.js src/test/**/*.it.js",
+    "test:it": "NODE_OPTIONS='--experimental-vm-modules --experimental-modules' node scripts/js/glob-script-runner.js src/test/**/*.it.js",
     "test:deps": "npm-run-all -p -l test:depcheck test:depauditfix",
     "test:depcheck": "npm_config_yes=true npx depcheck --ignore-patterns fixtures --ignores tslib,@swissquote/crafty-preset-jest,@types/jest,@types/node,eslint-config-*",
     "test:depaudit": "yarn audit --groups=dependencies --level=moderate; [[ $? -ge 4 ]] && exit 1 || exit 0",
@@ -77,6 +78,7 @@
     "prettier": "^2.3.2",
     "prettier-config-qiwi": "^1.4.2",
     "rimraf": "^3.0.2",
+    "semver": "^7.3.5",
     "tempy": "^2.0.0",
     "terser": "^5.7.2",
     "ts-jest": "^27.0.5",

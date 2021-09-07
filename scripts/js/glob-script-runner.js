@@ -1,6 +1,9 @@
-import { globbySync } from 'globby'
-import process from 'node:process'
+import fs from 'fs'
+import { globbySync }from 'globby'
+import process from 'process'
+import semver from 'semver'
 
+const nodeVersion = process.version
 const argv = process.argv.slice(2)
 const tests = globbySync(argv, {
   cwd: process.cwd(),
@@ -8,10 +11,23 @@ const tests = globbySync(argv, {
   absolute: true,
 })
 
-await tests.reduce(async (r, module) => {
-  await r
-  console.log(`Loading ${module}...`)
-  return import(module)
-}, Promise.resolve())
+const engineDirectiveRe = /^\/\/\s*node-engine\s+(.+)\n/
 
-console.log('Done')
+tests.reduce((r, module) =>
+  r.then(() =>
+    fs.promises.readFile(module, {encoding: 'utf8'}).then(c => {
+      const engineDirective = (engineDirectiveRe.exec(c) || [])[1]
+
+      if (engineDirective && !semver.satisfies(nodeVersion, engineDirective)) {
+        console.log(`Skipped ${module}. ${nodeVersion} does not satisfy ${engineDirective}`)
+        return r
+      }
+
+      console.log(`Loading ${module}...`)
+
+      return import(module)
+    })
+  )
+
+, Promise.resolve())
+  .then(() => console.log('Done'))
