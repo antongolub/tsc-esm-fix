@@ -2718,6 +2718,22 @@ img {
 				<a href="https://codeclimate.com/github/antongolub/tsc-esm-fix/maintainability"><img src="https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/maintainability" alt="Maintainability"></a>
 				<a href="https://codeclimate.com/github/antongolub/tsc-esm-fix/test_coverage"><img src="https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/test_coverage" alt="Test Coverage"></a>
 			<a href="https://www.npmjs.com/package/tsc-esm-fix"><img src="https://img.shields.io/npm/v/tsc-esm-fix" alt="npm (tag)"></a></p>
+			<ul>
+				<li><a href="#problem">Problem</a></li>
+				<li><a href="#solutions">Solutions</a></li>
+				<li><a href="#features">Features</a></li>
+				<li><a href="#getting-started">Getting started</a><ul>
+						<li><a href="#requirements">Requirements</a></li>
+						<li><a href="#install">Install</a></li>
+						<li><a href="#usage-examples">Usage examples</a></li>
+						<li><a href="#cli">CLI</a></li>
+						<li><a href="#js-ts-api">JS/TS API</a></li>
+					</ul>
+				</li>
+				<li><a href="#alternatives">Alternatives</a></li>
+				<li><a href="#contributing">Contributing</a></li>
+				<li><a href="#license">License</a></li>
+			</ul>
 			<a href="#problem" id="problem" style="color: inherit; text-decoration: none;">
 				<h3>Problem</h3>
 			</a>
@@ -2750,21 +2766,24 @@ img {
 				<li>Changes file extensions (applied to local deps only).</li>
 				<li>Supports Windows-based runtimes.</li>
 			</ul>
-			<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
-				<h2>Requirements</h2>
+			<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+				<h2>Getting started</h2>
 			</a>
-			<p>Node.js &gt;= 14</p>
+			<a href="#requirements" id="requirements" style="color: inherit; text-decoration: none;">
+				<h3>Requirements</h3>
+			</a>
+			<p>Node.js <code>^12.20.0 || ^14.13.1 || &gt;=16.0.0</code></p>
 			<a href="#install" id="install" style="color: inherit; text-decoration: none;">
-				<h2>Install</h2>
+				<h3>Install</h3>
 			</a>
 			<pre><code class="language-shell"><span style="color: #000000">yarn add -D tsc-esm-fix</span>
 </code></pre>
-			<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
-				<h2>Usage</h2>
+			<a href="#usage-examples" id="usage-examples" style="color: inherit; text-decoration: none;">
+				<h3>Usage examples</h3>
 			</a>
 			<pre><code class="language-shell"><span style="color: #000000">tsc-esm-fix [options]</span>
 
-<span style="color: #008000"># to post-process outputs everytime</span>
+<span style="color: #008000"># to post-process outputs each time</span>
 <span style="color: #000000">tsc-esm-fix --target=</span><span style="color: #A31515">&#039;target/es6&#039;</span>
 
 <span style="color: #008000"># to patch ts sources once</span>
@@ -2843,9 +2862,6 @@ img {
 <span style="color: #AF00DB">export</span><span style="color: #000000"> </span><span style="color: #0000FF">const</span><span style="color: #000000"> </span><span style="color: #0070C1">dirname</span><span style="color: #000000"> =</span><span style="color: #811F3F"> /file:</span><span style="color: #EE0000">\\\\</span><span style="color: #811F3F">/</span><span style="color: #000000">\\\\</span><span style="color: #811F3F">/</span><span style="color: #D16969">(</span><span style="color: #811F3F">.</span><span style="color: #000000">+</span><span style="color: #D16969">)</span><span style="color: #EE0000">\\\\</span><span style="color: #811F3F">/</span><span style="color: #000000">[^</span><span style="color: #811F3F">/]/</span><span style="color: #000000">.</span><span style="color: #795E26">exec</span><span style="color: #000000">(</span><span style="color: #AF00DB">import</span><span style="color: #000000">.</span><span style="color: #001080">meta</span><span style="color: #000000">.</span><span style="color: #001080">url</span><span style="color: #000000">)[</span><span style="color: #098658">1</span><span style="color: #000000">];</span>
 <span style="color: #001080">export</span><span style="color: #000000"> </span><span style="color: #001080">const</span><span style="color: #000000"> </span><span style="color: #001080">filename</span><span style="color: #000000"> =</span><span style="color: #811F3F"> /file:</span><span style="color: #EE0000">\\\\</span><span style="color: #811F3F">/</span><span style="color: #000000">\\\\</span><span style="color: #811F3F">/</span><span style="color: #D16969">(</span><span style="color: #811F3F">.</span><span style="color: #000000">+</span><span style="color: #D16969">)</span><span style="color: #811F3F">/</span><span style="color: #000000">.</span><span style="color: #795E26">exec</span><span style="color: #000000">(</span><span style="color: #AF00DB">import</span><span style="color: #000000">.</span><span style="color: #001080">meta</span><span style="color: #000000">.</span><span style="color: #001080">url</span><span style="color: #000000">)[</span><span style="color: #098658">1</span><span style="color: #000000">];</span>
 </code></pre>
-			<a href="#api" id="api" style="color: inherit; text-decoration: none;">
-				<h2>API</h2>
-			</a>
 			<a href="#cli" id="cli" style="color: inherit; text-decoration: none;">
 				<h3>CLI</h3>
 			</a>
@@ -2881,7 +2897,7 @@ img {
 					</tr>
 					<tr>
 						<td><code>--filenameVar</code></td>
-						<td>Replace <code>__filename</code> var references <code>import.meta</code></td>
+						<td>Replace <code>__filename</code> var references with <code>import.meta</code> statements</td>
 						<td>true</td>
 					</tr>
 					<tr>
@@ -2910,8 +2926,8 @@ img {
 						<td></td>
 					</tr>
 			</tbody></table>
-			<a href="#jsts" id="jsts" style="color: inherit; text-decoration: none;">
-				<h3>JS/TS</h3>
+			<a href="#jsts-api" id="jsts-api" style="color: inherit; text-decoration: none;">
+				<h3>JS/TS API</h3>
 			</a>
 			<pre><code class="language-ts"><span style="color: #AF00DB">import</span><span style="color: #000000"> { </span><span style="color: #001080">fix</span><span style="color: #000000">, </span><span style="color: #001080">IFixOptions</span><span style="color: #000000"> } </span><span style="color: #AF00DB">from</span><span style="color: #000000"> </span><span style="color: #A31515">&#039;tsc-esm-fix&#039;</span>
 
@@ -2933,7 +2949,8 @@ img {
 <span style="color: #000000">  </span><span style="color: #001080">dirnameVar</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span>
 <span style="color: #000000">  </span><span style="color: #001080">filenameVar</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span>
 <span style="color: #000000">  </span><span style="color: #001080">ext</span><span style="color: #000000">: </span><span style="color: #267F99">boolean</span><span style="color: #000000"> | </span><span style="color: #267F99">string</span>
-<span style="color: #000000">  </span><span style="color: #001080">unlink</span><span style="color: #000000">?: </span><span style="color: #267F99">boolean</span>
+<span style="color: #000000">  </span><span style="color: #001080">unlink</span><span style="color: #000000">?: </span><span style="color: #267F99">boolean</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #001080">debug</span><span style="color: #000000">?: </span><span style="color: #267F99">boolean</span><span style="color: #000000"> | </span><span style="color: #267F99">IFunction</span>
 <span style="color: #000000">}</span>
 </code></pre>
 			<a href="#alternatives" id="alternatives" style="color: inherit; text-decoration: none;">
@@ -2943,6 +2960,12 @@ img {
 				<li><a href="https://github.com/mothepro/tsc-esm">https://github.com/mothepro/tsc-esm</a></li>
 				<li><a href="https://github.com/digital-loukoum/tsc-esm">https://github.com/digital-loukoum/tsc-esm</a></li>
 			</ul>
+			<a href="#contributing" id="contributing" style="color: inherit; text-decoration: none;">
+				<h2>Contributing</h2>
+			</a>
+			<p>Feel free to open any issues: for bugs, feature requests or questions.
+				You&#39;re always welcome to suggest a PR. Just fork this repo, write some code, add some tests and push your changes.
+			Any feedback is appreciated.</p>
 			<a href="#license" id="license" style="color: inherit; text-decoration: none;">
 				<h2>License</h2>
 			</a>
