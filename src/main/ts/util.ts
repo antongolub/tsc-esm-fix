@@ -6,7 +6,7 @@ import { dirname, resolve } from 'path'
 
 import { TSConfig } from './interface'
 
-export { globby, globbySync }
+export { globby }
 
 export const read = (file: string): string =>
   readFileSync(file, { encoding: 'utf8' })
