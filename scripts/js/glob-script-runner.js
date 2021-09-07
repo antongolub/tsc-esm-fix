@@ -2,6 +2,7 @@ import fs from 'fs'
 import { globbySync }from 'globby'
 import process from 'process'
 import semver from 'semver'
+import url from 'url'
 
 const nodeVersion = process.version
 const argv = process.argv.slice(2)
@@ -25,7 +26,7 @@ tests.reduce((r, module) =>
 
       console.log(`Loading ${module}...`)
 
-      return import(module)
+      return import(url.pathToFileURL(module))
     })
   )
 
