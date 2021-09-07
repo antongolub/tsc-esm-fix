@@ -18,6 +18,7 @@ Make TS projects compatible with [esm/mjs requirements](https://nodejs.org/api/e
   - [JS/TS API](#jsts-api)
 - [Alternatives](#alternatives)
 - [Contributing](#contributing)
+- [References](#references)
 - [License](#license)
 
 ### Problem
@@ -196,7 +197,7 @@ Feel free to open any issues: for bugs, feature requests or questions.
 You're always welcome to suggest a PR. Just fork this repo, write some code, add some tests and push your changes.
 Any feedback is appreciated.
 
-## Refs
+## References
 * [TypeScript/issues/13422: TypeScript and script type="module"](https://github.com/microsoft/TypeScript/issues/13422)
 * [TypeScript/issues/28288: Feature: disable extensionless imports](https://github.com/microsoft/TypeScript/issues/28288)
 * [ts-jest/issues/1174: import.meta not allowed](https://github.com/kulshekhar/ts-jest/issues/1174)
