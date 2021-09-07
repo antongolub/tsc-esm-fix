@@ -33,8 +33,8 @@ describe('normalizeOptions()', () => {
       }),
     ).toEqual({
       cwd: process.cwd(),
+      debug: expect.any(Function),
       tsconfig: ['foo.json'],
-      debug: false,
       dirnameVar: false,
       filenameVar: true,
       ext: true,
@@ -140,6 +140,7 @@ describe('patches', () => {
           filenameVar: false,
           dirnameVar: false,
           tsconfig: './tsconfig.json',
+          debug: () => {}, // eslint-disable-line
         }),
       ).toEqual(content)
     })
