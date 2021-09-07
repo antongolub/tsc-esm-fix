@@ -1,3 +1,16 @@
+# [2.7.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.6.0...v2.7.0) (2021-09-07)
+
+
+### Features
+
+* add Node.js ^12.20.0 to supported engines ([b213f1c](https://github.com/antongolub/tsc-esm-fix/commit/b213f1c73d013db88b8a4b84213d3d8cfabc20d9))
+* support custom debug function ([5eed5c0](https://github.com/antongolub/tsc-esm-fix/commit/5eed5c044f5072c307483a4f3b3387bdb498c455))
+
+
+### Performance Improvements
+
+* **pkg:** update globby to v12.0.2, update jest to v27.1.0, rm patch-package ([2ed6880](https://github.com/antongolub/tsc-esm-fix/commit/2ed68803d0fd1e85142b2eb7a2ea9d59b23002f7))
+
 # [2.6.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.5.1...v2.6.0) (2021-08-18)
 
 
