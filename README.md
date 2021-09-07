@@ -182,7 +182,8 @@ export interface IFixOptions {
   dirnameVar: boolean
   filenameVar: boolean
   ext: boolean | string
-  unlink?: boolean
+  unlink?: boolean,
+  debug?: boolean | IFunction
 }
 ```
 

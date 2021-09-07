@@ -1,6 +1,8 @@
+type IFunction<A extends any[] = any[], R = any> = (...args: A) => R
+
 export type IFixOptionsNormalized = {
   cwd: string
-  debug?: boolean
+  debug: IFunction
   out?: string
   src?: string | string[]
   target?: string | string[]
@@ -16,4 +18,4 @@ export type TSConfig = {
   compilerOptions?: Record<string, any>
 }
 
-export type IFixOptions = Partial<IFixOptionsNormalized>
+export type IFixOptions = Partial<Omit<IFixOptionsNormalized, 'debug'>> & {debug?: boolean | IFunction}

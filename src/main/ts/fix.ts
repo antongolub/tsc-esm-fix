@@ -19,12 +19,20 @@ export const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized = {
   dirnameVar: true,
   ext: true,
   unlink: true,
-  debug: false,
+  debug: () => {}, // eslint-disable-line
 }
 
 export const normalizeOptions = (
   opts?: IFixOptions,
-): IFixOptionsNormalized => ({ ...DEFAULT_FIX_OPTIONS, ...opts })
+): IFixOptionsNormalized => ({
+  ...DEFAULT_FIX_OPTIONS,
+  ...opts,
+  debug: typeof opts?.debug === 'function'
+    ? opts.debug
+    : opts?.debug === true
+      ? console.log
+      : DEFAULT_FIX_OPTIONS.debug,
+})
 
 export const findTargets = (
   tsconfig: string | string[],
@@ -150,13 +158,12 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   const _opts = normalizeOptions(opts)
   const { cwd, target, src, tsconfig, out = cwd, ext, debug, unlink } = _opts
   const outDir = resolve(cwd, out)
-  const dbg = debug ? console.log : () => {} // eslint-disable-line
   const sources = asArray<string>(src)
   const targets = [...asArray<string>(target), ...findTargets(tsconfig, cwd)]
-  dbg('debug:cwd', cwd)
-  dbg('debug:outdir', outDir)
-  dbg('debug:sources', sources)
-  dbg('debug:targets', targets)
+  debug('debug:cwd', cwd)
+  debug('debug:outdir', outDir)
+  debug('debug:sources', sources)
+  debug('debug:targets', targets)
 
   const patterns =
     sources.length > 0
@@ -169,11 +176,11 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
     absolute: true,
   })
   const externalNames = await getExtModules(cwd)
-  dbg('debug:external-names', externalNames)
+  debug('debug:external-names', externalNames)
 
   const _names =
     typeof ext === 'string' ? fixFilenameExtensions(names, ext) : names
-  dbg('debug:local-names', _names)
+  debug('debug:local-names', _names)
 
   const allNames = [...externalNames, ..._names]
   _names.forEach((name, i) => {
