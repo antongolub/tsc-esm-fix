@@ -15,7 +15,7 @@ Make TS projects compatible with [esm/mjs requirements](https://nodejs.org/api/e
   - [Install](#install)
   - [Usage examples](#usage-examples)
   - [CLI](#cli)
-  - [JS/TS API](#js-ts-api)
+  - [JS/TS API](#jsts-api)
 - [Alternatives](#alternatives)
 - [Contributing](#contributing)
 - [License](#license)
@@ -195,6 +195,17 @@ export interface IFixOptions {
 Feel free to open any issues: for bugs, feature requests or questions.
 You're always welcome to suggest a PR. Just fork this repo, write some code, add some tests and push your changes.
 Any feedback is appreciated.
+
+## Refs
+* [TypeScript/issues/13422: TypeScript and script type="module"](https://github.com/microsoft/TypeScript/issues/13422)
+* [TypeScript/issues/28288: Feature: disable extensionless imports](https://github.com/microsoft/TypeScript/issues/28288)
+* [ts-jest/issues/1174: import.meta not allowed](https://github.com/kulshekhar/ts-jest/issues/1174)
+* [stackoverflow.com/how-to-use-import-meta-when-testing-with-jest](https://stackoverflow.com/questions/64961387/how-to-use-import-meta-when-testing-with-jest)
+* [Pure ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c)
+* [stackoverflow.com/alternative-for-dirname-in-node-when-using-the-experimental-modules-flag](https://stackoverflow.com/questions/46745014/alternative-for-dirname-in-node-when-using-the-experimental-modules-flag)
+* [ecma262/#sec-imports](https://tc39.es/ecma262/#sec-imports)
+* [ERR_REQUIRE_ESM](https://dev.to/antongolub/errrequireesm-4j0h)
+* [Publishing Node modules with TypeScript and ES modules](https://blog.logrocket.com/publishing-node-modules-typescript-es-modules/)
 
 ## License
 [MIT](./LICENSE)
