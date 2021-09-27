@@ -14,6 +14,11 @@ const tests = globbySync(argv, {
 
 const engineDirectiveRe = /^\/\/\s*node-engine\s+(.+)\n/
 
+if (tests.length === 0) {
+  console.log(`No match found: ${argv}`)
+  return
+}
+
 tests.reduce((r, module) =>
   r.then(() =>
     fs.promises.readFile(module, {encoding: 'utf8'}).then(c => {
