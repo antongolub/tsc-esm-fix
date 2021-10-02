@@ -191,6 +191,7 @@ export interface IFixOptions {
 ## Alternatives
 * https://github.com/mothepro/tsc-esm
 * https://github.com/digital-loukoum/tsc-esm
+* https://github.com/beenotung/fix-esm-import-path
 
 ## Contributing
 Feel free to open any issues: for bugs, feature requests or questions.
