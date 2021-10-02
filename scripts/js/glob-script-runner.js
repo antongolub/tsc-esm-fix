@@ -1,5 +1,5 @@
 import fs from 'fs'
-import { globbySync }from 'globby'
+import { globbySync } from 'globby'
 import process from 'process'
 import semver from 'semver'
 import url from 'url'
@@ -14,26 +14,26 @@ const tests = globbySync(argv, {
 
 const engineDirectiveRe = /^\/\/\s*node-engine\s+(.+)\n/
 
-if (tests.length === 0) {
+if (tests.length > 0) {
+  tests.reduce((r, module) =>
+      r.then(() =>
+        fs.promises.readFile(module, {encoding: 'utf8'}).then(c => {
+          const engineDirective = (engineDirectiveRe.exec(c) || [])[1]
+
+          if (engineDirective && !semver.satisfies(nodeVersion, engineDirective)) {
+            console.log(`Skipped ${module}. ${nodeVersion} does not satisfy ${engineDirective}`)
+            return r
+          }
+
+          console.log(`Loading ${module}...`)
+
+          return import(url.pathToFileURL(module))
+        })
+      )
+
+    , Promise.resolve())
+    .then(() => console.log('Done'))
+
+} else {
   console.log(`No match found: ${argv}`)
-  return
 }
-
-tests.reduce((r, module) =>
-  r.then(() =>
-    fs.promises.readFile(module, {encoding: 'utf8'}).then(c => {
-      const engineDirective = (engineDirectiveRe.exec(c) || [])[1]
-
-      if (engineDirective && !semver.satisfies(nodeVersion, engineDirective)) {
-        console.log(`Skipped ${module}. ${nodeVersion} does not satisfy ${engineDirective}`)
-        return r
-      }
-
-      console.log(`Loading ${module}...`)
-
-      return import(url.pathToFileURL(module))
-    })
-  )
-
-, Promise.resolve())
-  .then(() => console.log('Done'))
