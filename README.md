@@ -194,7 +194,7 @@ export interface IFixOptions {
 * https://github.com/beenotung/fix-esm-import-path
 
 ## Contributing
-Feel free to open any issues: for bugs, feature requests or questions.
+Feel free to open any issues: bug reports, feature requests or questions.
 You're always welcome to suggest a PR. Just fork this repo, write some code, add some tests and push your changes.
 Any feedback is appreciated.
 
