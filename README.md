@@ -39,7 +39,7 @@ This lib may be applied in both cases.
     * Note, [including the file extension is only necessary for packages without an "exports" field](https://nodejs.org/api/esm.html#esm_packages). So in this case all the external refs remain as are.
     * Pays attention to index files: `import {bar} from './bar'` → `import {bar} from './bar/index.js'`
 * Follows `outDir` found in **tsconfig.json**.  
-* Finds and replaces `__dirname` and `__filename` refs with `import.meta`.
+* Searches and replaces `__dirname` and `__filename` refs with `import.meta`.
 * Changes file extensions (applied to local deps only).
 * Supports Windows-based runtimes.
 
