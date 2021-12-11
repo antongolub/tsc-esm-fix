@@ -1,3 +1,10 @@
+## [2.7.5](https://github.com/antongolub/tsc-esm-fix/compare/v2.7.4...v2.7.5) (2021-12-11)
+
+
+### Bug Fixes
+
+* do not follow node_modules/.cache ([d9e01c7](https://github.com/antongolub/tsc-esm-fix/commit/d9e01c718bf62fca4d3846b0b7b22b5a07202275)), closes [#48](https://github.com/antongolub/tsc-esm-fix/issues/48)
+
 ## [2.7.4](https://github.com/antongolub/tsc-esm-fix/compare/v2.7.3...v2.7.4) (2021-11-12)
 
 ## [2.7.3](https://github.com/antongolub/tsc-esm-fix/compare/v2.7.2...v2.7.3) (2021-10-02)
