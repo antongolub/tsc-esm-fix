@@ -142,6 +142,8 @@ const getExtModules = async (cwd: string): Promise<string[]> =>
   globby(
     [
       'node_modules/**/*.(m|c)?js',
+      '!node_modules/.cache',
+      '!node_modules/.bin',
       '!node_modules/**/node_modules',
       ...(await getExtModulesWithPkgJsonExports(cwd)).map(
         (m: string) => `!node_modules/${m}`,
