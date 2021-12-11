@@ -2,7 +2,6 @@
 Make TS projects compatible with [esm/mjs requirements](https://nodejs.org/api/esm.html#esm_packages)
 
 [![CI](https://github.com/antongolub/tsc-esm-fix/workflows/CI/badge.svg)](https://github.com/antongolub/tsc-esm-fix/actions)
-[![David](https://img.shields.io/david/dev/antongolub/tsc-esm-fix?label=deps)](https://david-dm.org/antongolub/tsc-esm-fix?type=dev)
 [![Maintainability](https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/maintainability)](https://codeclimate.com/github/antongolub/tsc-esm-fix/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/795c6c62e875c263e2fa/test_coverage)](https://codeclimate.com/github/antongolub/tsc-esm-fix/test_coverage)
 [![npm (tag)](https://img.shields.io/npm/v/tsc-esm-fix)](https://www.npmjs.com/package/tsc-esm-fix)
