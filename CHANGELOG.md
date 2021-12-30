@@ -1,3 +1,10 @@
+## [2.7.6](https://github.com/antongolub/tsc-esm-fix/compare/v2.7.5...v2.7.6) (2021-12-30)
+
+
+### Bug Fixes
+
+* move coverals to actions, fix vuls ([7889771](https://github.com/antongolub/tsc-esm-fix/commit/7889771ac8947d589ef8eba489fd164a3aa540cc))
+
 ## [2.7.5](https://github.com/antongolub/tsc-esm-fix/compare/v2.7.4...v2.7.5) (2021-12-11)
 
 
