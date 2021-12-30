@@ -34,10 +34,10 @@ jobs:
       - name: Build target
         run: yarn build
 
-      - name: Save target to artifact
+      - name: Save artifact
         uses: actions/upload-artifact@v2
         with:
-          name: target
+          name: artifact-${{ github.run_id }}
           retention-days: 1
           path: |
             docs
@@ -55,10 +55,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Restore target
+      - name: Restore artifact
         uses: actions/download-artifact@v2
         with:
-          name: target
+          name: artifact-${{ github.run_id }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -71,13 +71,15 @@ jobs:
       - name: Unit tests
         run: yarn test:unit
 
-      - name: Push coverage to artifact
+      - name: Update coverage
         if: github.ref == 'refs/heads/master'
         uses: actions/upload-artifact@v2
         with:
-          name: target
+          name: artifact-${{ github.run_id }}
           retention-days: 1
-          path: coverage
+          path: |
+            coverage
+            .nyc_output
 
   test_pr:
     if: github.event_name == 'pull_request'
@@ -93,10 +95,10 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Restore target
+      - name: Restore artifact
         uses: actions/download-artifact@v2
         with:
-          name: target
+          name: artifact-${{ github.run_id }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -126,10 +128,10 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Restore target
+      - name: Restore artifact
         uses: actions/download-artifact@v2
         with:
-          name: target
+          name: artifact-${{ github.run_id }}
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
