@@ -144,6 +144,12 @@ jobs:
           coverageLocations: |
             ${{github.workspace}}/coverage/*.lcov:lcov
 
+      - name: Coveralls
+        uses: coverallsapp/github-action@master
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path-to-lcov: ${{ github.workspace }}/coverage/lcov.info
+
       - name: Semantic Release
         uses: cycjimmy/semantic-release-action@v2
         with:
