@@ -1,12 +1,9 @@
 {
-  "name": "tsc-esm-fix",
-  "version": "2.7.6",
+  "name": "tsc-esm-fix-core",
+  "version": "0.0.0",
   "private": false,
   "publishConfig": {
     "access": "public"
-  },
-  "bin": {
-    "tsc-esm-fix": "./target/es6/cli.mjs"
   },
   "description": "Make tsc-compiled `es2020/esnext` bundles compatible with esm/mjs requirements",
   "type": "module",
@@ -23,12 +20,12 @@
   "unpkg": "target/bundle/tsc-esm-fix.umd.js",
   "scripts": {
     "clean": "rimraf target typings flow-typed buildcache docs coverage buildstamp.json",
-    "lint": "eslint packages/core/src/**/*.{ts,js} scripts",
+    "lint": "eslint src/**/*.{ts,js} scripts",
     "lint:fix": "yarn lint --fix",
-    "format": "prettier --write \\\"scripts/**/*.js\\\" \\\"packages/core/src/main/**/*.ts\\\" \\\"src/test/(js|ts)**/*.(t|j)s\\\"",
+    "format": "prettier --write \"scripts/**/*.js\" \"src/main/**/*.ts\" \"src/test/(js|ts)**/*.(t|j)s\"",
     "test": "npm-run-all -p -l lint test:unit test:it test:depcheck test:depaudit",
     "test:unit": "NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.json --runInBand",
-    "test:it": "cross-env NODE_OPTIONS=\\\"--experimental-vm-modules --experimental-modules\\\" glob-runner packages/core/src/test/**/*.it.js",
+    "test:it": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --experimental-modules\" npx glob-runner src/test/**/*.it.js",
     "test:deps": "npm-run-all -p -l test:depcheck test:depauditfix",
     "test:depcheck": "npm_config_yes=true npx -p depcheck -p @babel/parser@7.16.4 depcheck --ignore-patterns fixtures --ignores glob-runner,tslib,@types/jest,@types/node,eslint-config-*,typedoc",
     "test:depaudit": "yarn audit --groups=dependencies --level=moderate; [[ $? -ge 4 ]] && exit 1 || exit 0",
@@ -36,21 +33,16 @@
     "test:report": "yarn test",
     "prebuild": "yarn clean && npm_config_yes=true npx buildstamp --git --out.path buildstamp.json",
     "build": "npm-run-all -p -l build:es6 build:ts build:bundle docs && yarn build:fix",
-    "build:es6": "mkdirp target/es6 && tsc -p packages/core/tsconfig.es6.json",
-    "build:ts": "cpy packages/core/src/main/ts/ target/ts/",
-    "build:bundle": "microbundle --tsconfig tsconfig.es6.json build packages/core/src/main/ts/index.ts -o target/bundle",
-    "build:fix": "node scripts/js/build-fix.js",
+    "build:es6": "mkdirp target/es6 && tsc -p tsconfig.es6.json",
+    "build:ts": "cpy src/main/ts/ target/ts/",
+    "build:bundle": "microbundle --tsconfig tsconfig.es6.json build src/main/ts/index.ts -o target/bundle",
+    "build:fix": "node ../../scripts/js/build-fix.js tsconfig.es6.json",,
     "docs": "typedoc",
     "uglify": "for f in $(find target -name '*.js'); do short=${f%.js}; terser -c -m -o $short.js -- $f; done",
     "postupdate": "yarn && yarn test:deps && yarn build && yarn test",
     "updeps": "npm_config_yes=true npx npm-upgrade",
     "publish:beta": "npm publish --no-git-tag-version --tag beta",
     "publish:rc": "npm publish --no-git-tag-version --tag rc"
-  },
-  "resolutions": {
-    "**/postcss": "^8.2.15",
-    "**/globby/fast-glob": "^3.2.7",
-    "**/glob-parent": "^6.0.1"
   },
   "dependencies": {
     "@types/fs-extra": "^9.0.13",
@@ -61,26 +53,9 @@
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@qiwi/npm-run-all": "^4.1.7",
+    "tsc-esm-fix-infra": "*",
     "@types/jest": "^27.0.3",
-    "@types/node": "^17.0.5",
-    "cpy-cli": "^3.1.1",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.5.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-config-qiwi": "^1.15.3",
-    "glob-runner": "^1.0.5",
-    "jest": "^27.4.5",
-    "microbundle": "^0.14.2",
-    "mkdirp": "^1.0.4",
-    "prettier": "^2.5.1",
-    "prettier-config-qiwi": "^1.5.0",
-    "rimraf": "^3.0.2",
-    "tempy": "^2.0.0",
-    "terser": "^5.10.0",
-    "ts-jest": "^27.1.2",
-    "typedoc": "^0.22.10",
-    "typescript": "4.5"
+    "@types/node": "^17.0.5"
   },
   "repository": {
     "type": "git",

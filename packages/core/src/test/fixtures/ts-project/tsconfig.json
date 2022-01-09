@@ -25,5 +25,7 @@
     "tsBuildInfoFile": "./buildcache/.tsbuildinfo"
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "node_modules"
+  ]
 }

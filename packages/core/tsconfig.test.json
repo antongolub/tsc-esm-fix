@@ -1,7 +1,7 @@
 {
   "extends": "./tsconfig.json",
   "include": [
-    "src/**/*"
+    "packages/core/src/**/*"
   ],
   "exclude": [
     "src/main/ts/cli.ts",

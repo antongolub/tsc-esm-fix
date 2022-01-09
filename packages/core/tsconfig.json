@@ -22,6 +22,10 @@
     "incremental": true,
     "tsBuildInfoFile": "./buildcache/.tsbuildinfo"
   },
-  "include": ["src/**/*.ts"],
-  "exclude": ["node_modules"]
+  "include": [
+    "packages/core/src/**/*.ts"
+  ],
+  "exclude": [
+    "../../node_modules"
+  ]
 }

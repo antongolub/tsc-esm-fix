@@ -5,5 +5,7 @@
     "outDir": "target/es6",
     "module": "esnext"
   },
-  "include": ["src/main/**/*.ts"]
+  "include": [
+    "packages/core/src/main/**/*.ts"
+  ]
 }
