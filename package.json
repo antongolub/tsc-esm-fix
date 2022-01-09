@@ -1,29 +1,21 @@
 {
-  "name": "tsc-esm-fix",
-  "version": "2.7.6",
-  "private": false,
+  "name": "tsc-esm-fix-monorepo",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "packages/*"
+  ],
   "publishConfig": {
     "access": "public"
   },
-  "bin": {
-    "tsc-esm-fix": "./target/es6/cli.mjs"
-  },
-  "description": "Make tsc-compiled `es2020/esnext` bundles compatible with esm/mjs requirements",
-  "type": "module",
-  "exports": {
-    "import": "./target/es6/index.mjs",
-    "require": "./target/bundle/tsc-esm-fix.cjs"
-  },
+  "description": "tsc-esm-fix monorepo",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
-  "source": "src/main/ts/index.ts",
-  "main": "target/bundle/tsc-esm-fix.js",
-  "module": "target/bundle/tsc-esm-fix.mjs",
-  "unpkg": "target/bundle/tsc-esm-fix.umd.js",
   "scripts": {
     "clean": "rimraf target typings flow-typed buildcache docs coverage buildstamp.json",
-    "lint": "eslint packages/core/src/**/*.{ts,js} scripts",
+    "lint": "eslint 'packages/*/src/**/*.{ts,js}' scripts",
     "lint:fix": "yarn lint --fix",
     "format": "prettier --write \\\"scripts/**/*.js\\\" \\\"packages/core/src/main/**/*.ts\\\" \\\"src/test/(js|ts)**/*.(t|j)s\\\"",
     "test": "npm-run-all -p -l lint test:unit test:it test:depcheck test:depaudit",
@@ -31,7 +23,7 @@
     "test:it": "cross-env NODE_OPTIONS=\\\"--experimental-vm-modules --experimental-modules\\\" glob-runner packages/core/src/test/**/*.it.js",
     "test:deps": "npm-run-all -p -l test:depcheck test:depauditfix",
     "test:depcheck": "npm_config_yes=true npx -p depcheck -p @babel/parser@7.16.4 depcheck --ignore-patterns fixtures --ignores glob-runner,tslib,@types/jest,@types/node,eslint-config-*,typedoc",
-    "test:depaudit": "yarn audit --groups=dependencies --level=moderate; [[ $? -ge 4 ]] && exit 1 || exit 0",
+    "test:depaudit": "yarn npm audit --environment production --severity=moderate",
     "test:depauditfix": "npm_config_yes=true npx yarn-audit-fix --audit-level=moderate",
     "test:report": "yarn test",
     "prebuild": "yarn clean && npm_config_yes=true npx buildstamp --git --out.path buildstamp.json",
@@ -46,41 +38,6 @@
     "updeps": "npm_config_yes=true npx npm-upgrade",
     "publish:beta": "npm publish --no-git-tag-version --tag beta",
     "publish:rc": "npm publish --no-git-tag-version --tag rc"
-  },
-  "resolutions": {
-    "**/postcss": "^8.2.15",
-    "**/globby/fast-glob": "^3.2.7",
-    "**/glob-parent": "^6.0.1"
-  },
-  "dependencies": {
-    "@types/fs-extra": "^9.0.13",
-    "fs-extra": "^10.0.0",
-    "globby": "^12.0.2",
-    "json5": "^2.2.0",
-    "meow": "^10.1.2",
-    "tslib": "^2.3.1"
-  },
-  "devDependencies": {
-    "@qiwi/npm-run-all": "^4.1.7",
-    "@types/jest": "^27.0.3",
-    "@types/node": "^17.0.5",
-    "cpy-cli": "^3.1.1",
-    "cross-env": "^7.0.3",
-    "eslint": "^8.5.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-config-qiwi": "^1.15.3",
-    "glob-runner": "^1.0.5",
-    "jest": "^27.4.5",
-    "microbundle": "^0.14.2",
-    "mkdirp": "^1.0.4",
-    "prettier": "^2.5.1",
-    "prettier-config-qiwi": "^1.5.0",
-    "rimraf": "^3.0.2",
-    "tempy": "^2.0.0",
-    "terser": "^5.10.0",
-    "ts-jest": "^27.1.2",
-    "typedoc": "^0.22.10",
-    "typescript": "4.5"
   },
   "repository": {
     "type": "git",
@@ -109,5 +66,6 @@
     "url": "https://github.com/antongolub/tsc-esm-fix/issues"
   },
   "homepage": "https://github.com/antongolub/tsc-esm-fix/#readme",
-  "prettier": "prettier-config-qiwi"
+  "prettier": "prettier-config-qiwi",
+  "packageManager": "yarn@3.1.1"
 }

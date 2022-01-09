@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 
 import meow from 'meow'
-
 import { fix } from 'tsc-esm-fix-core'
 
 const cli = meow(

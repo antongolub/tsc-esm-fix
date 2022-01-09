@@ -6,6 +6,6 @@
     "module": "esnext"
   },
   "include": [
-    "packages/core/src/main/**/*.ts"
+    "src/main/**/*.ts"
   ]
 }

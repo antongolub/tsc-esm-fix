@@ -39,6 +39,8 @@ doc
 /node_modules/
 jspm_packages
 bower_components
+/node_modules
+/packages/*/node_modules
 
 #IDE
 .idea
@@ -66,3 +68,12 @@ buildcache
 
 # Temporaries
 temp
+
+# Yarn berry
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

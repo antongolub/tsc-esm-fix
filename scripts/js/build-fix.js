@@ -1,5 +1,6 @@
-import { fix } from '../../packages/core/target/bundle/tsc-esm-fix.mjs'
 import path from 'path'
+
+import { fix } from '../../packages/core/target/bundle/tsc-esm-fix.mjs'
 
 fix({
   // tsconfig: ['tsconfig.es6.json'],

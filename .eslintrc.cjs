@@ -1,5 +1,5 @@
 module.exports = {
-    ignorePatterns: ['fixtures'],
+    ignorePatterns: ['**/fixtures'],
     extends: [
         'eslint-config-qiwi',
         'prettier',

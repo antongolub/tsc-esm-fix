@@ -1,13 +1,10 @@
 {
   "name": "tsc-esm-fix",
   "version": "2.7.6",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
-  "bin": {
-    "tsc-esm-fix": "./target/es6/cli.mjs"
-  },
+  "bin": "./target/es6/cli.mjs",
   "description": "Make tsc-compiled `es2020/esnext` bundles compatible with esm/mjs requirements",
   "type": "module",
   "exports": {
@@ -48,14 +45,14 @@
     "publish:rc": "npm publish --no-git-tag-version --tag rc"
   },
   "dependencies": {
-    "tslib": "^2.3.1",
     "tsc-esm-fix-cli": "*",
-    "tsc-esm-fix-core": "*"
+    "tsc-esm-fix-core": "*",
+    "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "tsc-esm-fix-infra": "*",
     "@types/jest": "^27.0.3",
-    "@types/node": "^17.0.5"
+    "@types/node": "^17.0.5",
+    "tsc-esm-fix-infra": "*"
   },
   "repository": {
     "type": "git",

@@ -1,7 +1,6 @@
 {
   "name": "tsc-esm-fix-core",
   "version": "0.0.0",
-  "private": false,
   "publishConfig": {
     "access": "public"
   },
@@ -20,15 +19,13 @@
   "unpkg": "target/bundle/tsc-esm-fix.umd.js",
   "scripts": {
     "clean": "rimraf target typings flow-typed buildcache docs coverage buildstamp.json",
-    "lint": "eslint src/**/*.{ts,js} scripts",
-    "lint:fix": "yarn lint --fix",
     "format": "prettier --write \"scripts/**/*.js\" \"src/main/**/*.ts\" \"src/test/(js|ts)**/*.(t|j)s\"",
-    "test": "npm-run-all -p -l lint test:unit test:it test:depcheck test:depaudit",
+    "test": "npm-run-all -p -l test:unit test:it test:depcheck test:depaudit",
     "test:unit": "NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.json --runInBand",
     "test:it": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --experimental-modules\" npx glob-runner src/test/**/*.it.js",
     "test:deps": "npm-run-all -p -l test:depcheck test:depauditfix",
-    "test:depcheck": "npm_config_yes=true npx -p depcheck -p @babel/parser@7.16.4 depcheck --ignore-patterns fixtures --ignores glob-runner,tslib,@types/jest,@types/node,eslint-config-*,typedoc",
-    "test:depaudit": "yarn audit --groups=dependencies --level=moderate; [[ $? -ge 4 ]] && exit 1 || exit 0",
+    "test:depcheck": "npm_config_yes=true npx -p depcheck -p @babel/parser@7.16.4 depcheck --ignore-patterns fixtures --ignores 'tslib,@types/*'",
+    "test:depaudit": "yarn npm audit --environment production --severity=moderate",
     "test:depauditfix": "npm_config_yes=true npx yarn-audit-fix --audit-level=moderate",
     "test:report": "yarn test",
     "prebuild": "yarn clean && npm_config_yes=true npx buildstamp --git --out.path buildstamp.json",
@@ -36,7 +33,7 @@
     "build:es6": "mkdirp target/es6 && tsc -p tsconfig.es6.json",
     "build:ts": "cpy src/main/ts/ target/ts/",
     "build:bundle": "microbundle --tsconfig tsconfig.es6.json build src/main/ts/index.ts -o target/bundle",
-    "build:fix": "node ../../scripts/js/build-fix.js tsconfig.es6.json",,
+    "build:fix": "node ../../scripts/js/build-fix.js tsconfig.es6.json",
     "docs": "typedoc",
     "uglify": "for f in $(find target -name '*.js'); do short=${f%.js}; terser -c -m -o $short.js -- $f; done",
     "postupdate": "yarn && yarn test:deps && yarn build && yarn test",
@@ -53,9 +50,10 @@
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "tsc-esm-fix-infra": "*",
     "@types/jest": "^27.0.3",
-    "@types/node": "^17.0.5"
+    "@types/node": "^17.0.5",
+    "tempy": "^2.0.0",
+    "tsc-esm-fix-infra": "*"
   },
   "repository": {
     "type": "git",
@@ -83,6 +81,5 @@
   "bugs": {
     "url": "https://github.com/antongolub/tsc-esm-fix/issues"
   },
-  "homepage": "https://github.com/antongolub/tsc-esm-fix/#readme",
-  "prettier": "prettier-config-qiwi"
+  "homepage": "https://github.com/antongolub/tsc-esm-fix/#readme"
 }
