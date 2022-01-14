@@ -6,24 +6,25 @@
   },
   "description": "CLI for tsc-esm-fix",
   "type": "module",
-  "main": "src/main/js/index.cjs",
+  "main": "./src/main/js/index.cjs",
   "exports": {
-    "import": "./index.mjs",
-    "require": "./index.cjs"
+    "import": "./src/main/js/index.mjs",
+    "require": "./src/main/js/index.cjs"
   },
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "source": "./index.mjs",
-  "module": "src/main/js/index.mjs",
+  "module": "./src/main/js/index.mjs",
   "scripts": {
-    "test": "npm-run-all -p -l test:unit test:it test:depcheck test:depaudit",
+    "test": "npm-run-all -p -l test:it test:depcheck test:depaudit",
     "test:it": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --experimental-modules\" npx glob-runner src/test/**/*.it.js",
+    "test:unit": "NODE_OPTIONS='--experimental-vm-modules --experimental-json-modules' jest --config=jest.config.mjs --runInBand",
     "test:deps": "npm-run-all -p -l test:depcheck test:depauditfix",
-    "test:depcheck": "npm_config_yes=true npx -p depcheck -p @babel/parser@7.16.4 depcheck --ignore-patterns fixtures --ignores glob-runner,tslib,@types/jest,@types/node,eslint-config-*,typedoc",
-    "test:depaudit": "yarn audit --groups=dependencies --level=moderate; [[ $? -ge 4 ]] && exit 1 || exit 0",
+    "test:depcheck": "npm_config_yes=true npx -p depcheck -p @babel/parser@7.16.4 depcheck",
+    "test:depaudit": "yarn npm audit --environment production --severity=moderate",
     "prebuild": "yarn clean && npm_config_yes=true npx buildstamp --git --out.path buildstamp.json",
-    "build": "npm-run-all -p -l build:es6 build:ts build:bundle docs && yarn build:fix",
+    "build": "exit 0",
     "docs": "cpy ./README.md ./docs",
     "publish:beta": "npm publish --no-git-tag-version --tag beta",
     "publish:rc": "npm publish --no-git-tag-version --tag rc"
@@ -34,9 +35,9 @@
     "tslib": "^2.3.1"
   },
   "devDependencies": {
-    "@types/jest": "^27.0.3",
-    "@types/node": "^17.0.5",
-    "tsc-esm-fix-infra": "*"
+    "tsc-esm-fix-infra": "*",
+    "fs-extra": "^10.0.0",
+    "tempy": "^2.0.0"
   },
   "repository": {
     "type": "git",

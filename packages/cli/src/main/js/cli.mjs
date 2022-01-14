@@ -9,7 +9,7 @@ const cli = meow(
 	  $ tsc-es2020-fix [options]
 
 	Options
-	  --tsconfig    Prod/bundle tsconfig path to search for 'outDir'
+	  --tsconfig    tsconfig path to search for 'outDir'
 	  --target      Specify target/outDir by hand. Suppresses 'tsconfig.compilerOptions.outDir'.
 	  --ext         Append extension (like '.mjs') to relative imports/re-exports
 	  --unlink      Remove original files if ext changes
@@ -54,4 +54,6 @@ const cli = meow(
   },
 )
 
-fix(cli.flags)
+// console.log('cli.flags=', cli.flags)
+// console.log('fix=', fix.toString())
+await fix(cli.flags)

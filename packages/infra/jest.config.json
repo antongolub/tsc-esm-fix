@@ -9,10 +9,11 @@
     "<rootDir>/src/main/**/*.(j|t)s"
   ],
   "coveragePathIgnorePatterns": [
-    "<rootDir>/src/main/ts/cli.ts"
+    "<rootDir>/src/main/ts/cli.ts",
+    "fixtures"
   ],
   "testMatch": [
-    "<rootDir>/src/test/js/**/*.js",
+    "<rootDir>/src/test/js/**/*.(c|m)?js",
     "<rootDir>/src/test/ts/**/*.ts"
   ],
   "testPathIgnorePatterns": [
@@ -20,6 +21,9 @@
     "<rootDir>/src/test/stub",
     "<rootDir>/src/test/js/.+it\\.js"
   ],
+  "moduleNameMapper": {
+    "tsc-esm-fix-core": "tsc-esm-fix-core/target/es6/index.mjs"
+  },
   "moduleFileExtensions": [
     "ts",
     "tsx",

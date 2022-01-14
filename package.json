@@ -19,7 +19,7 @@
     "lint:fix": "yarn lint --fix",
     "format": "prettier --write \\\"scripts/**/*.js\\\" \\\"packages/core/src/main/**/*.ts\\\" \\\"src/test/(js|ts)**/*.(t|j)s\\\"",
     "test": "npm-run-all -p -l lint test:unit test:it test:depcheck test:depaudit",
-    "test:unit": "NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.json --runInBand",
+    "test:unit": "NODE_OPTIONS='--experimental-vm-modules --experimental-json-modules' jest --config=jest.config.cjs --runInBand",
     "test:it": "cross-env NODE_OPTIONS=\\\"--experimental-vm-modules --experimental-modules\\\" glob-runner packages/core/src/test/**/*.it.js",
     "test:deps": "npm-run-all -p -l test:depcheck test:depauditfix",
     "test:depcheck": "npm_config_yes=true npx -p depcheck -p @babel/parser@7.16.4 depcheck --ignore-patterns fixtures --ignores glob-runner,tslib,@types/jest,@types/node,eslint-config-*,typedoc",

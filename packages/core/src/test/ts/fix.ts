@@ -89,7 +89,7 @@ describe('patches', () => {
           })
           .toString()
           .trim(),
-      ).toBe('barbaz')
+      ).toBe('barbaz') // see console.log(foobaz);
     })
   })
 
