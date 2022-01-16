@@ -9622,13 +9622,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tsc-esm-fix-cli@workspace:packages/cli"
   dependencies:
-    "@types/jest": ^27.0.3
-    "@types/node": ^17.0.5
-    glob-runner: ^1.0.5
+    fs-extra: ^10.0.0
     meow: ^10.1.2
+    tempy: ^2.0.0
     tsc-esm-fix-core: "*"
     tsc-esm-fix-infra: "*"
     tslib: ^2.3.1
+  bin:
+    tsc-esm-fix-cli: ./src/main/js/cli.mjs
   languageName: unknown
   linkType: soft
 
@@ -9703,14 +9704,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "tsc-esm-fix@workspace:packages/legacy"
   dependencies:
-    "@types/jest": ^27.0.3
-    "@types/node": ^17.0.5
+    fs-extra: ^10.0.0
+    tempy: ^2.0.0
     tsc-esm-fix-cli: "*"
     tsc-esm-fix-core: "*"
     tsc-esm-fix-infra: "*"
-    tslib: ^2.3.1
   bin:
-    tsc-esm-fix: ./target/es6/cli.mjs
+    tsc-esm-fix: ./src/main/js/cli.cjs
   languageName: unknown
   linkType: soft
 

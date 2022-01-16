@@ -29,10 +29,8 @@
     "build": "npm-run-all -p -l build:ts build:bundle docs",
     "build:ts": "cpy ../core/src/main/ts/ target/ts/",
     "build:bundle": "cpy ../core/target/bundle target/bundle/",
-
     "docs": "cpy ../core/docs/ docs/",
     "uglify": "for f in $(find target -name '*.js'); do short=${f%.js}; terser -c -m -o $short.js -- $f; done",
-
     "publish:beta": "npm publish --no-git-tag-version --tag beta",
     "publish:rc": "npm publish --no-git-tag-version --tag rc"
   },
@@ -41,9 +39,9 @@
     "tsc-esm-fix-core": "*"
   },
   "devDependencies": {
-    "tsc-esm-fix-infra": "*",
+    "fs-extra": "^10.0.0",
     "tempy": "^2.0.0",
-    "fs-extra": "^10.0.0"
+    "tsc-esm-fix-infra": "*"
   },
   "repository": {
     "type": "git",
