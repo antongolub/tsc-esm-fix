@@ -6,20 +6,21 @@
   "extensionsToTreatAsEsm": [".ts"],
   "collectCoverage": true,
   "collectCoverageFrom": [
-    "<rootDir>/src/main/**/*.(j|t)s"
+    "<rootDir>/src/main/**/*.{js,ts,mjs,cjs}"
   ],
   "coveragePathIgnorePatterns": [
     "<rootDir>/src/main/ts/cli.ts",
-    "fixtures"
+    "fixtures",
+    "target"
   ],
   "testMatch": [
-    "<rootDir>/src/test/js/**/*.(c|m)?js",
-    "<rootDir>/src/test/ts/**/*.ts"
+    "<rootDir>/src/test/**/*.{js,ts,mjs,cjs}"
   ],
   "testPathIgnorePatterns": [
-    "/node_modules/",
-    "<rootDir>/src/test/stub",
-    "<rootDir>/src/test/js/.+it\\.js"
+    "node_modules",
+    "fixtures",
+    "src/test/stub",
+    "src/test/js/.+it\\.js"
   ],
   "moduleNameMapper": {
     "tsc-esm-fix-core": "tsc-esm-fix-core/target/es6/index.mjs"

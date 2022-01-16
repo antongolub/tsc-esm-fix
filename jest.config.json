@@ -1,0 +1,9 @@
+{
+  "collectCoverage": true,
+  "testEnvironment": "node",
+  "projects": [
+    "<rootDir>/packages/cli/jest.config.mjs",
+    "<rootDir>/packages/core/jest.config.cjs",
+    "<rootDir>/packages/legacy/jest.config.mjs"
+  ]
+}

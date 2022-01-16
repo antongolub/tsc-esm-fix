@@ -6,24 +6,16 @@
   },
   "description": "CLI for tsc-esm-fix",
   "type": "module",
-  "main": "./src/main/js/index.cjs",
-  "exports": {
-    "import": "./src/main/js/index.mjs",
-    "require": "./src/main/js/index.cjs"
-  },
+  "bin": "./src/main/js/cli.mjs",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "source": "./index.mjs",
   "module": "./src/main/js/index.mjs",
   "scripts": {
-    "test": "npm-run-all -p -l test:it test:depcheck test:depaudit",
-    "test:it": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --experimental-modules\" npx glob-runner src/test/**/*.it.js",
+    "test": "npm-run-all -p -l test:unit test:depcheck test:depaudit",
     "test:unit": "NODE_OPTIONS='--experimental-vm-modules --experimental-json-modules' jest --config=jest.config.mjs --runInBand",
-    "test:deps": "npm-run-all -p -l test:depcheck test:depauditfix",
-    "test:depcheck": "npm_config_yes=true npx -p depcheck -p @babel/parser@7.16.4 depcheck",
-    "test:depaudit": "yarn npm audit --environment production --severity=moderate",
-    "prebuild": "yarn clean && npm_config_yes=true npx buildstamp --git --out.path buildstamp.json",
+    "test:depcheck": "npm_config_yes=true npx -p depcheck -p @babel/parser@7.16.4 depcheck --ignores 'tslib,@types/*'",
     "build": "exit 0",
     "docs": "cpy ./README.md ./docs",
     "publish:beta": "npm publish --no-git-tag-version --tag beta",
@@ -65,6 +57,5 @@
   "bugs": {
     "url": "https://github.com/antongolub/tsc-esm-fix/issues"
   },
-  "homepage": "https://github.com/antongolub/tsc-esm-fix/#readme",
-  "prettier": "prettier-config-qiwi"
+  "homepage": "https://github.com/antongolub/tsc-esm-fix/#readme"
 }
