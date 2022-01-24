@@ -1,3 +1,10 @@
+## [2.7.7](https://github.com/antongolub/tsc-esm-fix/compare/v2.7.6...v2.7.7) (2022-01-24)
+
+
+### Bug Fixes
+
+* **deps:** update dependency globby to v13 ([bf73503](https://github.com/antongolub/tsc-esm-fix/commit/bf735039e5ca2349bd484f3ee3076ee02653f191))
+
 ## [2.7.6](https://github.com/antongolub/tsc-esm-fix/compare/v2.7.5...v2.7.6) (2021-12-30)
 
 
