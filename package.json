@@ -64,7 +64,7 @@
     "@qiwi/npm-run-all": "^4.1.7",
     "@types/jest": "^27.0.3",
     "@types/node": "^17.0.5",
-    "cpy-cli": "^3.1.1",
+    "cpy-cli": "^4.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.5.0",
     "eslint-config-prettier": "^8.3.0",
