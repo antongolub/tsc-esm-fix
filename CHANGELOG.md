@@ -1,3 +1,10 @@
+## [2.7.8](https://github.com/antongolub/tsc-esm-fix/compare/v2.7.7...v2.7.8) (2022-03-09)
+
+
+### Bug Fixes
+
+* up deps, fix some vuls ([80fa330](https://github.com/antongolub/tsc-esm-fix/commit/80fa3306ebfb66a95e472559efed243839b6f4bc))
+
 ## [2.7.7](https://github.com/antongolub/tsc-esm-fix/compare/v2.7.6...v2.7.7) (2022-01-24)
 
 
