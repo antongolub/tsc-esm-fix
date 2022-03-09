@@ -129,7 +129,7 @@ export const fixContents = (
 
 const getExtModulesWithPkgJsonExports = (cwd: string): Promise<string[]> =>
   globby(['node_modules/*/package.json'], {
-    cwd: cwd,
+    cwd,
     onlyFiles: true,
     absolute: true,
   }).then((files: string[]) =>
@@ -150,7 +150,7 @@ const getExtModules = async (cwd: string): Promise<string[]> =>
       ),
     ],
     {
-      cwd: cwd,
+      cwd,
       onlyFiles: true,
       absolute: true,
     },
@@ -173,7 +173,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
       : targets.map((target) => `${target}/**/*.js`)
 
   const names = await globby(patterns, {
-    cwd: cwd,
+    cwd,
     onlyFiles: true,
     absolute: true,
   })
