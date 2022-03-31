@@ -1,3 +1,10 @@
+# [2.8.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.7.8...v2.8.0) (2022-03-31)
+
+
+### Features
+
+* introduce `fillBlank` options ([bfe2cb7](https://github.com/antongolub/tsc-esm-fix/commit/bfe2cb7400ca2dd7d81b66b7dccd3bff947305de))
+
 ## [2.7.8](https://github.com/antongolub/tsc-esm-fix/compare/v2.7.7...v2.7.8) (2022-03-09)
 
 
