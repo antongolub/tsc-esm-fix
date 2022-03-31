@@ -56,6 +56,7 @@
 </li>
 <li>Follows <code>outDir</code> found in <strong>tsconfig.json</strong>.  </li>
 <li>Searches and replaces <code>__dirname</code> and <code>__filename</code> refs with <code>import.meta</code>.</li>
+<li>Fills blank files with <code>export {}</code> (esbuild issue)</li>
 <li>Changes file extensions (applied to local deps only).</li>
 <li>Supports Windows-based runtimes.</li>
 </ul>
@@ -138,6 +139,11 @@
 <td>true</td>
 </tr>
 <tr>
+<td><code>--fillBlank</code></td>
+<td>Fill blank files with <code>export {}</code></td>
+<td>false</td>
+</tr>
+<tr>
 <td><code>--cwd</code></td>
 <td>cwd</td>
 <td><code>process.cwd()</code></td>
@@ -197,4 +203,4 @@ Any feedback is appreciated.</p>
   <h2>License</h2>
 </a>
 <p><a href="./LICENSE">MIT</a></p>
-</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-type-alias"><a href="modules.html#IFixOptions" class="tsd-kind-icon">IFix<wbr/>Options</a></li><li class="tsd-kind-type-alias"><a href="modules.html#IFixOptionsNormalized" class="tsd-kind-icon">IFix<wbr/>Options<wbr/>Normalized</a></li><li class="tsd-kind-type-alias"><a href="modules.html#TSConfig" class="tsd-kind-icon">TSConfig</a></li><li class="tsd-kind-variable"><a href="modules.html#DEFAULT_FIX_OPTIONS" class="tsd-kind-icon">DEFAULT_<wbr/>FIX_<wbr/>OPTIONS</a></li><li class="tsd-kind-function"><a href="modules.html#fix" class="tsd-kind-icon">fix</a></li><li class="tsd-kind-function"><a href="modules.html#fixContents" class="tsd-kind-icon">fix<wbr/>Contents</a></li><li class="tsd-kind-function"><a href="modules.html#fixDirnameVar" class="tsd-kind-icon">fix<wbr/>Dirname<wbr/>Var</a></li><li class="tsd-kind-function"><a href="modules.html#fixFilenameExtensions" class="tsd-kind-icon">fix<wbr/>Filename<wbr/>Extensions</a></li><li class="tsd-kind-function"><a href="modules.html#fixFilenameVar" class="tsd-kind-icon">fix<wbr/>Filename<wbr/>Var</a></li><li class="tsd-kind-function"><a href="modules.html#fixModuleReferences" class="tsd-kind-icon">fix<wbr/>Module<wbr/>References</a></li></ul></nav></div></div></div><footer class=""><div class="container"><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="overlay"></div><script src="assets/main.js"></script></body></html>
+</div></div><div class="col-4 col-menu menu-sticky-wrap menu-highlight"><nav class="tsd-navigation primary"><ul><li class="current"><a href="modules.html">Exports</a></li></ul></nav><nav class="tsd-navigation secondary menu-sticky"><ul><li class="tsd-kind-type-alias"><a href="modules.html#IFixOptions" class="tsd-kind-icon">IFix<wbr/>Options</a></li><li class="tsd-kind-type-alias"><a href="modules.html#IFixOptionsNormalized" class="tsd-kind-icon">IFix<wbr/>Options<wbr/>Normalized</a></li><li class="tsd-kind-type-alias"><a href="modules.html#TSConfig" class="tsd-kind-icon">TSConfig</a></li><li class="tsd-kind-variable"><a href="modules.html#DEFAULT_FIX_OPTIONS" class="tsd-kind-icon">DEFAULT_<wbr/>FIX_<wbr/>OPTIONS</a></li><li class="tsd-kind-function"><a href="modules.html#fix" class="tsd-kind-icon">fix</a></li><li class="tsd-kind-function"><a href="modules.html#fixBlankFiles" class="tsd-kind-icon">fix<wbr/>Blank<wbr/>Files</a></li><li class="tsd-kind-function"><a href="modules.html#fixContents" class="tsd-kind-icon">fix<wbr/>Contents</a></li><li class="tsd-kind-function"><a href="modules.html#fixDirnameVar" class="tsd-kind-icon">fix<wbr/>Dirname<wbr/>Var</a></li><li class="tsd-kind-function"><a href="modules.html#fixFilenameExtensions" class="tsd-kind-icon">fix<wbr/>Filename<wbr/>Extensions</a></li><li class="tsd-kind-function"><a href="modules.html#fixFilenameVar" class="tsd-kind-icon">fix<wbr/>Filename<wbr/>Var</a></li><li class="tsd-kind-function"><a href="modules.html#fixModuleReferences" class="tsd-kind-icon">fix<wbr/>Module<wbr/>References</a></li></ul></nav></div></div></div><footer class=""><div class="container"><h2>Settings</h2><p>Theme <select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></p></div></footer><div class="overlay"></div><script src="assets/main.js"></script></body></html>
