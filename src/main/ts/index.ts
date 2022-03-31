@@ -1,5 +1,6 @@
 export {
   fix,
+  fixBlankFiles,
   fixContents,
   fixFilenameVar,
   fixDirnameVar,

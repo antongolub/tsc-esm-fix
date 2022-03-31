@@ -8,6 +8,7 @@ import tempy from 'tempy'
 import {
   DEFAULT_FIX_OPTIONS,
   fix,
+  fixBlankFiles,
   fixContents,
   fixDirnameVar,
   fixFilenameVar,
@@ -122,6 +123,10 @@ describe('patches', () => {
 
     it('fixFilenameVar() replaces __filename refs', () => {
       expect(fixFilenameVar(content)).toMatchSnapshot()
+    })
+
+    it('fixBlankFiles() replaces empty contents with empty export statement', () => {
+      expect(fixBlankFiles('')).toMatchSnapshot()
     })
 
     it('fixContents() assembles all content modifiers', () => {

@@ -1,3 +1,4 @@
+import { Options as GlobbyOptions } from 'globby'
 import { basename, dirname, resolve } from 'path'
 
 import { IFixOptions, IFixOptionsNormalized } from './interface'
@@ -104,11 +105,16 @@ export const fixDirnameVar = (contents: string): string =>
 export const fixFilenameVar = (contents: string): string =>
   contents.replace(/__filename/g, '/file:\\/\\/(.+)/.exec(import.meta.url)[1]') // eslint-disable-line
 
+export const fixBlankFiles = (contents: string): string => contents.trim().length === 0
+  ? `
+export {}
+` : contents
+
 export const fixContents = (
   contents: string,
   filename: string,
   filenames: string[],
-  { cwd, ext, dirnameVar, filenameVar }: IFixOptionsNormalized,
+  { cwd, ext, dirnameVar, filenameVar, fillBlank }: IFixOptionsNormalized,
 ): string => {
   let _contents = contents
 
@@ -124,6 +130,10 @@ export const fixContents = (
     _contents = fixFilenameVar(_contents)
   }
 
+  if (fillBlank) {
+    _contents = fixBlankFiles(_contents)
+  }
+
   return _contents
 }
 
@@ -132,7 +142,7 @@ const getExtModulesWithPkgJsonExports = (cwd: string): Promise<string[]> =>
     cwd,
     onlyFiles: true,
     absolute: true,
-  }).then((files: string[]) =>
+  } as GlobbyOptions).then((files: string[]) =>
     files
       .filter((f: string) => readJson(f).exports)
       .map((f: string) => basename(dirname(f))),
@@ -153,7 +163,7 @@ const getExtModules = async (cwd: string): Promise<string[]> =>
       cwd,
       onlyFiles: true,
       absolute: true,
-    },
+    } as GlobbyOptions,
   )
 
 export const fix = async (opts?: IFixOptions): Promise<void> => {
@@ -176,7 +186,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
     cwd,
     onlyFiles: true,
     absolute: true,
-  })
+  } as GlobbyOptions)
   const externalNames = await getExtModules(cwd)
   debug('debug:external-names', externalNames)
 
