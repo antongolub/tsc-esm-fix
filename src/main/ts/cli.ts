@@ -3,6 +3,7 @@
 import meow from 'meow'
 
 import { fix } from './fix'
+import { IFixOptions } from './interface'
 
 const cli = meow(
   `
@@ -51,8 +52,11 @@ const cli = meow(
         type: 'string',
         isMultiple: true,
       },
+      fillBlank: {
+        type: 'boolean',
+      },
     },
   },
 )
 
-fix(cli.flags)
+fix(cli.flags as IFixOptions)

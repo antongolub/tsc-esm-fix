@@ -1,5 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`patches contents fixBlankFiles() replaces empty contents with empty export statement 1`] = `
+"
+export {}
+"
+`;
+
 exports[`patches contents fixContents() assembles all content modifiers 1`] = `
 "import { foo } from './foo.js';
 import './bar.js';

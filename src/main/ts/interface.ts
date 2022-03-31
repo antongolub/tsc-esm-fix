@@ -9,6 +9,7 @@ export type IFixOptionsNormalized = {
   tsconfig: string | string[]
   dirnameVar: boolean
   filenameVar: boolean
+  fillBlank?: boolean
   ext: boolean | string
   unlink?: boolean
 }
