@@ -3,6 +3,7 @@
 exports[`patches contents fixBlankFiles() replaces empty contents with empty export statement 1`] = `
 "
 export {}
+export default undefined
 "
 `;
 

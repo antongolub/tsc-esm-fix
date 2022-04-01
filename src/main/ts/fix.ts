@@ -108,6 +108,7 @@ export const fixFilenameVar = (contents: string): string =>
 export const fixBlankFiles = (contents: string): string => contents.trim().length === 0
   ? `
 export {}
+export default undefined
 ` : contents
 
 export const fixContents = (
