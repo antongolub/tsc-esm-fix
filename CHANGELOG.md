@@ -1,3 +1,10 @@
+# [2.9.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.8.0...v2.9.0) (2022-04-01)
+
+
+### Features
+
+* add default export to empty files ([33aeb5c](https://github.com/antongolub/tsc-esm-fix/commit/33aeb5cc3a0b80485785723e7a38773736bb3666))
+
 # [2.8.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.7.8...v2.8.0) (2022-03-31)
 
 
