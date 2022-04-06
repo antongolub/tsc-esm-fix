@@ -150,16 +150,16 @@ tsc-esm-fix [opts]
 | Option          | Description                                                                                    | Default                                                                  |
 |-----------------|------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------|
 | `--tsconfig`    | Path to project's ts-config(s)                                                                 | `tsconfig.json`                                                          |
-| `--src`         | Entry points where the ts-source files are placed. If defined `src` option suppresses `target` |
+| `--src`         | Entry points where the ts-source files are placed. If defined `src` option suppresses `target` |                                                                          |
 | `--target`      | tsc-compiled output directory                                                                  | If not specified inherited from tsconfig.json **compilerOptions.outDir** |
 | `--dirnameVar`  | Replace `__dirname` usages with `import.meta`                                                  | true                                                                     |
 | `--filenameVar` | Replace `__filename` var references with `import.meta` statements                              | true                                                                     |
 | `--ext`         | Append extension to relative imports/re-exports                                                | `.js`                                                                    |
 | `--unlink`      | Remove original files if ext changes                                                           | true                                                                     |
-| `--fillBlank`   | Fill blank files with `export {}`                                                              | false                                                                    
+| `--fillBlank`   | Fill blank files with `export {}`                                                              | false                                                                    |
 | `--cwd`         | cwd                                                                                            | `process.cwd()`                                                          |
 | `--out`         | Output dir. Defaults to `cwd`, so files would be overwritten                                   | `process.cwd()`                                                          |
-| `--debug`       | Prints debug notes                                                                             
+| `--debug`       | Prints debug notes                                                                             |                                                                          |
 
 ### JS/TS API
 ```ts
@@ -183,6 +183,7 @@ export interface IFixOptions {
   tsconfig?: string | string[]
   dirnameVar: boolean
   filenameVar: boolean
+  fillBlank?: boolean
   ext: boolean | string
   unlink?: boolean,
   debug?: boolean | IFunction
