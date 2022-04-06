@@ -73,7 +73,7 @@
     "jest": "^27.5.1",
     "microbundle": "^0.14.2",
     "mkdirp": "^1.0.4",
-    "prettier": "^2.6.1",
+    "prettier": "^2.6.2",
     "prettier-config-qiwi": "^1.6.1",
     "rimraf": "^3.0.2",
     "tempy": "^2.0.0",
