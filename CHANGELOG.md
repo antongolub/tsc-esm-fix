@@ -1,3 +1,5 @@
+## [2.9.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.9.0...v2.9.1) (2022-04-06)
+
 # [2.9.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.8.0...v2.9.0) (2022-04-01)
 
 
