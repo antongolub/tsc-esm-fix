@@ -40,6 +40,7 @@ This lib may be applied in both cases.
 * Follows `outDir` found in **tsconfig.json**.  
 * Searches and replaces `__dirname` and `__filename` refs with `import.meta`.
 * Fills blank files with `export {}` (esbuild issue)
+* Patches `require` statements with new file refs if ext changes ([hybrid/dual pkg](https://2ality.com/2019/10/hybrid-npm-packages.html))
 * Changes file extensions (applied to local deps only).
 * Supports Windows-based runtimes.
 
