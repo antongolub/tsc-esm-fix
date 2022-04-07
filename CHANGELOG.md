@@ -1,3 +1,10 @@
+# [2.12.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.11.0...v2.12.0) (2022-04-07)
+
+
+### Features
+
+* push warning if tsconfig is incompatible ([7641729](https://github.com/antongolub/tsc-esm-fix/commit/76417294b76c9a6f1237fd50fcba30a6b3186503))
+
 # [2.11.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.10.0...v2.11.0) (2022-04-07)
 
 
