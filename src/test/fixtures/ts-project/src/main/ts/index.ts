@@ -1,3 +1,6 @@
+import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
+
 import { foo } from './foo'
 
 import './bar'
@@ -41,5 +44,7 @@ export { qux } from './qux.js'
 export const dirname = __dirname
 
 export const filename = __filename
+
+export const rfoo = require('e1/a/b/c')
 
 console.log(foobaz)

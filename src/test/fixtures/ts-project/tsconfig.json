@@ -10,6 +10,7 @@
       "esnext",
       "dom"
     ],
+    "allowJs": true,
     "sourceMap": false,
     "strict": true,
     "experimentalDecorators": true,
