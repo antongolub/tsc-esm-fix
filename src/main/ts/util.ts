@@ -31,6 +31,7 @@ export const resolveTsConfig = (file: string): TSConfig => {
 
     return {
       ...parent,
+      ...data,
       compilerOptions: { ...parent.compilerOptions, ...data.compilerOptions },
     }
   }
