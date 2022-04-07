@@ -1,3 +1,15 @@
+# [2.11.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.10.0...v2.11.0) (2022-04-07)
+
+
+### Bug Fixes
+
+* search variants in local deps before node_modules ([c42fd55](https://github.com/antongolub/tsc-esm-fix/commit/c42fd556d5f94656319d9ffa69b93c4d42a9b493))
+
+
+### Features
+
+* patch `require` statements ([a43b311](https://github.com/antongolub/tsc-esm-fix/commit/a43b311602e5ceca37feda1703981365920e14fe))
+
 # [2.10.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.9.1...v2.10.0) (2022-04-07)
 
 
