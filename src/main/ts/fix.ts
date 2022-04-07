@@ -68,11 +68,9 @@ export const resolveDependency = (
   }, [])
 
   return (
-    variants.find(
-      (f) =>
-        files.includes(unixify(resolve(nmdir, f))) ||
-        files.includes(unixify(resolve(dir, f))),
-    ) || nested
+    variants.find((f) => files.includes(unixify(resolve(dir, f)))) ||
+    variants.find((f) => files.includes(unixify(resolve(nmdir, f)))) ||
+    nested
   )
 }
 
