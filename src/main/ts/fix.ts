@@ -46,6 +46,8 @@ export const findTargets = (
 
     if (outDir && module.startsWith('es')) {
       targets.push(outDir)
+    } else {
+      console.warn('tsconfig should declare `outDir` and `module` type es6 or above')
     }
 
     return targets
