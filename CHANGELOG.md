@@ -1,3 +1,15 @@
+# [2.10.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.9.1...v2.10.0) (2022-04-07)
+
+
+### Bug Fixes
+
+* fix tsconfigResolver ([2c83f43](https://github.com/antongolub/tsc-esm-fix/commit/2c83f43042bab2f6a5a5e8c1d0af38571745e66e))
+
+
+### Features
+
+* add support for es2021 and es2022 modules ([7e3384b](https://github.com/antongolub/tsc-esm-fix/commit/7e3384bcb3165d56982ed71c67efb39122730ee2))
+
 ## [2.9.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.9.0...v2.9.1) (2022-04-06)
 
 # [2.9.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.8.0...v2.9.0) (2022-04-01)
