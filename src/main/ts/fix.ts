@@ -42,9 +42,9 @@ export const findTargets = (
   asArray(tsconfig).reduce<string[]>((targets, file) => {
     const tsconfigJson = resolveTsConfig(resolve(cwd, file))
     const outDir = tsconfigJson?.compilerOptions?.outDir
-    const module = tsconfigJson?.compilerOptions?.module?.toLowerCase()
+    const module = tsconfigJson?.compilerOptions?.module.toLowerCase?.()
 
-    if (outDir && (module === 'es2020' || module === 'esnext')) {
+    if (outDir && ['es2020', 'es2021', 'es2022', 'esnext'].includes(module)) {
       targets.push(outDir)
     }
 
