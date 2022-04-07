@@ -8,7 +8,9 @@ export default undefined
 `;
 
 exports[`patches contents fixContents() assembles all content modifiers 1`] = `
-"import { foo } from './foo.js';
+"import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+import { foo } from './foo.js';
 import './bar.js';
 import * as e1def from 'e1/a/b/c/index.js';
 import * as e1root from 'e1';
@@ -30,12 +32,15 @@ export { foo as foo1 } from './foo.js';
 export { qux } from './qux.js/index.js';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
+export const rfoo = require('e1/a/b/c/index.js');
 console.log(foobaz);
 "
 `;
 
 exports[`patches contents fixDirnameVar() replaces __dirname refs 1`] = `
-"import { foo } from './foo';
+"import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+import { foo } from './foo';
 import './bar';
 import * as e1def from 'e1/a/b/c';
 import * as e1root from 'e1';
@@ -57,12 +62,15 @@ export { foo as foo1 } from './foo.js';
 export { qux } from './qux.js';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = __filename;
+export const rfoo = require('e1/a/b/c');
 console.log(foobaz);
 "
 `;
 
 exports[`patches contents fixFilenameVar() replaces __filename refs 1`] = `
-"import { foo } from './foo';
+"import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+import { foo } from './foo';
 import './bar';
 import * as e1def from 'e1/a/b/c';
 import * as e1root from 'e1';
@@ -84,12 +92,15 @@ export { foo as foo1 } from './foo.js';
 export { qux } from './qux.js';
 export const dirname = __dirname;
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
+export const rfoo = require('e1/a/b/c');
 console.log(foobaz);
 "
 `;
 
 exports[`patches contents fixRelativeModuleReferences() appends file ext to module refs except for the ones that declare "exports" in pkg.json 1`] = `
-"import { foo } from './foo.js';
+"import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+import { foo } from './foo.js';
 import './bar.js';
 import * as e1def from 'e1/a/b/c/index.js';
 import * as e1root from 'e1';
@@ -111,12 +122,15 @@ export { foo as foo1 } from './foo.js';
 export { qux } from './qux.js/index.js';
 export const dirname = __dirname;
 export const filename = __filename;
+export const rfoo = require('e1/a/b/c/index.js');
 console.log(foobaz);
 "
 `;
 
 exports[`patches fix() patches target (tsc-compiled) files as required by opts 1`] = `
-"import { foo } from './foo.mjs';
+"import { createRequire } from 'module';
+const require = createRequire(import.meta.url);
+import { foo } from './foo.mjs';
 import './bar.mjs';
 import * as e1def from 'e1/a/b/c/index.js';
 import * as e1root from 'e1';
@@ -138,12 +152,16 @@ export { foo as foo1 } from './foo.mjs';
 export { qux } from './qux.js/index.mjs';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
+export const rfoo = require('e1/a/b/c/index.js');
 console.log(foobaz);
 "
 `;
 
 exports[`patches fix() patches ts sources as required by opts 1`] = `
-"import { foo } from './foo.js'
+"import { createRequire } from 'module'
+const require = createRequire(import.meta.url)
+
+import { foo } from './foo.js'
 
 import './bar.js'
 
@@ -186,6 +204,8 @@ export { qux } from './qux.js/index.js'
 export const dirname = __dirname
 
 export const filename = __filename
+
+export const rfoo = require('e1/a/b/c/index.js')
 
 console.log(foobaz)
 "

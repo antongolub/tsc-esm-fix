@@ -44,7 +44,7 @@ export const findTargets = (
     const outDir = tsconfigJson?.compilerOptions?.outDir
     const module = tsconfigJson?.compilerOptions?.module.toLowerCase?.()
 
-    if (outDir && ['es2020', 'es2021', 'es2022', 'esnext'].includes(module)) {
+    if (outDir && module.startsWith('es')) {
       targets.push(outDir)
     }
 
@@ -86,7 +86,7 @@ export const fixModuleReferences = (
   cwd: string,
 ): string =>
   contents.replace(
-    /(\sfrom |\simport[ (])(["'])([^"']+\/[^"']+)(["'])/g,
+    /(\sfrom\s|[\s(](?:import|require)[ (])(["'])([^"']+\/[^"']+)(["'])/g,
     (matched, control, q1, from, q2) =>
       `${control}${q1}${resolveDependency(
         filename,

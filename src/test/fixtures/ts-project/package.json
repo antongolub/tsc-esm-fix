@@ -1,4 +1,8 @@
 {
   "type": "module",
-  "name": "ts-project"
+  "name": "ts-project",
+  "dependencies": {
+    "e1": "*",
+    "e2": "*"
+  }
 }
