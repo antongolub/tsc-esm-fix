@@ -28,17 +28,18 @@
 <a href="#problem" id="problem" style="color: inherit; text-decoration: none;">
   <h3>Problem</h3>
 </a>
-<p>This workaround is aimed to bypass a pair of <strong>tsc</strong> and <strong>ts-jest</strong> issues <em>right here and right now</em>. </p>
+<p>This workaround is aimed to bypass a bunch of <strong>tsc</strong>, <strong>ts-jest</strong> and <strong>esbuild</strong> issues <em>right here and right now</em>. </p>
 <ul>
 <li><a href="https://github.com/microsoft/TypeScript/issues/13422">TS/13422</a> / <a href="https://github.com/microsoft/TypeScript/issues/16577">TS/16577</a>: <strong>tsc</strong> should add <code>.js</code> extensions for relative module paths if compiled as <a href="https://www.typescriptlang.org/tsconfig/#module"><code>es2020/esnext</code></a>.</li>
 <li><a href="https://github.com/kulshekhar/ts-jest/issues/1174">ts-jest/1174</a>: <code>import.meta</code> is not allowed.</li>
+<li><a href="https://github.com/evanw/esbuild/issues/1043">esbuild/1043</a>: empty output for interface files that breaks reimport.</li>
 </ul>
 
 <a href="#solutions" id="solutions" style="color: inherit; text-decoration: none;">
   <h3>Solutions</h3>
 </a>
 <ol>
-<li>Post-process tsc-compiled outputs everytime after the build.</li>
+<li>Post-process tsc-compiled outputs each time after build.</li>
 <li>Patch project sources once as Sindre recommends in <a href="https://github.com/sindresorhus/meta/discussions/15">ESM migration guide</a></li>
 </ol>
 <p>This lib may be applied in both cases.</p>
@@ -56,7 +57,7 @@
 </li>
 <li>Follows <code>outDir</code> found in <strong>tsconfig.json</strong>.  </li>
 <li>Searches and replaces <code>__dirname</code> and <code>__filename</code> refs with <code>import.meta</code>.</li>
-<li>Fills blank files with <code>export {}</code> (esbuild issue)</li>
+<li>Fills blank files with <code>export {}</code> (<a href="https://github.com/evanw/esbuild/issues/1043">esbuild issue 1043</a>)</li>
 <li>Patches <code>require</code> statements with new file refs if ext changes (<a href="https://2ality.com/2019/10/hybrid-npm-packages.html">hybrid/dual pkg</a>)</li>
 <li>Changes file extensions (applied to local deps only).</li>
 <li>Supports Windows-based runtimes.</li>
@@ -189,9 +190,10 @@ Any feedback is appreciated.</p>
   <h2>References</h2>
 </a>
 <ul>
-<li><a href="https://github.com/microsoft/TypeScript/issues/13422">TypeScript/issues/13422: TypeScript and script type=&quot;module&quot;</a></li>
+<li><a href="https://github.com/microsoft/TypeScript/issues/13422">TypeScript/issues/13422: TypeScript and script <code>type=&quot;module&quot;</code></a></li>
 <li><a href="https://github.com/microsoft/TypeScript/issues/28288">TypeScript/issues/28288: Feature: disable extensionless imports</a></li>
 <li><a href="https://github.com/kulshekhar/ts-jest/issues/1174">ts-jest/issues/1174: import.meta not allowed</a></li>
+<li><a href="https://github.com/evanw/esbuild/issues/1043">esbuild/issues/1043: Empty file bundles as <code>{ default: {} }</code></a></li>
 <li><a href="https://stackoverflow.com/questions/64961387/how-to-use-import-meta-when-testing-with-jest">stackoverflow.com/how-to-use-import-meta-when-testing-with-jest</a></li>
 <li><a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c">Pure ESM package</a></li>
 <li><a href="https://stackoverflow.com/questions/46745014/alternative-for-dirname-in-node-when-using-the-experimental-modules-flag">stackoverflow.com/alternative-for-dirname-in-node-when-using-the-experimental-modules-flag</a></li>
