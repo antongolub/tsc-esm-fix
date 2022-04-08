@@ -21,12 +21,13 @@ Make TS projects compatible with [esm/mjs requirements](https://nodejs.org/api/e
 - [License](#license)
 
 ### Problem
-This workaround is aimed to bypass a pair of **tsc** and **ts-jest** issues _right here and right now_. 
+This workaround is aimed to bypass a bunch of **tsc**, **ts-jest** and **esbuild** issues _right here and right now_. 
 * [TS/13422](https://github.com/microsoft/TypeScript/issues/13422) / [TS/16577](https://github.com/microsoft/TypeScript/issues/16577): **tsc** should add `.js` extensions for relative module paths if compiled as [`es2020/esnext`](https://www.typescriptlang.org/tsconfig/#module).
 * [ts-jest/1174](https://github.com/kulshekhar/ts-jest/issues/1174): `import.meta` is not allowed.
+* [esbuild/1043](https://github.com/evanw/esbuild/issues/1043): empty output for interface files that breaks reimport.
 
 ### Solutions
-1. Post-process tsc-compiled outputs everytime after the build.
+1. Post-process tsc-compiled outputs each time after build.
 2. Patch project sources once as Sindre recommends in [ESM migration guide](https://github.com/sindresorhus/meta/discussions/15)
 
 This lib may be applied in both cases.
@@ -39,7 +40,7 @@ This lib may be applied in both cases.
     * Pays attention to index files: `import {bar} from './bar'` → `import {bar} from './bar/index.js'`
 * Follows `outDir` found in **tsconfig.json**.  
 * Searches and replaces `__dirname` and `__filename` refs with `import.meta`.
-* Fills blank files with `export {}` (esbuild issue)
+* Fills blank files with `export {}` ([esbuild issue 1043](https://github.com/evanw/esbuild/issues/1043))
 * Patches `require` statements with new file refs if ext changes ([hybrid/dual pkg](https://2ality.com/2019/10/hybrid-npm-packages.html))
 * Changes file extensions (applied to local deps only).
 * Supports Windows-based runtimes.
@@ -202,9 +203,10 @@ You're always welcome to suggest a PR. Just fork this repo, write some code, add
 Any feedback is appreciated.
 
 ## References
-* [TypeScript/issues/13422: TypeScript and script type="module"](https://github.com/microsoft/TypeScript/issues/13422)
+* [TypeScript/issues/13422: TypeScript and script `type="module"`](https://github.com/microsoft/TypeScript/issues/13422)
 * [TypeScript/issues/28288: Feature: disable extensionless imports](https://github.com/microsoft/TypeScript/issues/28288)
 * [ts-jest/issues/1174: import.meta not allowed](https://github.com/kulshekhar/ts-jest/issues/1174)
+* [esbuild/issues/1043: Empty file bundles as `{ default: {} }`](https://github.com/evanw/esbuild/issues/1043)
 * [stackoverflow.com/how-to-use-import-meta-when-testing-with-jest](https://stackoverflow.com/questions/64961387/how-to-use-import-meta-when-testing-with-jest)
 * [Pure ESM package](https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c)
 * [stackoverflow.com/alternative-for-dirname-in-node-when-using-the-experimental-modules-flag](https://stackoverflow.com/questions/46745014/alternative-for-dirname-in-node-when-using-the-experimental-modules-flag)
