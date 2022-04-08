@@ -29,8 +29,9 @@ This workaround is aimed to bypass a bunch of **tsc**, **ts-jest** and **esbuild
 ### Solutions
 1. Post-process tsc-compiled outputs each time after build.
 2. Patch project sources once as Sindre recommends in [ESM migration guide](https://github.com/sindresorhus/meta/discussions/15)
+3. Use [ttypescript](https://github.com/cevek/ttypescript) with [transformer-append-js-ext plugin](https://github.com/Zoltu/typescript-transformer-append-js-extension/)
 
-This lib may be applied in both cases.
+This lib covers 1 and 2 options.
 
 ### Features
 * Injects extensions to imports/re-exports statements.
