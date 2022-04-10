@@ -3,7 +3,7 @@
     "rootDir": "./src/main/ts/",
     "baseUrl": "./src/main/ts/",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "esnext",
     "module": "ES2020",
     "lib": [
       "es6",
@@ -19,6 +19,7 @@
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": false,
     "declaration": false,
+    "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
 

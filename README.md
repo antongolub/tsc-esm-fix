@@ -40,7 +40,7 @@ src/main/ts/q/u/x/index.ts:1:21 - error TS2835: Relative import paths need expli
 2. Patch project sources once as Sindre recommends in [ESM migration guide](https://github.com/sindresorhus/meta/discussions/15)
 3. Use [ttypescript](https://github.com/cevek/ttypescript) with [transformer-append-js-ext plugin](https://github.com/Zoltu/typescript-transformer-append-js-extension/)
 
-This lib covers 1 and 2 options.
+This lib covers options 1 and 2.
 
 ### Features
 * Injects extensions to imports/re-exports statements.

@@ -83,7 +83,7 @@ describe('patches', () => {
       expect(read(res)).toMatchSnapshot()
       expect(
         cp
-          .execSync(`node from/target/es6/index.mjs`, {
+          .execSync(`node --experimental-top-level-await --experimental-json-modules from/target/es6/index.mjs`, {
             cwd: temp,
             env: {},
             timeout: 5000,

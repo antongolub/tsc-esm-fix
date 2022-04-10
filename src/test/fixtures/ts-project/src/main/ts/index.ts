@@ -9,6 +9,8 @@ import * as e1def from 'e1/a/b/c'
 
 import * as e1root from 'e1'
 
+export { default as json } from './json-data.json'
+
 const { e1 } = e1def
 
 const { e1: e1x } = e1root
@@ -38,6 +40,8 @@ export * from './q/u/x'
 export const foobaz = foo + 'baz'
 
 export { foo as foo1 } from './foo.js'
+
+export const foo2 = await import('./foo')
 
 export { qux } from './qux.js'
 
