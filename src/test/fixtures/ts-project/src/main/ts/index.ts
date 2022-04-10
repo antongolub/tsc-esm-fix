@@ -9,7 +9,7 @@ import * as e1def from 'e1/a/b/c'
 
 import * as e1root from 'e1'
 
-export { default as json } from './json-data.json'
+export { default as json } from './json-data.json' assert {type: 'json'}
 
 const { e1 } = e1def
 

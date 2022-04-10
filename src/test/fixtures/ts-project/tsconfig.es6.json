@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "esnext",
-    "module": "es2022",
+    "module": "esnext",
     "outDir": "target/es6"
   },
   "include": ["src/main/**/*.ts"]

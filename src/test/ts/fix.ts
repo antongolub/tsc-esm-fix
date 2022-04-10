@@ -4,6 +4,7 @@ import { globbySync } from 'globby'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import tempy from 'tempy'
+import semver from 'semver'
 
 import {
   DEFAULT_FIX_OPTIONS,
@@ -79,11 +80,19 @@ describe('patches', () => {
       })
 
       const res = resolve(temp, 'from/target/es6/index.mjs')
+      const contents = read(res)
 
-      expect(read(res)).toMatchSnapshot()
+      // NodeJS v16.14.0+ requires {assert: {type: 'json'}} for json imports
+      // https://github.com/nodejs/node/pull/40250
+      // https://github.com/nodejs/node/commit/7b996655cfcb37d732eca3f61c51d701cd97d8d1
+      if (semver.gte('16.14.0', cp.execSync('node -v').toString().trim())) {
+        fse.writeFileSync(res, contents.replace(` assert { type: 'json' };`, ''))
+      }
+
+      expect(contents).toMatchSnapshot()
       expect(
         cp
-          .execSync(`node --experimental-top-level-await --experimental-json-modules from/target/es6/index.mjs`, {
+          .execSync(`node --experimental-top-level-await --experimental-json-modules ${res}`, {
             cwd: temp,
             env: {},
             timeout: 5000,
