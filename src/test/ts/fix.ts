@@ -3,8 +3,8 @@ import fse from 'fs-extra'
 import { globbySync } from 'globby'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
-import tempy from 'tempy'
 import semver from 'semver'
+import tempy from 'tempy'
 
 import {
   DEFAULT_FIX_OPTIONS,
