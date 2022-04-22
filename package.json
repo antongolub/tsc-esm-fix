@@ -28,7 +28,7 @@
     "format": "prettier --write \"scripts/**/*.js\" \"src/main/**/*.ts\" \"src/test/(js|ts)**/*.(t|j)s\"",
     "test": "npm-run-all -p -l lint test:unit test:it test:depcheck test:depaudit",
     "test:unit": "NODE_OPTIONS=--experimental-vm-modules jest --config=jest.config.json --runInBand",
-    "test:it": "cross-env NODE_OPTIONS=\"--experimental-vm-modules --experimental-modules\" npx glob-runner src/test/**/*.it.js",
+    "test:it": "npx cross-env NODE_OPTIONS=\"--experimental-vm-modules --experimental-modules\" npx glob-runner src/test/**/*.it.js",
     "test:deps": "npm-run-all -p -l test:depcheck test:depauditfix",
     "test:depcheck": "npm_config_yes=true npx -p depcheck -p @babel/parser@7.16.4 depcheck --ignore-patterns fixtures --ignores glob-runner,tslib,@types/jest,@types/node,eslint-config-*,typedoc",
     "test:depaudit": "yarn audit --groups=dependencies --level=moderate; [[ $? -ge 4 ]] && exit 1 || exit 0",
