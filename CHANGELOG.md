@@ -1,3 +1,10 @@
+# [2.13.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.12.4...v2.13.0) (2022-04-22)
+
+
+### Features
+
+* add nodejs v18 support ([baafd95](https://github.com/antongolub/tsc-esm-fix/commit/baafd9522b26052a58f3b56770efc05c50477dbc))
+
 ## [2.12.4](https://github.com/antongolub/tsc-esm-fix/compare/v2.12.3...v2.12.4) (2022-04-08)
 
 ## [2.12.3](https://github.com/antongolub/tsc-esm-fix/compare/v2.12.2...v2.12.3) (2022-04-08)
