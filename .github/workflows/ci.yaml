@@ -26,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Fetch deps
         run: yarn
@@ -63,7 +63,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Fetch deps
         run: yarn
@@ -88,7 +88,7 @@ jobs:
     strategy:
       matrix:
         os: [ windows-2019, ubuntu-20.04 ]
-        node-version: [ 12, 14, 16 ]
+        node-version: [ 12, 14, 16, 18 ]
 
     runs-on: ${{ matrix.os }}
     steps:
@@ -114,11 +114,11 @@ jobs:
         run: yarn
 
       - name: Integration tests
-        if: matrix.node-version != '16' || matrix.os != 'ubuntu-20.04'
+        if: matrix.node-version != '18' || matrix.os != 'ubuntu-20.04'
         run: yarn test:it
 
       - name: Full test suite
-        if: matrix.node-version == '16' && matrix.os == 'ubuntu-20.04'
+        if: matrix.node-version == '18' && matrix.os == 'ubuntu-20.04'
         run: yarn jest -v && yarn test
 
   release:
@@ -131,7 +131,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0
+          persist-credentials: false
 
       - name: Restore artifact
         uses: actions/download-artifact@v3
@@ -141,7 +141,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 18
 
       - name: Codeclimate
         uses: paambaati/codeclimate-action@v3.0.0
