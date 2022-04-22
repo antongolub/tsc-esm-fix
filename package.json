@@ -54,16 +54,16 @@
   },
   "dependencies": {
     "@types/fs-extra": "^9.0.13",
-    "fs-extra": "^10.0.1",
+    "fs-extra": "^10.1.0",
     "globby": "^13.1.1",
     "json5": "^2.2.1",
     "meow": "^10.1.2",
-    "tslib": "^2.3.1"
+    "tslib": "^2.4.0"
   },
   "devDependencies": {
     "@qiwi/npm-run-all": "^4.1.7",
     "@types/jest": "^27.4.1",
-    "@types/node": "^17.0.23",
+    "@types/node": "^17.0.25",
     "@types/semver": "^7.3.9",
     "cpy-cli": "^4.1.0",
     "cross-env": "^7.0.3",
@@ -77,11 +77,11 @@
     "prettier": "^2.6.2",
     "prettier-config-qiwi": "^1.6.1",
     "rimraf": "^3.0.2",
-    "semver": "^7.3.6",
-    "tempy": "^2.0.0",
+    "semver": "^7.3.7",
+    "tempy": "^3.0.0",
     "terser": "^5.12.1",
     "ts-jest": "^27.1.4",
-    "typedoc": "^0.22.14",
+    "typedoc": "^0.22.15",
     "typescript": "4.6"
   },
   "repository": {

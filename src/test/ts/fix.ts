@@ -4,7 +4,7 @@ import { globbySync } from 'globby'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import semver from 'semver'
-import tempy from 'tempy'
+import { temporaryDirectory } from 'tempy'
 
 import {
   DEFAULT_FIX_OPTIONS,
@@ -20,7 +20,7 @@ import { read } from '../../main/ts/util'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const fakeProject = resolve(__dirname, '../fixtures/ts-project')
-const temp = tempy.directory()
+const temp = temporaryDirectory()
 
 afterAll(() => {
   fse.removeSync(temp)
