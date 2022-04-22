@@ -110,16 +110,17 @@ jobs:
           node -v
           node -p process.versions.v8
 
-      - name: Fetch deps
-        run: yarn
-
       - name: Integration tests
         if: matrix.node-version != '18' || matrix.os != 'ubuntu-20.04'
-        run: yarn test:it
+        run: |
+          yarn install --prod --ignore-engines
+          yarn test:it
 
       - name: Full test suite
         if: matrix.node-version == '18' && matrix.os == 'ubuntu-20.04'
-        run: yarn jest -v && yarn test
+        run: |
+          yarn
+          yarn jest -v && yarn test
 
   release:
     name: Release
