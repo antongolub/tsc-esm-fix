@@ -1,6 +1,6 @@
-import * as cp from 'child_process'
 import fse from 'fs-extra'
 import { globbySync } from 'globby'
+import * as cp from 'node:child_process'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import semver from 'semver'
