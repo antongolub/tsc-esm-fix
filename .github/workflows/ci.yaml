@@ -120,7 +120,7 @@ jobs:
         if: matrix.node-version == '18' && matrix.os == 'ubuntu-20.04'
         run: |
           yarn
-          yarn jest -v && yarn test
+          yarn jest --version && yarn test
 
   release:
     name: Release
