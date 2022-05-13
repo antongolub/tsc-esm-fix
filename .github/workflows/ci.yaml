@@ -167,4 +167,4 @@ jobs:
           GIT_COMMITTER_EMAIL: 'mailbox@antongolub.ru'
           GIT_AUTHOR_NAME: '@antongolub'
           GIT_COMMITTER_NAME: '@antongolub'
-        run: npm_config_yes=true npx -p @qiwi/semrel-toolkit semrel
+        run: npm_config_yes=true npx -p @qiwi/semrel-toolkit semantic-release -e @qiwi/semrel-config
