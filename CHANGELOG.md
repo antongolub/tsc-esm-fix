@@ -1,3 +1,10 @@
+## [2.14.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.14.0...v2.14.1) (2022-05-13)
+
+
+### Bug Fixes
+
+* add missing `src` option to CLI ([1890f2e](https://github.com/antongolub/tsc-esm-fix/commit/1890f2e69b6a4230b1b8ca429e33d4c89f042378))
+
 # [2.13.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.12.4...v2.13.0) (2022-04-22)
 
 
