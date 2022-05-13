@@ -180,7 +180,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
 
   const patterns =
     sources.length > 0
-      ? sources.map((src) => `${src}/**/*.ts`)
+      ? sources.map((src) => `${src}/**/*.{ts,tsx}`)
       : targets.map((target) => `${target}/**/*.js`)
 
   const names = await globby(patterns, {
