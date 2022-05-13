@@ -12,7 +12,8 @@ const cli = meow(
 
 	Options
 	  --tsconfig    Prod/bundle tsconfig path to search for 'outDir'
-	  --target      Specify target/outDir by hand. Suppresses 'tsconfig.compilerOptions.outDir'.
+	  --target      Specify target/outDir. Suppresses 'tsconfig.compilerOptions.outDir'.
+	  --src         Specify src dir for patching. Suppresses '--target' option.
 	  --ext         Append extension (like '.mjs') to relative imports/re-exports
 	  --unlink      Remove original files if ext changes
 	  --dirnameVar  Replace __dirname refs with import.meta
@@ -49,6 +50,10 @@ const cli = meow(
         type: 'string',
       },
       target: {
+        type: 'string',
+        isMultiple: true,
+      },
+      src: {
         type: 'string',
         isMultiple: true,
       },
