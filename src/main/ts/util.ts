@@ -1,4 +1,3 @@
-import { readFileSync, unlinkSync } from 'fs'
 import fse from 'fs-extra'
 import { globby } from 'globby'
 import json5 from 'json5'
@@ -9,7 +8,7 @@ import { TSConfig } from './interface'
 export { globby }
 
 export const read = (file: string): string =>
-  readFileSync(file, { encoding: 'utf8' })
+  fse.readFileSync(file, { encoding: 'utf8' })
 
 export const write = (file: string, contents: string): void =>
   fse.outputFileSync(file, contents, { encoding: 'utf8' })
@@ -19,7 +18,7 @@ export const readJson = <D = any>(file: string): D => json5.parse(read(file))
 export const asArray = <T>(value: T[] | T | undefined): T[] =>
   value ? (Array.isArray(value) ? value : [value]) : []
 
-export const remove = unlinkSync
+export const remove = fse.unlinkSync
 
 export const unixify = (path: string): string => path.replace(/\\/g, '/')
 
