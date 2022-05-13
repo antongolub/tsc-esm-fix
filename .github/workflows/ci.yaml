@@ -158,11 +158,7 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           path-to-lcov: ${{ github.workspace }}/coverage/lcov.info
 
-      - name: Semantic Release
-        uses: cycjimmy/semantic-release-action@v2
-        with:
-          extends: |
-            @qiwi/semrel-config
+      - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
@@ -171,3 +167,4 @@ jobs:
           GIT_COMMITTER_EMAIL: 'mailbox@antongolub.ru'
           GIT_AUTHOR_NAME: '@antongolub'
           GIT_COMMITTER_NAME: '@antongolub'
+        run: npm_config_yes=true npx -p @qiwi/semrel-toolkit semrel
