@@ -4,5 +4,8 @@
   "dependencies": {
     "e1": "*",
     "e2": "*"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.es5.json && tsc -p tsconfig.es6.json"
   }
 }

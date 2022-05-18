@@ -63,6 +63,7 @@ describe('patches', () => {
       })
 
       expect(read(resolve(temp, 't1/src/main/ts/index.ts'))).toMatchSnapshot()
+      expect(read(resolve(temp, 't1/src/main/ts/index-ref.ts'))).toMatchSnapshot()
     })
 
     it('patches target (tsc-compiled) files as required by opts', async () => {
@@ -158,6 +159,22 @@ describe('patches', () => {
           debug: () => {}, // eslint-disable-line
         }),
       ).toEqual(content)
+    })
+
+    it('fixContents() replaces `.` with `./index.cjs`', () => {
+      const file = resolve(fakeProject, 'target/es6/index-ref.js')
+      const content = read(file)
+      const _files = files.map(f => f.replace(/\.js$/, '.cjs'))
+      expect(
+        fixContents(content, file, _files, {
+          ext: '.cjs',
+          cwd: fakeProject,
+          filenameVar: false,
+          dirnameVar: false,
+          tsconfig: './tsconfig.json',
+          debug: () => {}, // eslint-disable-line
+        }),
+      ).toMatchSnapshot()
     })
   })
 })
