@@ -39,6 +39,11 @@ console.log(foobaz);
 "
 `;
 
+exports[`patches contents fixContents() replaces \`.\` with \`./index.cjs\` 1`] = `
+"export * from './index.cjs';
+"
+`;
+
 exports[`patches contents fixDirnameVar() replaces __dirname refs 1`] = `
 "import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
@@ -222,5 +227,10 @@ export const filename = __filename
 export const rfoo = require('e1/a/b/c/index.js')
 
 console.log(foobaz)
+"
+`;
+
+exports[`patches fix() patches ts sources as required by opts 2`] = `
+"export * from './index.js'
 "
 `;
