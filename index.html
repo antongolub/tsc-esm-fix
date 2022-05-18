@@ -61,6 +61,7 @@
 <li><code>import {baz} from &#39;external/baz&#39;</code> → <code>import {baz} from &#39;external/baz.js&#39;</code></li>
 <li>Note, <a href="https://nodejs.org/api/esm.html#esm_packages">including the file extension is only necessary for packages without an &quot;exports&quot; field</a>. So in this case all the external refs remain as are.</li>
 <li>Pays attention to index files: <code>import {bar} from &#39;./bar&#39;</code> → <code>import {bar} from &#39;./bar/index.js&#39;</code></li>
+<li>Handles single &#39;.&#39;: <code>export * from &#39;.&#39;</code> → <code>export * from &#39;./index.js&#39;</code></li>
 </ul>
 </li>
 <li>Follows <code>outDir</code> found in <strong>tsconfig.json</strong>.  </li>
