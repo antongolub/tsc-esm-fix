@@ -1,3 +1,10 @@
+# [2.15.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.14.1...v2.15.0) (2022-05-18)
+
+
+### Features
+
+* handle single `.` case ([4803452](https://github.com/antongolub/tsc-esm-fix/commit/4803452c9994c4a8674acc20cd9fe6972071a02a))
+
 ## [2.14.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.14.0...v2.14.1) (2022-05-13)
 
 
