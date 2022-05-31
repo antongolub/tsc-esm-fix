@@ -1,3 +1,10 @@
+## [2.15.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.15.0...v2.15.1) (2022-05-31)
+
+
+### Bug Fixes
+
+* rename with extension ([4889af9](https://github.com/antongolub/tsc-esm-fix/commit/4889af994a72c5d00f38f16e28c52454feb401d6))
+
 # [2.15.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.14.1...v2.15.0) (2022-05-18)
 
 
