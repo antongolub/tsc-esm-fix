@@ -197,7 +197,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
 
   const allNames = [...externalNames, ..._names]
   _names.forEach((name, i) => {
-    const nextName = (!sources.length ? name : names[i]).replace(
+    const nextName = (sources.length === 0 ? name : names[i]).replace(
       unixify(cwd),
       unixify(outDir),
     )
@@ -206,7 +206,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
 
     write(nextName, _contents)
 
-    if (!sources.length && unlink && cwd === outDir && nextName !== names[i]) {
+    if (sources.length === 0 && unlink && cwd === outDir && nextName !== names[i]) {
       remove(names[i])
     }
   })
