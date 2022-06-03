@@ -1,3 +1,10 @@
+# [2.16.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.15.1...v2.16.0) (2022-06-03)
+
+
+### Features
+
+* add `.js` ext to libdef files ([fb03b28](https://github.com/antongolub/tsc-esm-fix/commit/fb03b28c2c06da2f504ed7cd2048dc6b52bc9814))
+
 ## [2.15.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.15.0...v2.15.1) (2022-05-31)
 
 
