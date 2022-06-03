@@ -90,6 +90,7 @@ describe('patches', () => {
         fse.writeFileSync(res, contents.replace(` assert { type: 'json' };`, ''))
       }
 
+      expect(read(resolve(temp, 'from/target/es6/index.d.ts'))).toMatchSnapshot()
       expect(contents).toMatchSnapshot()
       expect(
         cp

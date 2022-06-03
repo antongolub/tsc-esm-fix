@@ -77,7 +77,10 @@ export const resolveDependency = (
 }
 
 export const fixFilenameExtensions = (names: string[], ext: string): string[] =>
-  names.map((name) => name.replace(/\.[^./\\]+$/, ext))
+  names.map((name) =>
+    name.endsWith('d.ts')
+      ? name
+      : name.replace(/\.[^./\\]+$/, ext))
 
 export const fixModuleReferences = (
   contents: string,
@@ -181,7 +184,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   const patterns =
     sources.length > 0
       ? sources.map((src) => `${src}/**/*.{ts,tsx}`)
-      : targets.map((target) => `${target}/**/*.js`)
+      : targets.map((target) => `${target}/**/*.{js,d.ts}`)
 
   const names = await globby(patterns, {
     cwd,
@@ -191,18 +194,20 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   const externalNames = await getExtModules(cwd)
   debug('debug:external-names', externalNames)
 
-  const _names =
-    typeof ext === 'string' ? fixFilenameExtensions(names, ext) : names
+  // NOTE d.ts may refer to .js ext only
+  const allJsNames = [...externalNames, ...fixFilenameExtensions(names, '.js')]
+  const _names = typeof ext === 'string' ? fixFilenameExtensions(names, ext) : names
+  const allNames = [...externalNames, ..._names]
   debug('debug:local-names', _names)
 
-  const allNames = [...externalNames, ..._names]
   _names.forEach((name, i) => {
+    const all = name.endsWith('d.ts') ? allJsNames : allNames
     const nextName = (sources.length === 0 ? name : names[i]).replace(
       unixify(cwd),
       unixify(outDir),
     )
     const contents = read(names[i])
-    const _contents = fixContents(contents, name, allNames, _opts)
+    const _contents = fixContents(contents, name, all, _opts)
 
     write(nextName, _contents)
 

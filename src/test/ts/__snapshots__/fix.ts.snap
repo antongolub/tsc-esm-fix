@@ -141,6 +141,32 @@ console.log(foobaz);
 `;
 
 exports[`patches fix() patches target (tsc-compiled) files as required by opts 1`] = `
+"import './bar';
+export { default as json } from './json-data.json';
+declare const e1: string;
+declare const e1x: string;
+export { e1, e1x };
+export { m1 } from 'm1';
+export { m1 as m1x } from 'm1/index.js';
+export { e2 } from 'e2';
+export { e2 as es3 } from 'e2/index';
+export { e2 as es4 } from 'e2/alias';
+export { e2foo } from 'e2/foo';
+export { e2bar } from 'e2/bar-bundle';
+export * from './foo.js';
+export * from './baz/index.js';
+export * from './q/u/x/index.js';
+export declare const foobaz: string;
+export { foo as foo1 } from './foo.js';
+export declare const foo2: typeof import(\\"./foo.js\\");
+export { qux } from './qux.js/index.js';
+export declare const dirname: string;
+export declare const filename: string;
+export declare const rfoo: any;
+"
+`;
+
+exports[`patches fix() patches target (tsc-compiled) files as required by opts 2`] = `
 "import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 import { foo } from './foo.mjs';
