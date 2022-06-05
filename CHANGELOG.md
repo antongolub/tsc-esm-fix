@@ -1,3 +1,10 @@
+# [2.17.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.16.0...v2.17.0) (2022-06-05)
+
+
+### Features
+
+* handle `..` refs ([e7e6f99](https://github.com/antongolub/tsc-esm-fix/commit/e7e6f99195d4b512ce5211c7e0925324e60cdf51)), closes [#80](https://github.com/antongolub/tsc-esm-fix/issues/80)
+
 # [2.16.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.15.1...v2.16.0) (2022-06-03)
 
 
