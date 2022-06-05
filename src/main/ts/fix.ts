@@ -78,7 +78,7 @@ export const resolveDependency = (
 
 export const fixFilenameExtensions = (names: string[], ext: string): string[] =>
   names.map((name) =>
-    name.endsWith('d.ts')
+    name.endsWith('.d.ts')
       ? name
       : name.replace(/\.[^./\\]+$/, ext))
 
