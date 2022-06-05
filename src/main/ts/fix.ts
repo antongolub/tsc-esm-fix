@@ -201,7 +201,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   debug('debug:local-names', _names)
 
   _names.forEach((name, i) => {
-    const all = name.endsWith('d.ts') ? allJsNames : allNames
+    const all = name.endsWith('.d.ts') ? allJsNames : allNames
     const nextName = (sources.length === 0 ? name : names[i]).replace(
       unixify(cwd),
       unixify(outDir),
