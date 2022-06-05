@@ -26,7 +26,6 @@ This workaround is aimed to bypass a bunch of **tsc**, **ts-jest** and **esbuild
 * [ts-jest/1174](https://github.com/kulshekhar/ts-jest/issues/1174): `import.meta` is not allowed.
 * [esbuild/1043](https://github.com/evanw/esbuild/issues/1043): empty output for interface files that breaks reimport.
 
-
 #### moduleResolution: nodenext
 [Nightly build TypeScript 4.7](https://www.typescriptlang.org/docs/handbook/nightly-builds.html) provides [experimental esm support](https://www.typescriptlang.org/docs/handbook/esm-node.html). But it still forces to add extensions by hand (tested on [4.7.0-dev.20220408](https://www.npmjs.com/package/typescript/v/4.7.0-dev.20220408)).
 ```shell
@@ -34,6 +33,7 @@ src/main/ts/q/u/x/index.ts:1:21 - error TS2835: Relative import paths need expli
 
 1 import { foo } from '../../../foo'
 ```
+If understand correctly, `nodenext` + pkg.json `type: module` requires the `.js` extension in `.d.ts` files of **external** ESM packages too. Well, good luck with that.
 
 ### Solutions
 1. Post-process tsc-compiled outputs each time after build.
@@ -63,9 +63,13 @@ This lib covers options 1 and 2.
 ### Requirements
 Node.js `^12.20.0 || ^14.13.1 || >=16.0.0`
 
-### Install
+### Fetching
 ```shell
+npm i -dev tsc-esm-fix
 yarn add -D tsc-esm-fix
+
+# or w/o saving to package.json
+npx tsc-esm-fix [options]
 ```
 
 ### Usage examples
