@@ -35,6 +35,7 @@ export { qux } from './qux.js/index.js';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
 export const rfoo = require('e1/a/b/c/index.js');
+export * from './only-types.js';
 console.log(foobaz);
 "
 `;
@@ -72,6 +73,7 @@ export { qux } from './qux.js';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = __filename;
 export const rfoo = require('e1/a/b/c');
+export * from './only-types';
 console.log(foobaz);
 "
 `;
@@ -104,6 +106,7 @@ export { qux } from './qux.js';
 export const dirname = __dirname;
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
 export const rfoo = require('e1/a/b/c');
+export * from './only-types';
 console.log(foobaz);
 "
 `;
@@ -136,6 +139,7 @@ export { qux } from './qux.js/index.js';
 export const dirname = __dirname;
 export const filename = __filename;
 export const rfoo = require('e1/a/b/c/index.js');
+export * from './only-types.js';
 console.log(foobaz);
 "
 `;
@@ -163,10 +167,16 @@ export { qux } from './qux.js/index.js';
 export declare const dirname: string;
 export declare const filename: string;
 export declare const rfoo: any;
+export * from './only-types.js';
 "
 `;
 
 exports[`patches fix() patches target (tsc-compiled) files as required by opts 2`] = `
+"export {};
+"
+`;
+
+exports[`patches fix() patches target (tsc-compiled) files as required by opts 3`] = `
 "import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 import { foo } from './foo.mjs';
@@ -194,6 +204,7 @@ export { qux } from './qux.js/index.mjs';
 export const dirname = /file:\\\\/\\\\/(.+)\\\\/[^/]/.exec(import.meta.url)[1];
 export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
 export const rfoo = require('e1/a/b/c/index.js');
+export * from './only-types.mjs';
 console.log(foobaz);
 "
 `;
@@ -251,6 +262,8 @@ export const dirname = __dirname
 export const filename = __filename
 
 export const rfoo = require('e1/a/b/c/index.js')
+
+export * from './only-types.js'
 
 console.log(foobaz)
 "

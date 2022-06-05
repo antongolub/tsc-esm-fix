@@ -20,3 +20,4 @@ export { qux } from './qux.js';
 export declare const dirname: string;
 export declare const filename: string;
 export declare const rfoo: any;
+export * from './only-types';

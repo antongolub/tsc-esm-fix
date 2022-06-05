@@ -51,4 +51,6 @@ export const filename = __filename
 
 export const rfoo = require('e1/a/b/c')
 
+export * from './only-types'
+
 console.log(foobaz)

@@ -68,4 +68,5 @@ Object.defineProperty(exports, "qux", { enumerable: true, get: function () { ret
 exports.dirname = __dirname;
 exports.filename = __filename;
 exports.rfoo = require('e1/a/b/c');
+__exportStar(require("./only-types"), exports);
 console.log(exports.foobaz);

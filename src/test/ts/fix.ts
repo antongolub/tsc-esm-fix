@@ -79,6 +79,7 @@ describe('patches', () => {
         tsconfig: ['tsconfig.es5.json', 'tsconfig.es6.json'],
         ext: '.mjs',
         debug: false,
+        fillBlank: true,
       })
 
       const res = resolve(temp, 'from/target/es6/index.mjs')
@@ -92,6 +93,7 @@ describe('patches', () => {
       }
 
       expect(read(resolve(temp, 'from/target/es6/index.d.ts'))).toMatchSnapshot()
+      expect(read(resolve(temp, 'from/target/es6/only-types.mjs'))).toMatchSnapshot()
       expect(contents).toMatchSnapshot()
       expect(
         cp
