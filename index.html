@@ -41,6 +41,7 @@
 <p><a href="https://www.typescriptlang.org/docs/handbook/nightly-builds.html">Nightly build TypeScript 4.7</a> provides <a href="https://www.typescriptlang.org/docs/handbook/esm-node.html">experimental esm support</a>. But it still forces to add extensions by hand (tested on <a href="https://www.npmjs.com/package/typescript/v/4.7.0-dev.20220408">4.7.0-dev.20220408</a>).</p>
 <pre><code class="language-shell"><span class="hl-0">src/main/ts/q/u/x/index.ts:1:21 - error TS2835: Relative import paths need explicit file extensions </span><span class="hl-1">in</span><span class="hl-0"> EcmaScript imports when </span><span class="hl-2">&#39;--moduleResolution&#39;</span><span class="hl-0"> is </span><span class="hl-2">&#39;node12&#39;</span><span class="hl-0"> or </span><span class="hl-2">&#39;nodenext&#39;</span><span class="hl-0">. Did you mean </span><span class="hl-2">&#39;../../../foo.js&#39;</span><span class="hl-0">?</span><br/><br/><span class="hl-0">1 import { foo } from </span><span class="hl-2">&#39;../../../foo&#39;</span>
 </code></pre>
+<p>If understand correctly, <code>nodenext</code> + pkg.json <code>type: module</code> requires the <code>.js</code> extension in <code>.d.ts</code> files of <strong>external</strong> ESM packages too. Well, good luck with that.</p>
 
 <a href="#solutions" id="solutions" style="color: inherit; text-decoration: none;">
   <h3>Solutions</h3>
@@ -86,10 +87,10 @@
 </a>
 <p>Node.js <code>^12.20.0 || ^14.13.1 || &gt;=16.0.0</code></p>
 
-<a href="#install" id="install" style="color: inherit; text-decoration: none;">
-  <h3>Install</h3>
+<a href="#fetching" id="fetching" style="color: inherit; text-decoration: none;">
+  <h3>Fetching</h3>
 </a>
-<pre><code class="language-shell"><span class="hl-0">yarn add -D tsc-esm-fix</span>
+<pre><code class="language-shell"><span class="hl-0">npm i -dev tsc-esm-fix</span><br/><span class="hl-0">yarn add -D tsc-esm-fix</span><br/><br/><span class="hl-3"># or w/o saving to package.json</span><br/><span class="hl-0">npx tsc-esm-fix [options]</span>
 </code></pre>
 
 <a href="#usage-examples" id="usage-examples" style="color: inherit; text-decoration: none;">
