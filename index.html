@@ -61,8 +61,12 @@
 <li><code>import {baz} from &#39;external/baz&#39;</code> → <code>import {baz} from &#39;external/baz.js&#39;</code></li>
 <li>Note, <a href="https://nodejs.org/api/esm.html#esm_packages">including the file extension is only necessary for packages without an &quot;exports&quot; field</a>. So in this case all the external refs remain as are.</li>
 <li>Pays attention to index files: <code>import {bar} from &#39;./bar&#39;</code> → <code>import {bar} from &#39;./bar/index.js&#39;</code></li>
-<li>Handles single dot path: <code>export * from &#39;.&#39;</code> → <code>export * from &#39;./index.js&#39;</code></li>
-<li>Injects <code>.js</code> extensions to libdef <code>.d.ts</code> files</li>
+<li>Handles <code>.</code> and <code>..</code> shortcuts<ul>
+<li><code>export * from &#39;.&#39;</code> → <code>export * from &#39;./index.js&#39;</code></li>
+<li><code>export * from &#39;..&#39;</code> → <code>export * from &#39;../index.js&#39;</code></li>
+</ul>
+</li>
+<li>Injects <code>.js</code> extensions into  <code>.d.ts</code> libdef files</li>
 </ul>
 </li>
 <li>Follows <code>outDir</code> found in <strong>tsconfig.json</strong>.  </li>
@@ -91,7 +95,7 @@
 <a href="#usage-examples" id="usage-examples" style="color: inherit; text-decoration: none;">
   <h3>Usage examples</h3>
 </a>
-<pre><code class="language-shell"><span class="hl-0">tsc-esm-fix [options]</span><br/><br/><span class="hl-3"># to post-process outputs each time</span><br/><span class="hl-0">tsc-esm-fix --target=</span><span class="hl-2">&#39;target/es6&#39;</span><br/><br/><span class="hl-3"># to patch ts sources once</span><br/><span class="hl-0">tsc-esm-fix --target=</span><span class="hl-2">&#39;src/main/ts&#39;</span><span class="hl-0"> --ext=</span><span class="hl-2">&#39;.js&#39;</span>
+<pre><code class="language-shell"><span class="hl-0">tsc-esm-fix [options]</span><br/><br/><span class="hl-3"># to post-process outputs each time</span><br/><span class="hl-0">tsc-esm-fix --target=</span><span class="hl-2">&#39;target/es6&#39;</span><br/><br/><span class="hl-3"># to patch ts sources once</span><br/><span class="hl-0">tsc-esm-fix --src=</span><span class="hl-2">&#39;src/main/ts&#39;</span><span class="hl-0"> --ext=</span><span class="hl-2">&#39;.js&#39;</span>
 </code></pre>
 <pre><code class="language-typescript"><span class="hl-1">import</span><span class="hl-0"> { </span><span class="hl-4">fix</span><span class="hl-0"> } </span><span class="hl-1">from</span><span class="hl-0"> </span><span class="hl-2">&#39;tsc-esm-fix&#39;</span><br/><span class="hl-1">await</span><span class="hl-0"> </span><span class="hl-5">fix</span><span class="hl-0">({</span><br/><span class="hl-0">  </span><span class="hl-4">dirnameVar:</span><span class="hl-0"> </span><span class="hl-6">true</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-4">filenameVar:</span><span class="hl-0"> </span><span class="hl-6">true</span><span class="hl-0">,</span><br/><span class="hl-0">  </span><span class="hl-4">ext:</span><span class="hl-0"> </span><span class="hl-6">true</span><br/><span class="hl-0">})</span>
 </code></pre>
