@@ -64,6 +64,7 @@ describe('patches', () => {
 
       expect(read(resolve(temp, 't1/src/main/ts/index.ts'))).toMatchSnapshot()
       expect(read(resolve(temp, 't1/src/main/ts/index-ref.ts'))).toMatchSnapshot()
+      expect(read(resolve(temp, 't1/src/main/ts/index-ref-2/index.ts'))).toMatchSnapshot()
     })
 
     it('patches target (tsc-compiled) files as required by opts', async () => {
