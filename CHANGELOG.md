@@ -1,3 +1,10 @@
+## [2.17.2](https://github.com/antongolub/tsc-esm-fix/compare/v2.17.1...v2.17.2) (2022-06-05)
+
+
+### Bug Fixes
+
+* fix one more d.ts check ([576725e](https://github.com/antongolub/tsc-esm-fix/commit/576725e1b05859c92b350cccd16f8c4662d34077)), closes [#82](https://github.com/antongolub/tsc-esm-fix/issues/82)
+
 ## [2.17.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.17.0...v2.17.1) (2022-06-05)
 
 
