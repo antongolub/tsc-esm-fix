@@ -76,7 +76,7 @@ tsc-esm-fix [options]
 tsc-esm-fix --target='target/es6'
 
 # to patch ts sources once
-tsc-esm-fix --target='src/main/ts' --ext='.js'
+tsc-esm-fix --src='src/main/ts' --ext='.js'
 ```
 
 ```typescript
