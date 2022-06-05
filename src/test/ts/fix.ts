@@ -94,7 +94,7 @@ describe('patches', () => {
 
       expect(read(resolve(temp, 'from/target/es6/index.d.ts'))).toMatchSnapshot()
       expect(read(resolve(temp, 'from/target/es6/only-types.mjs'))).toMatchSnapshot()
-      expect(contents).toMatchSnapshot()
+      expect(read(resolve(temp, 'from/target/es6/index.mjs'))).toMatchSnapshot()
       expect(
         cp
           .execSync(`node --experimental-top-level-await --experimental-json-modules ${res}`, {
