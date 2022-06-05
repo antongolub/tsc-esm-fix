@@ -44,12 +44,14 @@ This lib covers options 1 and 2.
 
 ### Features
 * Injects extensions to imports/re-exports statements.
-    * `import {foo} from './foo'` → `import {foo} from './foo.js'`
-    * `import {baz} from 'external/baz'` → `import {baz} from 'external/baz.js'`
-    * Note, [including the file extension is only necessary for packages without an "exports" field](https://nodejs.org/api/esm.html#esm_packages). So in this case all the external refs remain as are.
-    * Pays attention to index files: `import {bar} from './bar'` → `import {bar} from './bar/index.js'`
-    * Handles single dot path: `export * from '.'` → `export * from './index.js'`
-    * Injects `.js` extensions to libdef `.d.ts` files
+  * `import {foo} from './foo'` → `import {foo} from './foo.js'`
+  * `import {baz} from 'external/baz'` → `import {baz} from 'external/baz.js'`
+  * Note, [including the file extension is only necessary for packages without an "exports" field](https://nodejs.org/api/esm.html#esm_packages). So in this case all the external refs remain as are.
+  * Pays attention to index files: `import {bar} from './bar'` → `import {bar} from './bar/index.js'`
+  * Handles `.` and `..` shortcuts
+    * `export * from '.'` → `export * from './index.js'`
+    * `export * from '..'` → `export * from '../index.js'`
+  * Injects `.js` extensions into  `.d.ts` libdef files
 * Follows `outDir` found in **tsconfig.json**.  
 * Searches and replaces `__dirname` and `__filename` refs with `import.meta`.
 * Fills blank files with `export {}` ([esbuild issue 1043](https://github.com/evanw/esbuild/issues/1043))

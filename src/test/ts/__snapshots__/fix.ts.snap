@@ -260,3 +260,5 @@ exports[`patches fix() patches ts sources as required by opts 2`] = `
 "export * from './index.js'
 "
 `;
+
+exports[`patches fix() patches ts sources as required by opts 3`] = `"export * from '../index.js'"`;
