@@ -1,3 +1,10 @@
+## [2.17.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.17.0...v2.17.1) (2022-06-05)
+
+
+### Bug Fixes
+
+* fix d.ts detection ([d00f288](https://github.com/antongolub/tsc-esm-fix/commit/d00f28811851e6f525c946f759f3361dd41ed854))
+
 # [2.17.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.16.0...v2.17.0) (2022-06-05)
 
 
