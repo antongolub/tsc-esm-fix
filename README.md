@@ -181,11 +181,19 @@ tsc-esm-fix [opts]
 | `--out`         | Output dir. Defaults to `cwd`, so files would be overwritten                                   | `process.cwd()`                                                          |
 | `--debug`       | Prints debug notes                                                                             |                                                                          |
 
-### --target vs --src
+#### --target vs --src
 When `--src` option is used, the util just modifies file contents in place.
 `--target` also renames files to change their extension.
 You may prevent deletion original of files by using `--no-unlink`.
 
+#### glob patterns
+By default, the util looks for `ts/tsx` files in `src` directory and `js/d.ts` files in `target`. But you can specify custom patterns via corresponding options. For example: `--src='src/main/ts/**/*.ts'`.
+```js
+const patterns =
+  sources.length > 0
+    ? sources.map((src) => src.includes('*') ? src : `${src}/**/*.{ts,tsx}`)
+    : targets.map((target) => target.includes('*') ? target : `${target}/**/*.{js,d.ts}`)
+```
 
 ### JS/TS API
 ```ts
