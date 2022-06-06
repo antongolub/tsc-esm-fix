@@ -33,7 +33,7 @@ src/main/ts/q/u/x/index.ts:1:21 - error TS2835: Relative import paths need expli
 
 1 import { foo } from '../../../foo'
 ```
-If understand correctly, `nodenext` + pkg.json `type: module` requires the `.js` extension in `.d.ts` files of **external** ESM packages too. Well, good luck with that.
+Moreover, if understand [TS/49271](https://github.com/microsoft/TypeScript/issues/49271) correctly, `nodenext` + pkg.json `type: module` requires the `.js` extension in `.d.ts` files of **external** ESM packages too. Well, good luck with that.
 
 ### Solutions
 1. Post-process tsc-compiled outputs each time after build.
@@ -180,6 +180,12 @@ tsc-esm-fix [opts]
 | `--cwd`         | cwd                                                                                            | `process.cwd()`                                                          |
 | `--out`         | Output dir. Defaults to `cwd`, so files would be overwritten                                   | `process.cwd()`                                                          |
 | `--debug`       | Prints debug notes                                                                             |                                                                          |
+
+### --target vs --src
+When `--src` option is used, the util just modifies file contents in place.
+`--target` also renames files to change their extension.
+You may prevent deletion original of files by using `--no-unlink`.
+
 
 ### JS/TS API
 ```ts
