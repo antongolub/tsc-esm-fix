@@ -41,7 +41,7 @@
 <p><a href="https://www.typescriptlang.org/docs/handbook/nightly-builds.html">Nightly build TypeScript 4.7</a> provides <a href="https://www.typescriptlang.org/docs/handbook/esm-node.html">experimental esm support</a>. But it still forces to add extensions by hand (tested on <a href="https://www.npmjs.com/package/typescript/v/4.7.0-dev.20220408">4.7.0-dev.20220408</a>).</p>
 <pre><code class="language-shell"><span class="hl-0">src/main/ts/q/u/x/index.ts:1:21 - error TS2835: Relative import paths need explicit file extensions </span><span class="hl-1">in</span><span class="hl-0"> EcmaScript imports when </span><span class="hl-2">&#39;--moduleResolution&#39;</span><span class="hl-0"> is </span><span class="hl-2">&#39;node12&#39;</span><span class="hl-0"> or </span><span class="hl-2">&#39;nodenext&#39;</span><span class="hl-0">. Did you mean </span><span class="hl-2">&#39;../../../foo.js&#39;</span><span class="hl-0">?</span><br/><br/><span class="hl-0">1 import { foo } from </span><span class="hl-2">&#39;../../../foo&#39;</span>
 </code></pre>
-<p>If understand correctly, <code>nodenext</code> + pkg.json <code>type: module</code> requires the <code>.js</code> extension in <code>.d.ts</code> files of <strong>external</strong> ESM packages too. Well, good luck with that.</p>
+<p>Moreover, if understand <a href="https://github.com/microsoft/TypeScript/issues/49271">TS/49271</a> correctly, <code>nodenext</code> + pkg.json <code>type: module</code> requires the <code>.js</code> extension in <code>.d.ts</code> files of <strong>external</strong> ESM packages too. Well, good luck with that.</p>
 
 <a href="#solutions" id="solutions" style="color: inherit; text-decoration: none;">
   <h3>Solutions</h3>
@@ -176,6 +176,20 @@
 <td></td>
 </tr>
 </tbody></table>
+
+<a href="#--target-vs---src" id="--target-vs---src" style="color: inherit; text-decoration: none;">
+  <h4>--target vs --src</h4>
+</a>
+<p>When <code>--src</code> option is used, the util just modifies file contents in place.
+<code>--target</code> also renames files to change their extension.
+You may prevent deletion original of files by using <code>--no-unlink</code>.</p>
+
+<a href="#glob-patterns" id="glob-patterns" style="color: inherit; text-decoration: none;">
+  <h4>glob patterns</h4>
+</a>
+<p>By default, the util looks for <code>ts/tsx</code> files in <code>src</code> directory and <code>js/d.ts</code> files in <code>target</code>. But you can specify custom patterns via corresponding options. For example: <code>--src=&#39;src/main/ts/**/*.ts&#39;</code>.</p>
+<pre><code class="language-js"><span class="hl-6">const</span><span class="hl-0"> </span><span class="hl-7">patterns</span><span class="hl-0"> =</span><br/><span class="hl-0">  </span><span class="hl-4">sources</span><span class="hl-0">.</span><span class="hl-4">length</span><span class="hl-0"> &gt; </span><span class="hl-12">0</span><br/><span class="hl-0">    ? </span><span class="hl-4">sources</span><span class="hl-0">.</span><span class="hl-5">map</span><span class="hl-0">((</span><span class="hl-4">src</span><span class="hl-0">) </span><span class="hl-6">=&gt;</span><span class="hl-0"> </span><span class="hl-4">src</span><span class="hl-0">.</span><span class="hl-5">includes</span><span class="hl-0">(</span><span class="hl-2">&#39;*&#39;</span><span class="hl-0">) ? </span><span class="hl-4">src</span><span class="hl-0"> : </span><span class="hl-2">`</span><span class="hl-6">${</span><span class="hl-4">src</span><span class="hl-6">}</span><span class="hl-2">/**/*.{ts,tsx}`</span><span class="hl-0">)</span><br/><span class="hl-0">    : </span><span class="hl-4">targets</span><span class="hl-0">.</span><span class="hl-5">map</span><span class="hl-0">((</span><span class="hl-4">target</span><span class="hl-0">) </span><span class="hl-6">=&gt;</span><span class="hl-0"> </span><span class="hl-4">target</span><span class="hl-0">.</span><span class="hl-5">includes</span><span class="hl-0">(</span><span class="hl-2">&#39;*&#39;</span><span class="hl-0">) ? </span><span class="hl-4">target</span><span class="hl-0"> : </span><span class="hl-2">`</span><span class="hl-6">${</span><span class="hl-4">target</span><span class="hl-6">}</span><span class="hl-2">/**/*.{js,d.ts}`</span><span class="hl-0">)</span>
+</code></pre>
 
 <a href="#jsts-api" id="jsts-api" style="color: inherit; text-decoration: none;">
   <h3>JS/TS API</h3>
