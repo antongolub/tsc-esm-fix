@@ -170,6 +170,11 @@ const getExtModules = async (cwd: string): Promise<string[]> =>
     } as GlobbyOptions,
   )
 
+export const getPatterns = (sources: string[], targets: string[]): string[] =>
+  sources.length > 0
+    ? sources.map((src) => src.includes('*') ? src : `${src}/**/*.{ts,tsx}`)
+    : targets.map((target) => target.includes('*') ? target : `${target}/**/*.{js,d.ts}`)
+
 export const fix = async (opts?: IFixOptions): Promise<void> => {
   const _opts = normalizeOptions(opts)
   const { cwd, target, src, tsconfig, out = cwd, ext, debug, unlink } = _opts
@@ -181,11 +186,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   debug('debug:sources', sources)
   debug('debug:targets', targets)
 
-  const patterns =
-    sources.length > 0
-      ? sources.map((src) => src.includes('*') ? src : `${src}/**/*.{ts,tsx}`)
-      : targets.map((target) => target.includes('*') ? target : `${target}/**/*.{js,d.ts}`)
-
+  const patterns = getPatterns(sources, targets)
   const names = await globby(patterns, {
     cwd,
     onlyFiles: true,
