@@ -183,8 +183,8 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
 
   const patterns =
     sources.length > 0
-      ? sources.map((src) => `${src}/**/*.{ts,tsx}`)
-      : targets.map((target) => `${target}/**/*.{js,d.ts}`)
+      ? sources.map((src) => src.includes('*') ? src : `${src}/**/*.{ts,tsx}`)
+      : targets.map((target) => target.includes('*') ? target : `${target}/**/*.{js,d.ts}`)
 
   const names = await globby(patterns, {
     cwd,
