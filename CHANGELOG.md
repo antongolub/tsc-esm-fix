@@ -1,3 +1,10 @@
+# [2.19.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.18.0...v2.19.0) (2022-07-19)
+
+
+### Features
+
+* introdude `forceDefaultExport` directive ([c81b274](https://github.com/antongolub/tsc-esm-fix/commit/c81b274c8ff595183d5d362b86094e5ff515b469))
+
 # [2.18.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.17.3...v2.18.0) (2022-06-06)
 
 
