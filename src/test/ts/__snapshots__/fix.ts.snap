@@ -45,6 +45,12 @@ exports[`patches contents fixContents() replaces \`.\` with \`./index.cjs\` 1`] 
 "
 `;
 
+exports[`patches contents fixDefaultExport() injects export default 1`] = `
+"export {};
+export default undefined
+"
+`;
+
 exports[`patches contents fixDirnameVar() replaces __dirname refs 1`] = `
 "import { createRequire } from 'module';
 const require = createRequire(import.meta.url);

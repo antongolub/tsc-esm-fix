@@ -11,11 +11,12 @@ import {
   fix,
   fixBlankFiles,
   fixContents,
+  fixDefaultExport,
   fixDirnameVar,
   fixFilenameVar,
   fixModuleReferences,
 } from '../../main/ts'
-import { normalizeOptions } from '../../main/ts/fix'
+import { normalizeOptions} from '../../main/ts/fix'
 import { read } from '../../main/ts/util'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
@@ -141,6 +142,10 @@ describe('patches', () => {
 
     it('fixBlankFiles() replaces empty contents with empty export statement', () => {
       expect(fixBlankFiles('')).toMatchSnapshot()
+    })
+
+    it('fixDefaultExport() injects export default', () => {
+      expect(fixDefaultExport('export {};')).toMatchSnapshot()
     })
 
     it('fixContents() assembles all content modifiers', () => {

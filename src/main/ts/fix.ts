@@ -108,8 +108,14 @@ export const fixDirnameVar = (contents: string): string =>
 export const fixFilenameVar = (contents: string): string =>
   contents.replace(/__filename/g, '/file:\\/\\/(.+)/.exec(import.meta.url)[1]') // eslint-disable-line
 
+export const fixDefaultExport = (contents: string): string => contents.includes('export default')
+    ? contents
+    : `${contents}
+export default undefined
+`
+
 export const fixBlankFiles = (contents: string): string => contents.trim().length === 0
-  ? `
+    ? `
 export {}
 export default undefined
 ` : contents
@@ -118,7 +124,7 @@ export const fixContents = (
   contents: string,
   filename: string,
   filenames: string[],
-  { cwd, ext, dirnameVar, filenameVar, fillBlank }: IFixOptionsNormalized,
+  { cwd, ext, dirnameVar, filenameVar, fillBlank, forceDefaultExport }: IFixOptionsNormalized,
 ): string => {
   let _contents = contents
 
@@ -136,6 +142,10 @@ export const fixContents = (
 
   if (fillBlank) {
     _contents = fixBlankFiles(_contents)
+  }
+
+  if (forceDefaultExport) {
+    _contents = fixDefaultExport(_contents)
   }
 
   return _contents

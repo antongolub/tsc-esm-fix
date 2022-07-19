@@ -11,6 +11,8 @@ const cli = meow(
 	  $ tsc-es2020-fix [options]
 
 	Options
+	  --out         Output dir. Defaults to cwd, so files will be overridden
+	  --cwd         cwd. process.cwd() by default
 	  --tsconfig    Prod/bundle tsconfig path to search for 'outDir'
 	  --target      Specify target/outDir. Suppresses 'tsconfig.compilerOptions.outDir'.
 	  --src         Specify src dir for patching. Suppresses '--target' option.
@@ -18,8 +20,8 @@ const cli = meow(
 	  --unlink      Remove original files if ext changes
 	  --dirnameVar  Replace __dirname refs with import.meta
 	  --filenameVar Replace __filename with import.meta
-	  --out         Output dir. Defaults to cwd, so files will be overridden
-	  --cwd         cwd. process.cwd() by default
+	  --fillBlank   Fill in blank files with 'export {}'
+	  --forceDefaultExport  Injects 'export default undefined' if not present
 
 	Examples
 	  $ tsc-es2020-fix --ext=.mjs --out=foo
@@ -58,6 +60,9 @@ const cli = meow(
         isMultiple: true,
       },
       fillBlank: {
+        type: 'boolean',
+      },
+      forceDefaultExport: {
         type: 'boolean',
       },
     },
