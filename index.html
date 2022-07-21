@@ -85,6 +85,7 @@
 <li>Follows <code>outDir</code> found in <strong>tsconfig.json</strong>.  </li>
 <li>Searches and replaces <code>__dirname</code> and <code>__filename</code> refs with <code>import.meta</code>.</li>
 <li>Fills blank files with <code>export {}</code> (<a href="https://github.com/evanw/esbuild/issues/1043">esbuild issue 1043</a>)</li>
+<li>Patches source map files to point to the updated files.</li>
 <li>Patches <code>require</code> statements with new file refs if ext changes (<a href="https://2ality.com/2019/10/hybrid-npm-packages.html">hybrid/dual pkg</a>)</li>
 <li>Changes file extensions (applied to local deps only).</li>
 <li>Supports Windows-based runtimes.</li>
@@ -175,6 +176,11 @@
 <tr>
 <td><code>--forceDefaultExport</code></td>
 <td>Injects <code>export default undefined</code> if not present</td>
+<td>false</td>
+</tr>
+<tr>
+<td><code>--sourceMap</code></td>
+<td>Patch source map files to point to the updated files.</td>
 <td>false</td>
 </tr>
 <tr>
