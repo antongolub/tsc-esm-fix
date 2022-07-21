@@ -42,6 +42,7 @@ console.log(foobaz);
 
 exports[`patches contents fixContents() replaces \`.\` with \`./index.cjs\` 1`] = `
 "export * from './index.cjs';
+export * as reexport from './index.cjs';
 "
 `;
 
@@ -277,6 +278,7 @@ console.log(foobaz)
 
 exports[`patches fix() patches ts sources as required by opts 2`] = `
 "export * from './index.js'
+export * as reexport from './index.js'
 "
 `;
 
