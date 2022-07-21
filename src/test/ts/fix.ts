@@ -17,7 +17,7 @@ import {
   fixModuleReferences,
 } from '../../main/ts'
 import { normalizeOptions} from '../../main/ts/fix'
-import { read } from '../../main/ts/util'
+import { read, readJson } from '../../main/ts/util'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const fakeProject = resolve(__dirname, '../fixtures/ts-project')
@@ -81,6 +81,7 @@ describe('patches', () => {
         ext: '.mjs',
         debug: false,
         fillBlank: true,
+        sourceMap: true
       })
 
       const res = resolve(temp, 'from/target/es6/index.mjs')
@@ -96,6 +97,7 @@ describe('patches', () => {
       expect(read(resolve(temp, 'from/target/es6/index.d.ts'))).toMatchSnapshot()
       expect(read(resolve(temp, 'from/target/es6/only-types.mjs'))).toMatchSnapshot()
       expect(read(resolve(temp, 'from/target/es6/index.mjs'))).toMatchSnapshot()
+      expect(readJson(resolve(temp, 'from/target/es6/index.mjs.map')).file).toBe('index.mjs')
       expect(
         cp
           .execSync(`node --experimental-top-level-await --experimental-json-modules ${res}`, {
@@ -150,7 +152,7 @@ describe('patches', () => {
 
     it('fixContents() assembles all content modifiers', () => {
       expect(
-        fixContents(content, file, files, {
+        fixContents(content, file, file, files, {
           ...DEFAULT_FIX_OPTIONS,
           cwd: fakeProject,
         }),
@@ -159,7 +161,7 @@ describe('patches', () => {
 
     it('fixContents() with no flags does not provide any effects', () => {
       expect(
-        fixContents(content, file, files, {
+        fixContents(content, file, file, files, {
           ext: false,
           cwd: fakeProject,
           filenameVar: false,
@@ -175,7 +177,7 @@ describe('patches', () => {
       const content = read(file)
       const _files = files.map(f => f.replace(/\.js$/, '.cjs'))
       expect(
-        fixContents(content, file, _files, {
+        fixContents(content, file, file, _files, {
           ext: '.cjs',
           cwd: fakeProject,
           filenameVar: false,

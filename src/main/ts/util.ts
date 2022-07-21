@@ -7,6 +7,8 @@ import { TSConfig } from './interface'
 
 export { globby }
 
+export { existsSync } from 'node:fs'
+
 export const read = (file: string): string =>
   fse.readFileSync(file, { encoding: 'utf8' })
 

@@ -21,6 +21,7 @@ const cli = meow(
 	  --dirnameVar  Replace __dirname refs with import.meta
 	  --filenameVar Replace __filename with import.meta
 	  --fillBlank   Fill in blank files with 'export {}'
+	  --sourceMap   Patch source map files to point to the updated files
 	  --forceDefaultExport  Injects 'export default undefined' if not present
 
 	Examples
@@ -63,6 +64,9 @@ const cli = meow(
         type: 'boolean',
       },
       forceDefaultExport: {
+        type: 'boolean',
+      },
+      sourceMap: {
         type: 'boolean',
       },
     },

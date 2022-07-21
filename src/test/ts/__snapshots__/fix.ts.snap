@@ -37,13 +37,13 @@ export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
 export const rfoo = require('e1/a/b/c/index.js');
 export * from './only-types.js';
 console.log(foobaz);
-"
+//# sourceMappingURL=index.js.map"
 `;
 
 exports[`patches contents fixContents() replaces \`.\` with \`./index.cjs\` 1`] = `
 "export * from './index.cjs';
 export * as reexport from './index.cjs';
-"
+//# sourceMappingURL=index-ref.js.map"
 `;
 
 exports[`patches contents fixDefaultExport() injects export default 1`] = `
@@ -82,7 +82,7 @@ export const filename = __filename;
 export const rfoo = require('e1/a/b/c');
 export * from './only-types';
 console.log(foobaz);
-"
+//# sourceMappingURL=index.js.map"
 `;
 
 exports[`patches contents fixFilenameVar() replaces __filename refs 1`] = `
@@ -115,7 +115,7 @@ export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
 export const rfoo = require('e1/a/b/c');
 export * from './only-types';
 console.log(foobaz);
-"
+//# sourceMappingURL=index.js.map"
 `;
 
 exports[`patches contents fixRelativeModuleReferences() appends file ext to module refs except for the ones that declare "exports" in pkg.json 1`] = `
@@ -148,7 +148,7 @@ export const filename = __filename;
 export const rfoo = require('e1/a/b/c/index.js');
 export * from './only-types.js';
 console.log(foobaz);
-"
+//# sourceMappingURL=index.js.map"
 `;
 
 exports[`patches fix() patches target (tsc-compiled) files as required by opts 1`] = `
@@ -180,7 +180,7 @@ export * from './only-types.js';
 
 exports[`patches fix() patches target (tsc-compiled) files as required by opts 2`] = `
 "export {};
-"
+//# sourceMappingURL=only-types.mjs.map"
 `;
 
 exports[`patches fix() patches target (tsc-compiled) files as required by opts 3`] = `
@@ -213,7 +213,7 @@ export const filename = /file:\\\\/\\\\/(.+)/.exec(import.meta.url)[1];
 export const rfoo = require('e1/a/b/c/index.js');
 export * from './only-types.mjs';
 console.log(foobaz);
-"
+//# sourceMappingURL=index.mjs.map"
 `;
 
 exports[`patches fix() patches ts sources as required by opts 1`] = `
