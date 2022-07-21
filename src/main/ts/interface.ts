@@ -10,6 +10,7 @@ export type IFixOptionsNormalized = {
   dirnameVar: boolean
   filenameVar: boolean
   fillBlank?: boolean
+  sourceMap?: boolean
   forceDefaultExport?: boolean
   ext: boolean | string
   unlink?: boolean

@@ -55,6 +55,7 @@ This lib covers options 1 and 2.
 * Follows `outDir` found in **tsconfig.json**.  
 * Searches and replaces `__dirname` and `__filename` refs with `import.meta`.
 * Fills blank files with `export {}` ([esbuild issue 1043](https://github.com/evanw/esbuild/issues/1043))
+* Patches source map files to point to the updated files.
 * Patches `require` statements with new file refs if ext changes ([hybrid/dual pkg](https://2ality.com/2019/10/hybrid-npm-packages.html))
 * Changes file extensions (applied to local deps only).
 * Supports Windows-based runtimes.
@@ -178,6 +179,7 @@ tsc-esm-fix [opts]
 | `--unlink`             | Remove original files if ext changes                                                           | true                                                                     |
 | `--fillBlank`          | Fill blank files with `export {}`                                                              | false                                                                    |
 | `--forceDefaultExport` | Injects `export default undefined` if not present                                              | false                                                                    |
+| `--sourceMap`          | Patch source map files to point to the updated files.                                          | false                                                                    |
 | `--cwd`                | cwd                                                                                            | `process.cwd()`                                                          |
 | `--out`                | Output dir. Defaults to `cwd`, so files would be overwritten                                   | `process.cwd()`                                                          |
 | `--debug`              | Prints debug notes                                                                             |                                                                          |

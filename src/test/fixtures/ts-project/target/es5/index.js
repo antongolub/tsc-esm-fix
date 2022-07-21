@@ -70,3 +70,4 @@ exports.filename = __filename;
 exports.rfoo = require('e1/a/b/c');
 __exportStar(require("./only-types"), exports);
 console.log(exports.foobaz);
+//# sourceMappingURL=index.js.map

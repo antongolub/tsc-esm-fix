@@ -4,6 +4,7 @@ import { basename, dirname, resolve } from 'node:path'
 import { IFixOptions, IFixOptionsNormalized } from './interface'
 import {
   asArray,
+  existsSync,
   globby,
   read,
   readJson,
@@ -120,11 +121,20 @@ export {}
 export default undefined
 ` : contents
 
+export const fixSourceMapRef = (contents: string, originName: string, filename: string): string =>
+  originName === filename
+    ? contents
+    :contents.replace(
+      `//# sourceMappingURL=${basename(originName)}.map`,
+      `//# sourceMappingURL=${basename(filename)}.map`
+    )
+
 export const fixContents = (
   contents: string,
+  originName: string,
   filename: string,
   filenames: string[],
-  { cwd, ext, dirnameVar, filenameVar, fillBlank, forceDefaultExport }: IFixOptionsNormalized,
+  { cwd, ext, dirnameVar, filenameVar, fillBlank, forceDefaultExport, sourceMap }: IFixOptionsNormalized,
 ): string => {
   let _contents = contents
 
@@ -146,6 +156,10 @@ export const fixContents = (
 
   if (forceDefaultExport) {
     _contents = fixDefaultExport(_contents)
+  }
+
+  if (sourceMap) {
+    _contents = fixSourceMapRef(_contents, originName, filename)
   }
 
   return _contents
@@ -187,7 +201,7 @@ export const getPatterns = (sources: string[], targets: string[]): string[] =>
 
 export const fix = async (opts?: IFixOptions): Promise<void> => {
   const _opts = normalizeOptions(opts)
-  const { cwd, target, src, tsconfig, out = cwd, ext, debug, unlink } = _opts
+  const { cwd, target, src, tsconfig, out = cwd, ext, debug, unlink, sourceMap } = _opts
   const outDir = resolve(cwd, out)
   const sources = asArray<string>(src)
   const targets = [...asArray<string>(target), ...findTargets(tsconfig, cwd)]
@@ -213,17 +227,43 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
 
   _names.forEach((name, i) => {
     const all = name.endsWith('.d.ts') ? allJsNames : allNames
-    const nextName = (sources.length === 0 ? name : names[i]).replace(
+    const originName = names[i]
+    const nextName = (sources.length === 0 ? name : originName).replace(
       unixify(cwd),
       unixify(outDir),
     )
-    const contents = read(names[i])
-    const _contents = fixContents(contents, name, all, _opts)
+    const contents = read(originName)
+    const _contents = fixContents(contents, originName, name, all, _opts)
 
     write(nextName, _contents)
 
-    if (sources.length === 0 && unlink && cwd === outDir && nextName !== names[i]) {
-      remove(names[i])
+    if (sources.length === 0 && unlink && cwd === outDir && nextName !== originName) {
+      remove(originName)
+    }
+
+    if (sourceMap) {
+      patchSourceFile(originName, nextName, unlink && cwd === outDir)
     }
   })
+}
+
+const patchSourceFile = (name: string, nextName: string, unlink = false) => {
+  if (name === nextName) {
+    return
+  }
+
+  const mapfile = `${name}.map`
+  if (!existsSync(mapfile)) {
+    return
+  }
+
+  const nextMapfile = `${nextName}.map`
+  const contents = readJson(mapfile)
+
+  contents.file = basename(nextName)
+  write(nextMapfile, JSON.stringify(contents))
+
+  if (unlink) {
+    remove(mapfile)
+  }
 }

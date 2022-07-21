@@ -11,7 +11,7 @@
       "dom"
     ],
     "allowJs": true,
-    "sourceMap": false,
+    "sourceMap": true,
     "strict": true,
     "experimentalDecorators": true,
     "noUnusedLocals": false,
