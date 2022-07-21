@@ -131,10 +131,10 @@ export const fixSourceMapRef = (contents: string, originName: string, filename: 
 
 export const fixContents = (
   contents: string,
-  originName: string,
   filename: string,
   filenames: string[],
   { cwd, ext, dirnameVar, filenameVar, fillBlank, forceDefaultExport, sourceMap }: IFixOptionsNormalized,
+  originName = filename, // NOTE Weird contract to avoid breaking change
 ): string => {
   let _contents = contents
 
@@ -233,7 +233,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
       unixify(outDir),
     )
     const contents = read(originName)
-    const _contents = fixContents(contents, originName, name, all, _opts)
+    const _contents = fixContents(contents, name, all, _opts, originName)
 
     write(nextName, _contents)
 

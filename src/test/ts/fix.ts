@@ -152,7 +152,7 @@ describe('patches', () => {
 
     it('fixContents() assembles all content modifiers', () => {
       expect(
-        fixContents(content, file, file, files, {
+        fixContents(content, file, files, {
           ...DEFAULT_FIX_OPTIONS,
           cwd: fakeProject,
         }),
@@ -161,7 +161,7 @@ describe('patches', () => {
 
     it('fixContents() with no flags does not provide any effects', () => {
       expect(
-        fixContents(content, file, file, files, {
+        fixContents(content, file, files, {
           ext: false,
           cwd: fakeProject,
           filenameVar: false,
@@ -177,7 +177,7 @@ describe('patches', () => {
       const content = read(file)
       const _files = files.map(f => f.replace(/\.js$/, '.cjs'))
       expect(
-        fixContents(content, file, file, _files, {
+        fixContents(content, file, _files, {
           ext: '.cjs',
           cwd: fakeProject,
           filenameVar: false,
