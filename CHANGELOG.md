@@ -1,3 +1,10 @@
+## [2.19.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.19.0...v2.19.1) (2022-07-21)
+
+
+### Bug Fixes
+
+* handle trailing slash refs ([1d9a03e](https://github.com/antongolub/tsc-esm-fix/commit/1d9a03e7585b5d281e62de97940e3984f16f7633)), closes [#87](https://github.com/antongolub/tsc-esm-fix/issues/87)
+
 # [2.19.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.18.0...v2.19.0) (2022-07-19)
 
 
