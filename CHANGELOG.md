@@ -1,3 +1,10 @@
+# [2.20.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.19.1...v2.20.0) (2022-07-21)
+
+
+### Features
+
+* provide sourcemaps processing ([239929c](https://github.com/antongolub/tsc-esm-fix/commit/239929c7a953d18bf8c87aa472a69fc344422739)), closes [#86](https://github.com/antongolub/tsc-esm-fix/issues/86)
+
 ## [2.19.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.19.0...v2.19.1) (2022-07-21)
 
 
