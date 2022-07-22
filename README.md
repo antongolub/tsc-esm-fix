@@ -222,6 +222,7 @@ export interface IFixOptions {
   filenameVar: boolean
   fillBlank?: boolean
   forceDefaultExport?: boolean
+  sourceMap?: boolean
   ext: boolean | string
   unlink?: boolean,
   debug?: boolean | IFunction
