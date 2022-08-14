@@ -1,3 +1,10 @@
+## [2.20.2](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.1...v2.20.2) (2022-08-14)
+
+
+### Performance Improvements
+
+* make stricter `__dirname` and `__filename` subtitutions ([8459f27](https://github.com/antongolub/tsc-esm-fix/commit/8459f27679c2d2d431916669edbb7b62f7d7c57e)), closes [#90](https://github.com/antongolub/tsc-esm-fix/issues/90)
+
 ## [2.20.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.0...v2.20.1) (2022-08-14)
 
 
