@@ -1,3 +1,10 @@
+## [2.20.1](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.0...v2.20.1) (2022-08-14)
+
+
+### Bug Fixes
+
+* patch `__dirname` subs for windows paths ([8950b3b](https://github.com/antongolub/tsc-esm-fix/commit/8950b3bc41e2ea072cd4e80988e985d4017606b1)), closes [#89](https://github.com/antongolub/tsc-esm-fix/issues/89)
+
 # [2.20.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.19.1...v2.20.0) (2022-07-21)
 
 
