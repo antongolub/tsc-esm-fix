@@ -1,3 +1,10 @@
+## [2.20.3](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.2...v2.20.3) (2022-08-15)
+
+
+### Performance Improvements
+
+* improve `__dirname` and `__filename` subs for ts sources as input ([73c719e](https://github.com/antongolub/tsc-esm-fix/commit/73c719ef79007962a3b030739554cbbefeb74385)), closes [#90](https://github.com/antongolub/tsc-esm-fix/issues/90)
+
 ## [2.20.2](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.1...v2.20.2) (2022-08-14)
 
 
