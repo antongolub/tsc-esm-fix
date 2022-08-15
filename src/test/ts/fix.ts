@@ -136,10 +136,12 @@ describe('patches', () => {
 
     it('fixDirnameVar() replaces __dirname refs', () => {
       expect(fixDirnameVar(content)).toMatchSnapshot()
+      expect(fixDirnameVar(content, true)).toMatchSnapshot()
     })
 
     it('fixFilenameVar() replaces __filename refs', () => {
       expect(fixFilenameVar(content)).toMatchSnapshot()
+      expect(fixFilenameVar(content, true)).toMatchSnapshot()
     })
 
     it('fixBlankFiles() replaces empty contents with empty export statement', () => {

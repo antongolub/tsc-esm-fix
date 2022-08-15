@@ -100,14 +100,14 @@ export const fixModuleReferences = (
       )}${q2}`,
   )
 
-export const fixDirnameVar = (contents: string): string =>
+export const fixDirnameVar = (contents: string, isSource?: boolean): string =>
   contents.replace(
     /__dirname/g,
-    '(/file:\\/{2,3}(.+)\\/[^/]/.exec(import.meta.url) || [])[1]',
+    `/file:\\/{2,3}(.+)\\/[^/]/.exec(import.meta.url)${isSource ? '!' : ''}[1]`,
   ) // eslint-disable-line
 
-export const fixFilenameVar = (contents: string): string =>
-  contents.replace(/__filename/g, '(/file:\\/{2,3}(.+)/.exec(import.meta.url) || [])[1]') // eslint-disable-line
+export const fixFilenameVar = (contents: string, isSource?: boolean): string =>
+  contents.replace(/__filename/g, `/file:\\/{2,3}(.+)/.exec(import.meta.url)${isSource ? '!' : ''}[1]`) // eslint-disable-line
 
 export const fixDefaultExport = (contents: string): string => contents.includes('export default')
     ? contents
@@ -135,6 +135,7 @@ export const fixContents = (
   filenames: string[],
   { cwd, ext, dirnameVar, filenameVar, fillBlank, forceDefaultExport, sourceMap }: IFixOptionsNormalized,
   originName = filename, // NOTE Weird contract to avoid breaking change
+  isSource = false,
 ): string => {
   let _contents = contents
 
@@ -143,11 +144,11 @@ export const fixContents = (
   }
 
   if (dirnameVar) {
-    _contents = fixDirnameVar(_contents)
+    _contents = fixDirnameVar(_contents, isSource)
   }
 
   if (filenameVar) {
-    _contents = fixFilenameVar(_contents)
+    _contents = fixFilenameVar(_contents, isSource)
   }
 
   if (fillBlank) {
@@ -210,6 +211,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   debug('debug:sources', sources)
   debug('debug:targets', targets)
 
+  const isSource = sources.length > 0
   const patterns = getPatterns(sources, targets)
   const names = await globby(patterns, {
     cwd,
@@ -233,7 +235,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
       unixify(outDir),
     )
     const contents = read(originName)
-    const _contents = fixContents(contents, name, all, _opts, originName)
+    const _contents = fixContents(contents, name, all, _opts, originName, isSource)
 
     write(nextName, _contents)
 
