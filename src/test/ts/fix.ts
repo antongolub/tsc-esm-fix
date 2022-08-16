@@ -21,6 +21,7 @@ import { read, readJson } from '../../main/ts/util'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const fakeProject = resolve(__dirname, '../fixtures/ts-project')
+const nestjsSwaggerProject = resolve(__dirname, '../fixtures/nestjs-swagger-project')
 const temp = temporaryDirectory()
 
 afterAll(() => {
@@ -168,7 +169,7 @@ describe('patches', () => {
           cwd: fakeProject,
           filenameVar: false,
           dirnameVar: false,
-          tsconfig: './tsconfig.json',
+          tsconfig: './tsconfig.json', // eslint-disable-line
           debug: () => {}, // eslint-disable-line
         }),
       ).toEqual(content)
@@ -187,6 +188,31 @@ describe('patches', () => {
           tsconfig: './tsconfig.json',
           debug: () => {}, // eslint-disable-line
         }),
+      ).toMatchSnapshot()
+    })
+
+    it('fixContents() patches `require` args', () => {
+      const file = resolve(nestjsSwaggerProject, 'event.dto.js')
+      const content = read(file)
+      const files = globbySync(
+          [
+            '**/*.js',
+          ],
+          {
+            cwd: nestjsSwaggerProject,
+            onlyFiles: true,
+            absolute: true,
+          },
+      )
+      expect(
+          fixContents(content, file, files, {
+            ext: '.js',
+            cwd: nestjsSwaggerProject,
+            filenameVar: false,
+            dirnameVar: false,
+            tsconfig: './tsconfig.json', // eslint-disable-line
+            debug: () => {}, // eslint-disable-line
+          }),
       ).toMatchSnapshot()
     })
   })

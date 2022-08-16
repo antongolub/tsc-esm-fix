@@ -40,6 +40,24 @@ console.log(foobaz);
 //# sourceMappingURL=index.js.map"
 `;
 
+exports[`patches contents fixContents() patches \`require\` args 1`] = `
+"import { Type } from 'class-transformer';
+import { IsArray,  ValidateNested, } from 'class-validator';
+
+export class CreateEventBatchDto {
+    static _OPENAPI_METADATA_FACTORY() {
+        return { events: { required: true, type: () => [require(\\"./event.dto.js\\").CreateEventDto] } };
+    }
+}
+__decorate([
+    IsArray(),
+    ValidateNested({ each: true }),
+    Type(() => CreateEventDto),
+    __metadata(\\"design:type\\", Array)
+], CreateEventBatchDto.prototype, \\"events\\", void 0);
+"
+`;
+
 exports[`patches contents fixContents() replaces \`.\` with \`./index.cjs\` 1`] = `
 "export * from './index.cjs';
 export * as reexport from './index.cjs';
