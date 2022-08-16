@@ -1,3 +1,10 @@
+## [2.20.4](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.3...v2.20.4) (2022-08-16)
+
+
+### Bug Fixes
+
+* handle require in arrays ([d818d5d](https://github.com/antongolub/tsc-esm-fix/commit/d818d5d26cea7d3ee13f95a07154cc6d91e90080))
+
 ## [2.20.3](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.2...v2.20.3) (2022-08-15)
 
 
