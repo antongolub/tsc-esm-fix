@@ -32,8 +32,8 @@ export const foobaz = foo + 'baz';
 export { foo as foo1 } from './foo.js';
 export const foo2 = await import('./foo.js');
 export { qux } from './qux.js/index.js';
-export const dirname = /file:\\\\/{2,3}(.+)\\\\/[^/]/.exec(import.meta.url)[1];
-export const filename = /file:\\\\/{2,3}(.+)/.exec(import.meta.url)[1];
+export const dirname = /file:\\/{2,3}(.+)\\/[^/]/.exec(import.meta.url)[1];
+export const filename = /file:\\/{2,3}(.+)/.exec(import.meta.url)[1];
 export const rfoo = require('e1/a/b/c/index.js');
 export * from './only-types.js';
 console.log(foobaz);
@@ -46,15 +46,15 @@ import { IsArray,  ValidateNested, } from 'class-validator';
 
 export class CreateEventBatchDto {
     static _OPENAPI_METADATA_FACTORY() {
-        return { events: { required: true, type: () => [require(\\"./event.dto.js\\").CreateEventDto] } };
+        return { events: { required: true, type: () => [require("./event.dto.js").CreateEventDto] } };
     }
 }
 __decorate([
     IsArray(),
     ValidateNested({ each: true }),
     Type(() => CreateEventDto),
-    __metadata(\\"design:type\\", Array)
-], CreateEventBatchDto.prototype, \\"events\\", void 0);
+    __metadata("design:type", Array)
+], CreateEventBatchDto.prototype, "events", void 0);
 "
 `;
 
@@ -95,7 +95,7 @@ export const foobaz = foo + 'baz';
 export { foo as foo1 } from './foo.js';
 export const foo2 = await import('./foo');
 export { qux } from './qux.js';
-export const dirname = /file:\\\\/{2,3}(.+)\\\\/[^/]/.exec(import.meta.url)[1];
+export const dirname = /file:\\/{2,3}(.+)\\/[^/]/.exec(import.meta.url)[1];
 export const filename = __filename;
 export const rfoo = require('e1/a/b/c');
 export * from './only-types';
@@ -128,7 +128,7 @@ export const foobaz = foo + 'baz';
 export { foo as foo1 } from './foo.js';
 export const foo2 = await import('./foo');
 export { qux } from './qux.js';
-export const dirname = /file:\\\\/{2,3}(.+)\\\\/[^/]/.exec(import.meta.url)![1];
+export const dirname = /file:\\/{2,3}(.+)\\/[^/]/.exec(import.meta.url)![1];
 export const filename = __filename;
 export const rfoo = require('e1/a/b/c');
 export * from './only-types';
@@ -162,7 +162,7 @@ export { foo as foo1 } from './foo.js';
 export const foo2 = await import('./foo');
 export { qux } from './qux.js';
 export const dirname = __dirname;
-export const filename = /file:\\\\/{2,3}(.+)/.exec(import.meta.url)[1];
+export const filename = /file:\\/{2,3}(.+)/.exec(import.meta.url)[1];
 export const rfoo = require('e1/a/b/c');
 export * from './only-types';
 console.log(foobaz);
@@ -195,7 +195,7 @@ export { foo as foo1 } from './foo.js';
 export const foo2 = await import('./foo');
 export { qux } from './qux.js';
 export const dirname = __dirname;
-export const filename = /file:\\\\/{2,3}(.+)/.exec(import.meta.url)![1];
+export const filename = /file:\\/{2,3}(.+)/.exec(import.meta.url)![1];
 export const rfoo = require('e1/a/b/c');
 export * from './only-types';
 console.log(foobaz);
@@ -253,7 +253,7 @@ export * from './baz/index.js';
 export * from './q/u/x/index.js';
 export declare const foobaz: string;
 export { foo as foo1 } from './foo.js';
-export declare const foo2: typeof import(\\"./foo.js\\");
+export declare const foo2: typeof import("./foo.js");
 export { qux } from './qux.js/index.js';
 export declare const dirname: string;
 export declare const filename: string;
@@ -292,8 +292,8 @@ export const foobaz = foo + 'baz';
 export { foo as foo1 } from './foo.mjs';
 export const foo2 = await import('./foo.mjs');
 export { qux } from './qux.js/index.mjs';
-export const dirname = /file:\\\\/{2,3}(.+)\\\\/[^/]/.exec(import.meta.url)[1];
-export const filename = /file:\\\\/{2,3}(.+)/.exec(import.meta.url)[1];
+export const dirname = /file:\\/{2,3}(.+)\\/[^/]/.exec(import.meta.url)[1];
+export const filename = /file:\\/{2,3}(.+)/.exec(import.meta.url)[1];
 export const rfoo = require('e1/a/b/c/index.js');
 export * from './only-types.mjs';
 console.log(foobaz);
