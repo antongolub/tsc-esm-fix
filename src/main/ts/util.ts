@@ -1,7 +1,8 @@
+import { dirname, resolve } from 'node:path'
+
 import fse from 'fs-extra'
 import { globby } from 'globby'
 import json5 from 'json5'
-import { dirname, resolve } from 'node:path'
 
 import { TSConfig } from './interface'
 

@@ -1,5 +1,6 @@
-import { Options as GlobbyOptions } from 'globby'
 import { basename, dirname, resolve } from 'node:path'
+
+import { Options as GlobbyOptions } from 'globby'
 
 import { IFixOptions, IFixOptionsNormalized } from './interface'
 import {
