@@ -75,7 +75,7 @@
     "microbundle": "^0.15.1",
     "mkdirp": "^1.0.4",
     "prettier": "^2.7.1",
-    "prettier-config-qiwi": "^1.7.3",
+    "prettier-config-qiwi": "^2.0.0",
     "rimraf": "^3.0.2",
     "semver": "^7.3.8",
     "tempy": "^3.0.0",
