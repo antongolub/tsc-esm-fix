@@ -1,1 +1,1 @@
-export declare type SomeType = string;
+export type SomeType = string;

@@ -119,6 +119,7 @@ describe('patches', () => {
         'target/**/*.(m|c)?js',
         'node_modules/**/*.(m|c)?js',
         '!node_modules/e2',
+        '!node_modules/e3',
         '!node_modules/**/node_modules/**/*.(m|c)?js',
       ],
       {
@@ -132,7 +133,7 @@ describe('patches', () => {
 
     it('fixRelativeModuleReferences() appends file ext to module refs except for the ones that declare "exports" in pkg.json', () => {
       expect(
-        fixModuleReferences(content, file, files, fakeProject),
+        fixModuleReferences(content, file, files, fakeProject, []),
       ).toMatchSnapshot()
     })
 

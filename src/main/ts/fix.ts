@@ -1,8 +1,8 @@
-import { basename, dirname, resolve } from 'node:path'
+import {basename, dirname, join,resolve} from 'node:path'
 
-import { Options as GlobbyOptions } from 'globby'
+import {Options as GlobbyOptions} from 'globby'
 
-import { IFixOptions, IFixOptionsNormalized } from './interface'
+import {IFixOptions, IFixOptionsNormalized} from './interface'
 import {
   asArray,
   existsSync,
@@ -89,11 +89,12 @@ export const fixModuleReferences = (
   filename: string,
   filenames: string[],
   cwd: string,
+  ignore: string[],
 ): string =>
   contents.replace(
     /(\sfrom\s|[\s(:[](?:import|require)[ (])(["'])([^"']+\/[^"']+|\.{1,2})\/?(["'])/g,
     (matched, control, q1, from, q2) =>
-      `${control}${q1}${resolveDependency(
+      `${control}${q1}${ignore.includes(from) ? from : resolveDependency(
         filename,
         from,
         filenames,
@@ -111,13 +112,13 @@ export const fixFilenameVar = (contents: string, isSource?: boolean): string =>
   contents.replace(/__filename/g, `/file:\\/{2,3}(.+)/.exec(import.meta.url)${isSource ? '!' : ''}[1]`) // eslint-disable-line
 
 export const fixDefaultExport = (contents: string): string => contents.includes('export default')
-    ? contents
-    : `${contents}
+  ? contents
+  : `${contents}
 export default undefined
 `
 
 export const fixBlankFiles = (contents: string): string => contents.trim().length === 0
-    ? `
+  ? `
 export {}
 export default undefined
 ` : contents
@@ -125,7 +126,7 @@ export default undefined
 export const fixSourceMapRef = (contents: string, originName: string, filename: string): string =>
   originName === filename
     ? contents
-    :contents.replace(
+    : contents.replace(
       `//# sourceMappingURL=${basename(originName)}.map`,
       `//# sourceMappingURL=${basename(filename)}.map`
     )
@@ -134,14 +135,15 @@ export const fixContents = (
   contents: string,
   filename: string,
   filenames: string[],
-  { cwd, ext, dirnameVar, filenameVar, fillBlank, forceDefaultExport, sourceMap }: IFixOptionsNormalized,
+  {cwd, ext, dirnameVar, filenameVar, fillBlank, forceDefaultExport, sourceMap}: IFixOptionsNormalized,
   originName = filename, // NOTE Weird contract to avoid breaking change
   isSource = false,
+  ignore: string[] = [],
 ): string => {
   let _contents = contents
 
   if (ext) {
-    _contents = fixModuleReferences(_contents, filename, filenames, cwd)
+    _contents = fixModuleReferences(_contents, filename, filenames, cwd, ignore)
   }
 
   if (dirnameVar) {
@@ -167,27 +169,94 @@ export const fixContents = (
   return _contents
 }
 
-const getExtModulesWithPkgJsonExports = (cwd: string): Promise<string[]> =>
-  globby(['node_modules/*/package.json'], {
+const resolvePrefix = (prefix: string, pattern?: string): string => {
+  if (!pattern) {
+    return prefix
+  }
+
+  let _pattern = pattern
+
+  if (_pattern.includes('*')) {
+    _pattern = _pattern.slice(0, _pattern.indexOf('*'))
+
+    if (_pattern.includes('/')) {
+      _pattern = _pattern.slice(0, _pattern.lastIndexOf('/'))
+    }
+  }
+
+  return join(prefix, _pattern)
+}
+
+// https://nodejs.org/api/packages.html
+// https://webpack.js.org/guides/package-exports/
+type Entry = string | string[] | Record<string, string | string[] | Record<string, string | string[]>>
+
+const getExportsEntries = (exports: string | Entry): [string, string[]][] => {
+  const entries: [string, Entry][] = Object.entries(exports)
+  const parseConditional = (e: Entry): string[] => typeof e === 'string' ? [e] : Object.values(e).map(parseConditional).flat(2)
+
+  // has subpaths
+  if (typeof exports !== 'string' && Object.keys(exports).some((k) => k.startsWith('.'))) {
+    return entries.map(([k, v]) => [k, parseConditional(v)])
+  }
+
+  return [['.', parseConditional(exports)]]
+}
+
+const getExternalEsmModules = (cwd: string): Promise<{ names: string[], files: string[] }> =>
+  globby(['node_modules/*/package.json', 'node_modules/@*/*/package.json'], {
     cwd,
     onlyFiles: true,
     absolute: true,
-  } as GlobbyOptions).then((files: string[]) =>
-    files
-      .filter((f: string) => readJson(f).exports)
-      .map((f: string) => basename(dirname(f))),
+  } as GlobbyOptions).then(async (files: string[]) =>
+    (await Promise.all(files
+      .map(async (f: string): Promise<{ name?: string, files?: string[] }> => {
+        const {name, exports} = await readJson(f)
+
+        if (!exports) {
+          return {}
+        }
+
+        const _dir = dirname(f)
+        const exportsEntries = getExportsEntries(exports)
+
+        return {
+          name,
+          files: (await Promise.all(exportsEntries.map(([key, values]) =>
+
+            Promise.all(values.map(async(value) =>
+              (await globby(value, {cwd: _dir, onlyFiles: true, absolute: false}))
+                .map(file => join(file)
+                  .replace(
+                    resolvePrefix('.', value),
+                    resolvePrefix(name, key)))
+            )
+
+          )))).flat(2)
+        }
+
+      }))).reduce<{ names: string[], files: string[] }>((m, {name, files: _files}) => {
+      if (name) {
+        m.names.push(name)
+      }
+
+      if (_files) {
+        m.files.push(..._files)
+      }
+
+      return m
+    }, {names: [], files: []}),
   )
 
-const getExtModules = async (cwd: string): Promise<string[]> =>
-  globby(
+const getExternalModules = async (cwd: string): Promise<{cjsModules: string[], esmModules: string[] }> => {
+  const {names, files: esmModules} = await getExternalEsmModules(cwd)
+  const cjsModules = await globby(
     [
       'node_modules/**/*.(m|c)?js',
       '!node_modules/.cache',
       '!node_modules/.bin',
       '!node_modules/**/node_modules',
-      ...(await getExtModulesWithPkgJsonExports(cwd)).map(
-        (m: string) => `!node_modules/${m}`,
-      ),
+      ...names.map(m => `!node_modules/${m}`),
     ],
     {
       cwd,
@@ -196,6 +265,12 @@ const getExtModules = async (cwd: string): Promise<string[]> =>
     } as GlobbyOptions,
   )
 
+  return {
+    cjsModules,
+    esmModules,
+  }
+}
+
 export const getPatterns = (sources: string[], targets: string[]): string[] =>
   sources.length > 0
     ? sources.map((src) => src.includes('*') ? src : `${src}/**/*.{ts,tsx}`)
@@ -203,7 +278,7 @@ export const getPatterns = (sources: string[], targets: string[]): string[] =>
 
 export const fix = async (opts?: IFixOptions): Promise<void> => {
   const _opts = normalizeOptions(opts)
-  const { cwd, target, src, tsconfig, out = cwd, ext, debug, unlink, sourceMap } = _opts
+  const {cwd, target, src, tsconfig, out = cwd, ext, debug, unlink, sourceMap} = _opts
   const outDir = resolve(cwd, out)
   const sources = asArray<string>(src)
   const targets = [...asArray<string>(target), ...findTargets(tsconfig, cwd)]
@@ -214,29 +289,33 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
 
   const isSource = sources.length > 0
   const patterns = getPatterns(sources, targets)
-  const names = await globby(patterns, {
+  const localModules = await globby(patterns, {
     cwd,
     onlyFiles: true,
     absolute: true,
   } as GlobbyOptions)
-  const externalNames = await getExtModules(cwd)
-  debug('debug:external-names', externalNames)
+  const {
+    cjsModules,
+    esmModules
+  } = await getExternalModules(cwd)
+  debug('debug:external-cjs-modules', cjsModules)
+  debug('debug:external-esm-modules', esmModules)
 
-  // NOTE d.ts may refer to .js ext only
-  const allJsNames = [...externalNames, ...fixFilenameExtensions(names, '.js')]
-  const _names = typeof ext === 'string' ? fixFilenameExtensions(names, ext) : names
-  const allNames = [...externalNames, ..._names]
-  debug('debug:local-names', _names)
+  const _localModules = typeof ext === 'string' ? fixFilenameExtensions(localModules, ext) : localModules
+  const allModules = [...cjsModules, ..._localModules]
+  const allJsModules = [...cjsModules, ...fixFilenameExtensions(localModules, '.js')]
+  debug('debug:local-modules', _localModules)
 
-  _names.forEach((name, i) => {
-    const all = name.endsWith('.d.ts') ? allJsNames : allNames
-    const originName = names[i]
+  _localModules.forEach((name, i) => {
+    // NOTE d.ts may refer to .js ext only
+    const all = name.endsWith('.d.ts') ? allJsModules : allModules
+    const originName = localModules[i]
     const nextName = (sources.length === 0 ? name : originName).replace(
       unixify(cwd),
       unixify(outDir),
     )
     const contents = read(originName)
-    const _contents = fixContents(contents, name, all, _opts, originName, isSource)
+    const _contents = fixContents(contents, name, all, _opts, originName, isSource, esmModules)
 
     write(nextName, _contents)
 
