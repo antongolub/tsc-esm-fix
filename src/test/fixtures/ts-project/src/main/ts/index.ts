@@ -9,6 +9,18 @@ import * as e1def from 'e1/a/b/c'
 
 import * as e1root from 'e1'
 
+import {x} from 'e3/x/x.js'
+
+import {xx} from 'e3/x/xx.js'
+
+import {y} from 'e3/y/y.js'
+
+import z from 'e3/z'
+
+import zz from 'e3'
+
+export { x, xx, y, z, zz }
+
 export { default as json } from './json-data.json' assert {type: 'json'}
 
 const { e1 } = e1def

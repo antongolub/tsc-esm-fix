@@ -1,4 +1,10 @@
 import './bar';
+import { x } from 'e3/x/x.js';
+import { xx } from 'e3/x/xx.js';
+import { y } from 'e3/y/y.js';
+import z from 'e3/z';
+import zz from 'e3';
+export { x, xx, y, z, zz };
 export { default as json } from './json-data.json';
 declare const e1: string;
 declare const e1x: string;
