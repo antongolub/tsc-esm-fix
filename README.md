@@ -33,7 +33,7 @@ src/main/ts/q/u/x/index.ts:1:21 - error TS2835: Relative import paths need expli
 
 1 import { foo } from '../../../foo'
 ```
-Moreover, if understand [TS/49271](https://github.com/microsoft/TypeScript/issues/49271) correctly, `nodenext` + pkg.json `type: module` requires the `.js` extension in `.d.ts` files of **external** ESM packages too. Well, good luck with that.
+Moreover, if understand [TS/49271](https://github.com/microsoft/TypeScript/issues/49271) correctly, `nodenext` + pkg.json `type: module` requires `.js` extension to be added to all `.d.ts` files of **external** ESM packages too. Well, good luck with that.
 
 ### Solutions
 1. Post-process tsc-compiled outputs each time after build.
@@ -52,6 +52,7 @@ This lib covers options 1 and 2.
     * `export * from '.'` → `export * from './index.js'`
     * `export * from '..'` → `export * from '../index.js'`
   * Injects `.js` extensions into  `.d.ts` libdef files
+* Handles conditional exports (https://nodejs.org/api/packages.html#conditional-exports)
 * Follows `outDir` found in **tsconfig.json**.  
 * Searches and replaces `__dirname` and `__filename` refs with `import.meta`.
 * Fills blank files with `export {}` ([esbuild issue 1043](https://github.com/evanw/esbuild/issues/1043))
