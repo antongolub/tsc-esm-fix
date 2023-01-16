@@ -105,11 +105,11 @@ export const fixModuleReferences = (
 export const fixDirnameVar = (contents: string, isSource?: boolean): string =>
   contents.replace(
     /__dirname/g,
-    `/file:\\/{2,3}(.+)\\/[^/]/.exec(import.meta.url)${isSource ? '!' : ''}[1]`,
+    `\`\${process.platform === 'win32' ? '' : '/'}\${/file:\\/{2,3}(.+)\\/[^/]/.exec(import.meta.url)${isSource ? '!' : ''}[1]}\``,
   ) // eslint-disable-line
 
 export const fixFilenameVar = (contents: string, isSource?: boolean): string =>
-  contents.replace(/__filename/g, `/file:\\/{2,3}(.+)/.exec(import.meta.url)${isSource ? '!' : ''}[1]`) // eslint-disable-line
+  contents.replace(/__filename/g, `\`\${process.platform === 'win32' ? '' : '/'}\${/file:\\/{2,3}(.+)/.exec(import.meta.url)${isSource ? '!' : ''}[1]}\``) // eslint-disable-line
 
 export const fixDefaultExport = (contents: string): string => contents.includes('export default')
   ? contents
