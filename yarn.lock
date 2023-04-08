@@ -6042,10 +6042,10 @@ typed-array-length@^1.0.4:
     for-each "^0.3.3"
     is-typed-array "^1.1.9"
 
-typedoc@^0.23.28:
-  version "0.23.28"
-  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.23.28.tgz#3ce9c36ef1c273fa849d2dea18651855100d3ccd"
-  integrity sha512-9x1+hZWTHEQcGoP7qFmlo4unUoVJLB0H/8vfO/7wqTnZxg4kPuji9y3uRzEu0ZKez63OJAUmiGhUrtukC6Uj3w==
+typedoc@^0.24.0:
+  version "0.24.0"
+  resolved "https://registry.yarnpkg.com/typedoc/-/typedoc-0.24.0.tgz#410b218c1875c31d0607fee229eaef1cab16cb3b"
+  integrity sha512-yNbhPdDCb67r+v+SRcyXDp5JTImMqHHOFQDI7zciT7rXJnJt5UD9wz1Z4WllCVm5Ey92j2bOML0hnaiK1Pk2JA==
   dependencies:
     lunr "^2.3.9"
     marked "^4.2.12"
