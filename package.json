@@ -72,7 +72,7 @@
     "glob-runner": "^1.0.6",
     "jest": "^29.5.0",
     "microbundle": "^0.15.1",
-    "mkdirp": "^2.1.5",
+    "mkdirp": "^3.0.0",
     "prettier": "^2.8.5",
     "prettier-config-qiwi": "^2.1.0",
     "rimraf": "^4.4.0",
