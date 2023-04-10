@@ -75,7 +75,7 @@
     "mkdirp": "^3.0.0",
     "prettier": "^2.8.5",
     "prettier-config-qiwi": "^2.1.0",
-    "rimraf": "^4.4.0",
+    "rimraf": "^5.0.0",
     "semver": "^7.3.8",
     "tempy": "^3.0.0",
     "terser": "^5.16.6",
