@@ -252,11 +252,11 @@ const getExternalModules = async (cwd: string): Promise<{cjsModules: string[], e
   const {names, files: esmModules} = await getExternalEsmModules(cwd)
   const cjsModules = await globby(
     [
-      'node_modules/**/*.(m|c)?js',
       '!node_modules/.cache',
       '!node_modules/.bin',
       '!node_modules/**/node_modules',
       ...names.map(m => `!node_modules/${m}`),
+      'node_modules/**/*.(m|c)?js',
     ],
     {
       cwd,
