@@ -1,3 +1,10 @@
+## [2.20.13](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.12...v2.20.13) (2023-05-02)
+
+
+### Bug Fixes
+
+* **deps:** update dependency meow to v12 ([96906a9](https://github.com/antongolub/tsc-esm-fix/commit/96906a97e76a8298e257de53ea572975e76d081e))
+
 ## [2.20.5](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.4...v2.20.5) (2022-10-11)
 
 
