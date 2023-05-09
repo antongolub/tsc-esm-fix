@@ -1,3 +1,10 @@
+## [2.20.14](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.13...v2.20.14) (2023-05-09)
+
+
+### Performance Improvements
+
+* up deps ([13c0860](https://github.com/antongolub/tsc-esm-fix/commit/13c0860d5e310e6e6fb499aa2d55161d280d81f8))
+
 ## [2.20.13](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.12...v2.20.13) (2023-05-02)
 
 
