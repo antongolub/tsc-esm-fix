@@ -1,3 +1,9 @@
+## [2.20.15](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.14...v2.20.15) (2023-08-12)
+
+### Fixes & improvements
+* fix: fix nodejs requirement ([4d965ba](https://github.com/antongolub/tsc-esm-fix/commit/4d965bae716e22039e0972b6cb6799f92a8f5e2e))
+* fix: let cjs pkg be referenced by its name as a module ([30a7978](https://github.com/antongolub/tsc-esm-fix/commit/30a7978e31d8690b41fc39f73b436b695d8f1210))
+
 ## [2.20.14](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.13...v2.20.14) (2023-05-09)
 
 
