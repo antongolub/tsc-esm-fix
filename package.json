@@ -15,7 +15,7 @@
     "require": "./target/bundle/tsc-esm-fix.cjs"
   },
   "engines": {
-    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+    "node": ">=16.0.0"
   },
   "main": "target/bundle/tsc-esm-fix.js",
   "module": "target/bundle/tsc-esm-fix.mjs",
@@ -45,11 +45,6 @@
     "updeps": "npm_config_yes=true npx npm-upgrade",
     "publish:beta": "npm publish --no-git-tag-version --tag beta",
     "publish:rc": "npm publish --no-git-tag-version --tag rc"
-  },
-  "resolutions": {
-    "**/postcss": "^8.2.15",
-    "**/globby/fast-glob": "^3.2.7",
-    "**/glob-parent": "^6.0.1"
   },
   "dependencies": {
     "fs-extra": "^11.1.1",
