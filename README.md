@@ -63,7 +63,7 @@ This lib covers options 1 and 2.
 
 ## Getting started
 ### Requirements
-Node.js `^12.20.0 || ^14.13.1 || >=16.0.0`
+Node.js `>=16.0.0`
 
 ### Fetching
 ```shell

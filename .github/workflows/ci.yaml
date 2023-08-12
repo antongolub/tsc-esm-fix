@@ -60,7 +60,7 @@ jobs:
     name: PR (Node v${{ matrix.node-version }}, OS ${{ matrix.os }})
     strategy:
       matrix:
-        os: [ ubuntu-22.04 ]
+        os: [ ubuntu-22.04, windows-latest ]
         node-version: [ 16, 20 ]
 
     runs-on: ${{ matrix.os }}
@@ -80,5 +80,10 @@ jobs:
       - name: Build
         run: yarn build
 
-      - name: Run tests
+      - name: Run all tests
+        if: matrix.node-version == '20' && matrix.os == 'ubuntu-22.04'
         run: yarn test
+
+      - name: Run integration tests
+        if: matrix.node-version != '20' || matrix.os != 'ubuntu-22.04'
+        run: yarn test:it
