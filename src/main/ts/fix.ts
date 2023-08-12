@@ -214,7 +214,7 @@ const getExternalEsmModules = (cwd: string): Promise<{ names: string[], files: s
         const {name, exports} = await readJson(f)
 
         if (!exports) {
-          return {}
+          return {name}
         }
 
         const _dir = dirname(f)
@@ -248,7 +248,7 @@ const getExternalEsmModules = (cwd: string): Promise<{ names: string[], files: s
     }, {names: [], files: []}),
   )
 
-const getExternalModules = async (cwd: string): Promise<{cjsModules: string[], esmModules: string[] }> => {
+const getExternalModules = async (cwd: string): Promise<{cjsModules: string[], esmModules: string[], allPackages: string[] }> => {
   const {names, files: esmModules} = await getExternalEsmModules(cwd)
   const cjsModules = await globby(
     [
@@ -268,6 +268,7 @@ const getExternalModules = async (cwd: string): Promise<{cjsModules: string[], e
   return {
     cjsModules,
     esmModules,
+    allPackages: names,
   }
 }
 
@@ -296,11 +297,13 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   } as GlobbyOptions)
   const {
     cjsModules,
-    esmModules
+    esmModules,
+    allPackages
   } = await getExternalModules(cwd)
   debug('debug:external-cjs-modules', cjsModules)
   debug('debug:external-esm-modules', esmModules)
 
+  const ignore = [...esmModules, ...allPackages]
   const _localModules = typeof ext === 'string' ? fixFilenameExtensions(localModules, ext) : localModules
   const allModules = [...cjsModules, ..._localModules]
   const allJsModules = [...cjsModules, ...fixFilenameExtensions(localModules, '.js')]
@@ -315,7 +318,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
       unixify(outDir),
     )
     const contents = read(originName)
-    const _contents = fixContents(contents, name, all, _opts, originName, isSource, esmModules)
+    const _contents = fixContents(contents, name, all, _opts, originName, isSource, ignore)
 
     write(nextName, _contents)
 
