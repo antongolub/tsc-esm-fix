@@ -17,8 +17,11 @@ dist
 docs
 flow-typed
 lib
-target
+target/*
 typings
+
+# Fixtures
+!src/test/fixtures/ts-project/target
 
 # Temp assets
 .temp
