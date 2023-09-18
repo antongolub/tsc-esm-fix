@@ -1,3 +1,4 @@
+import './bar2'; // https://github.com/antongolub/tsc-esm-fix/issues/136
 import { createRequire } from 'module'
 const require = createRequire(import.meta.url)
 

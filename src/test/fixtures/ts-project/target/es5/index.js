@@ -30,6 +30,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.rfoo = exports.filename = exports.dirname = exports.qux = exports.foo2 = exports.foo1 = exports.foobaz = exports.e2bar = exports.e2foo = exports.es4 = exports.es3 = exports.e2 = exports.m1x = exports.m1 = exports.e1x = exports.e1 = exports.json = exports.zz = exports.z = exports.y = exports.xx = exports.x = void 0;
+require("./bar2"); // https://github.com/antongolub/tsc-esm-fix/issues/136
 var module_1 = require("module");
 var require = (0, module_1.createRequire)(import.meta.url);
 var foo_1 = require("./foo");

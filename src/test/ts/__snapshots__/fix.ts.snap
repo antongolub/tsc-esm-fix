@@ -8,7 +8,8 @@ export default undefined
 `;
 
 exports[`patches contents fixContents() assembles all content modifiers 1`] = `
-"import { createRequire } from 'module';
+"import './bar2.js'; // https://github.com/antongolub/tsc-esm-fix/issues/136
+import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 import { foo } from './foo.js';
 import './bar.js';
@@ -77,7 +78,8 @@ export default undefined
 `;
 
 exports[`patches contents fixDirnameVar() replaces __dirname refs 1`] = `
-"import { createRequire } from 'module';
+"import './bar2'; // https://github.com/antongolub/tsc-esm-fix/issues/136
+import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 import { foo } from './foo';
 import './bar';
@@ -116,7 +118,8 @@ console.log(foobaz);
 `;
 
 exports[`patches contents fixDirnameVar() replaces __dirname refs 2`] = `
-"import { createRequire } from 'module';
+"import './bar2'; // https://github.com/antongolub/tsc-esm-fix/issues/136
+import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 import { foo } from './foo';
 import './bar';
@@ -155,7 +158,8 @@ console.log(foobaz);
 `;
 
 exports[`patches contents fixFilenameVar() replaces __filename refs 1`] = `
-"import { createRequire } from 'module';
+"import './bar2'; // https://github.com/antongolub/tsc-esm-fix/issues/136
+import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 import { foo } from './foo';
 import './bar';
@@ -194,7 +198,8 @@ console.log(foobaz);
 `;
 
 exports[`patches contents fixFilenameVar() replaces __filename refs 2`] = `
-"import { createRequire } from 'module';
+"import './bar2'; // https://github.com/antongolub/tsc-esm-fix/issues/136
+import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 import { foo } from './foo';
 import './bar';
@@ -233,7 +238,8 @@ console.log(foobaz);
 `;
 
 exports[`patches contents fixRelativeModuleReferences() appends file ext to module refs except for the ones that declare "exports" in pkg.json 1`] = `
-"import { createRequire } from 'module';
+"import './bar2.js'; // https://github.com/antongolub/tsc-esm-fix/issues/136
+import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 import { foo } from './foo.js';
 import './bar.js';
@@ -272,7 +278,8 @@ console.log(foobaz);
 `;
 
 exports[`patches fix() patches target (tsc-compiled) files as required by opts 1`] = `
-"import './bar';
+"import './bar2.js';
+import './bar.js';
 import { x } from 'e3/x/x.js';
 import { xx } from 'e3/x/xx.js';
 import { y } from 'e3/y/y.js';
@@ -310,7 +317,8 @@ exports[`patches fix() patches target (tsc-compiled) files as required by opts 2
 `;
 
 exports[`patches fix() patches target (tsc-compiled) files as required by opts 3`] = `
-"import { createRequire } from 'module';
+"import './bar2.mjs'; // https://github.com/antongolub/tsc-esm-fix/issues/136
+import { createRequire } from 'module';
 const require = createRequire(import.meta.url);
 import { foo } from './foo.mjs';
 import './bar.mjs';
@@ -349,7 +357,8 @@ console.log(foobaz);
 `;
 
 exports[`patches fix() patches ts sources as required by opts 1`] = `
-"import { createRequire } from 'module'
+"import './bar2.js'; // https://github.com/antongolub/tsc-esm-fix/issues/136
+import { createRequire } from 'module'
 const require = createRequire(import.meta.url)
 
 import { foo } from './foo.js'

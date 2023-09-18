@@ -92,7 +92,7 @@ export const fixModuleReferences = (
   ignore: string[],
 ): string =>
   contents.replace(
-    /(\sfrom\s|[\s(:[](?:import|require)[ (])(["'])([^"']+\/[^"']+|\.{1,2})\/?(["'])/g,
+    /((?:^|\s)import\s+|\s+from\s+|\W(?:import|require)\s*\()(["'])([^"']+\/[^"']+|\.{1,2})\/?(["'])/g,
     (matched, control, q1, from, q2) =>
       `${control}${q1}${ignore.includes(from) ? from : resolveDependency(
         filename,
