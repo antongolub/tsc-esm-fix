@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-import './meow.d.ts'
 import meow from 'meow'
 
 import { fix } from './fix'

@@ -2,7 +2,7 @@
   "compilerOptions": {
     "rootDir": "./src/main/ts/",
     "baseUrl": "./src/main/ts/",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "target": "es5",
     "module": "esnext",
     "lib": [
