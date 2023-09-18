@@ -23,11 +23,6 @@ import { read, readJson } from '../../main/ts/util'
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const fakeProject = resolve(__dirname, '../fixtures/ts-project')
 const nestjsSwaggerProject = resolve(__dirname, '../fixtures/nestjs-swagger-project')
-const temp = temporaryDirectory()
-
-afterAll(() => {
-  fse.removeSync(temp)
-})
 
 describe('normalizeOptions()', () => {
   it('merges DEFAULT_FIX_OPTIONS with specified opts input', () => {
@@ -52,7 +47,8 @@ describe('normalizeOptions()', () => {
 describe('patches', () => {
   describe('fix()', () => {
     it('patches ts sources as required by opts', async () => {
-      const cwd = resolve(temp, 't1')
+      const temp = temporaryDirectory()
+      const cwd = resolve(temp)
 
       fse.copySync(fakeProject, cwd)
 
@@ -65,14 +61,15 @@ describe('patches', () => {
         filenameVar: false,
       })
 
-      expect(read(resolve(temp, 't1/src/main/ts/index.ts'))).toMatchSnapshot()
-      expect(read(resolve(temp, 't1/src/main/ts/index-ref.ts'))).toMatchSnapshot()
-      expect(read(resolve(temp, 't1/src/main/ts/index-ref-2/index.ts'))).toMatchSnapshot()
+      expect(read(resolve(temp, 'src/main/ts/index.ts'))).toMatchSnapshot()
+      expect(read(resolve(temp, 'src/main/ts/index-ref.ts'))).toMatchSnapshot()
+      expect(read(resolve(temp, 'src/main/ts/index-ref-2/index.ts'))).toMatchSnapshot()
     })
 
     it('patches target (tsc-compiled) files as required by opts', async () => {
-      const cwd = resolve(temp, 'from')
-      const out = resolve(temp, 'from')
+      const temp = temporaryDirectory()
+      const cwd = resolve(temp)
+      const out = resolve(temp)
 
       fse.copySync(fakeProject, cwd)
 
@@ -86,7 +83,7 @@ describe('patches', () => {
         sourceMap: true
       })
 
-      const res = resolve(temp, 'from/target/es6/index.mjs')
+      const res = resolve(temp, 'target/es6/index.mjs')
       const contents = read(res)
 
       // NodeJS v16.14.0+ requires {assert: {type: 'json'}} for json imports
@@ -96,10 +93,10 @@ describe('patches', () => {
         fse.writeFileSync(res, contents.replace(` assert { type: 'json' };`, ''))
       }
 
-      expect(read(resolve(temp, 'from/target/es6/index.d.ts'))).toMatchSnapshot()
-      expect(read(resolve(temp, 'from/target/es6/only-types.mjs'))).toMatchSnapshot()
-      expect(read(resolve(temp, 'from/target/es6/index.mjs'))).toMatchSnapshot()
-      expect(readJson(resolve(temp, 'from/target/es6/index.mjs.map')).file).toBe('index.mjs')
+      expect(read(resolve(temp, 'target/es6/index.d.ts'))).toMatchSnapshot()
+      expect(read(resolve(temp, 'target/es6/only-types.mjs'))).toMatchSnapshot()
+      expect(read(resolve(temp, 'target/es6/index.mjs'))).toMatchSnapshot()
+      expect(readJson(resolve(temp, 'target/es6/index.mjs.map')).file).toBe('index.mjs')
       expect(
         cp
           .execSync(`node --experimental-top-level-await --experimental-json-modules ${res}`, {
