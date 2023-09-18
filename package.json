@@ -40,7 +40,6 @@
     "build:bundle": "microbundle --tsconfig tsconfig.es6.json build src/main/ts/index.ts -o target/bundle",
     "build:fix": "node scripts/js/build-fix.js",
     "docs": "typedoc",
-    "uglify": "for f in $(find target -name '*.js'); do short=${f%.js}; terser -c -m -o $short.js -- $f; done",
     "postupdate": "yarn && yarn test:deps && yarn build && yarn test",
     "updeps": "npx npm-upgrade",
     "publish:beta": "npm publish --no-git-tag-version --tag beta",
@@ -73,7 +72,6 @@
     "rimraf": "^5.0.1",
     "semver": "^7.5.4",
     "tempy": "^3.1.0",
-    "terser": "^5.19.4",
     "ts-jest": "^29.1.1",
     "typedoc": "^0.25.1",
     "typescript": "^5.2.2"
