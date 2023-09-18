@@ -1,3 +1,4 @@
+import './bar2';
 import './bar';
 import { x } from 'e3/x/x.js';
 import { xx } from 'e3/x/xx.js';

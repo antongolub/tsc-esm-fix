@@ -8,7 +8,7 @@ import { IFixOptions } from './interface'
 const cli = meow(
   `
 	Usage
-	  $ tsc-es2020-fix [options]
+	  $ tsc-esm-fix [options]
 
 	Options
 	  --out         Output dir. Defaults to cwd, so files will be overridden
