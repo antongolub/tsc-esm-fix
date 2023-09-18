@@ -1,3 +1,9 @@
+## [2.20.16](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.15...v2.20.16) (2023-09-18)
+
+### Fixes & improvements
+* perf: up deps ([b69d862](https://github.com/antongolub/tsc-esm-fix/commit/b69d8620aeea0b69d7a716420b42b2c6824e09da))
+* fix: provide support for shortened import syntax ([53e493b](https://github.com/antongolub/tsc-esm-fix/commit/53e493bc88c52a9b7c6d2d516226158210af7936))
+
 ## [2.20.15](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.14...v2.20.15) (2023-08-12)
 
 ### Fixes & improvements
