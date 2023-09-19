@@ -1,4 +1,4 @@
-import {basename, dirname, join,resolve} from 'node:path'
+import {basename, dirname, join, resolve} from 'node:path'
 
 import {Options as GlobbyOptions} from 'globby'
 
