@@ -1,3 +1,8 @@
+## [2.20.17](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.16...v2.20.17) (2023-09-19)
+
+### Fixes & improvements
+* fix: tech release to push the prev d.ts fix ([88e071d](https://github.com/antongolub/tsc-esm-fix/commit/88e071ddcc6aef65312059c826390180545d43c1))
+
 ## [2.20.16](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.15...v2.20.16) (2023-09-18)
 
 ### Fixes & improvements
