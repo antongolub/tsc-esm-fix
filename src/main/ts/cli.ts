@@ -25,7 +25,7 @@ const cli = meow(
 	  --forceDefaultExport  Injects 'export default undefined' if not present
 
 	Examples
-	  $ tsc-es2020-fix --ext=.mjs --out=foo
+	  $ tsc-esm-fix --ext=.mjs --out=foo
 `,
   {
     importMeta: import.meta,
