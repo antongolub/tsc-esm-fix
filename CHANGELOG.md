@@ -1,3 +1,8 @@
+## [2.20.18](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.17...v2.20.18) (2023-12-02)
+
+### Fixes & improvements
+* docs: fix CLI usage example (#142) ([43b77f3](https://github.com/antongolub/tsc-esm-fix/commit/43b77f3caaeab922a7cca7764484c446f51dae95))
+
 ## [2.20.17](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.16...v2.20.17) (2023-09-19)
 
 ### Fixes & improvements
