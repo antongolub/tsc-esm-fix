@@ -1,4 +1,4 @@
-import { IFixOptionsNormalized, TFixContext } from './interface'
+import { IFixOptionsNormalized, TResourceContext } from './interface'
 import {
   fixBlankFiles as _fixBlankFiles,
   fixContents as _fixContents,
@@ -16,22 +16,22 @@ export const fixModuleReferences = (
   cwd: string,
   ignore: string[],
 ): string =>
-  _fixModuleReferences({contents, filename, filenames, options: {cwd}, ignore} as TFixContext).contents
+  _fixModuleReferences({contents, filename, filenames, options: {cwd}, ignore} as TResourceContext).contents
 
 export const fixDirnameVar = (contents: string, isSource?: boolean): string =>
-  _fixDirnameVar({contents, isSource} as TFixContext).contents
+  _fixDirnameVar({contents, isSource} as TResourceContext).contents
 
 export const fixFilenameVar = (contents: string, isSource?: boolean): string =>
-  _fixFilenameVar({contents, isSource} as TFixContext).contents
+  _fixFilenameVar({contents, isSource} as TResourceContext).contents
 
 export const fixDefaultExport = (contents: string): string =>
-  _fixDefaultExport({contents} as TFixContext).contents
+  _fixDefaultExport({contents} as TResourceContext).contents
 
 export const fixBlankFiles = (contents: string): string =>
-  _fixBlankFiles({contents} as TFixContext).contents
+  _fixBlankFiles({contents} as TResourceContext).contents
 
 export const fixSourceMapRef = (contents: string, originName: string, filename: string): string =>
-  _fixSourceMapRef({contents, originName, filename} as TFixContext).contents
+  _fixSourceMapRef({contents, originName, filename} as TResourceContext).contents
 
 export const fixContents = (
   contents: string,
@@ -42,4 +42,4 @@ export const fixContents = (
   isSource = false,
   ignore: string[] = [],
 ): string =>
-  _fixContents({contents, filename, filenames, options, originName, isSource, ignore} as TFixContext).contents
+  _fixContents({contents, filename, filenames, options, originName, isSource, ignore} as TResourceContext).contents

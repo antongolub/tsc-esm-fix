@@ -17,7 +17,7 @@ import {
   fixFilenameVar,
   fixModuleReferences,
 } from '../../main/ts'
-import { normalizeOptions} from '../../main/ts/fix'
+import { normalizeOptions} from '../../main/ts/options'
 import { read, readJson } from '../../main/ts/util'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))

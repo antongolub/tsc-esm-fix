@@ -20,11 +20,6 @@ export const getTsconfigTargets = (
     return targets
   }, [])
 
-export const getPatterns = (sources: string[], targets: string[]): string[] =>
-  sources.length > 0
-    ? sources.map((src) => src.includes('*') ? src : `${src}/**/*.{ts,tsx}`)
-    : targets.map((target) => target.includes('*') ? target : `${target}/**/*.{js,d.ts}`)
-
 export const getLocalModules = (sources: string[], targets: string[], cwd: string) => globby(
   getPatterns(sources, targets),
   {
@@ -56,6 +51,11 @@ export const getExternalModules = async (cwd: string): Promise<{cjsModules: stri
     allPackages: names,
   }
 }
+
+const getPatterns = (sources: string[], targets: string[]): string[] =>
+  sources.length > 0
+    ? sources.map((src) => src.includes('*') ? src : `${src}/**/*.{ts,tsx}`)
+    : targets.map((target) => target.includes('*') ? target : `${target}/**/*.{js,d.ts}`)
 
 // https://nodejs.org/api/packages.html
 // https://webpack.js.org/guides/package-exports/

@@ -1,7 +1,7 @@
-import { basename, resolve } from 'node:path'
+import path from 'node:path'
 
 import { fixContents } from './fixes'
-import { IFixOptions, IFixOptionsNormalized, TFixContext } from './interface'
+import {IFixOptions, IFixOptionsNormalized, TFixContext, TResourceContext} from './interface'
 import {
   asArray,
   existsSync,
@@ -13,32 +13,15 @@ import {
 } from './util'
 
 import {
-  getPatterns,
   getLocalModules,
-  getExternalModules, getTsconfigTargets,
+  getExternalModules,
+  getTsconfigTargets,
 } from './finder'
 
-export const DEFAULT_FIX_OPTIONS: IFixOptionsNormalized = {
-  cwd: process.cwd(),
-  tsconfig: './tsconfig.json',
-  filenameVar: true,
-  dirnameVar: true,
-  ext: true,
-  unlink: true,
-  debug: () => {}, // eslint-disable-line
-}
+import {
+  normalizeOptions
+} from './options'
 
-export const normalizeOptions = (
-  opts?: IFixOptions,
-): IFixOptionsNormalized => ({
-  ...DEFAULT_FIX_OPTIONS,
-  ...opts,
-  debug: typeof opts?.debug === 'function'
-    ? opts.debug
-    : opts?.debug === true
-      ? console.log
-      : DEFAULT_FIX_OPTIONS.debug,
-})
 
 export const fixFilenameExtensions = (names: string[], ext: string): string[] =>
   names.map((name) =>
@@ -47,9 +30,15 @@ export const fixFilenameExtensions = (names: string[], ext: string): string[] =>
       : name.replace(/\.[^./\\]+$/, ext))
 
 export const fix = async (opts?: IFixOptions): Promise<void> => {
-  const _opts = normalizeOptions(opts)
-  const {cwd, target, src, tsconfig, out = cwd, ext, debug, unlink, sourceMap} = _opts
-  const outDir = resolve(cwd, out)
+  const options = normalizeOptions(opts)
+  const ctx = await resolve(options)
+
+  await patch(ctx, options)
+}
+
+const resolve = async (opts: IFixOptionsNormalized): Promise<TFixContext> => {
+  const {cwd, target, src, tsconfig, out = cwd, ext, debug, unlink, sourceMap} = opts
+  const outDir = path.resolve(cwd, out)
   const sources = asArray<string>(src)
   const targets = [...asArray<string>(target), ...getTsconfigTargets(tsconfig, cwd)]
   debug('debug:cwd', cwd)
@@ -73,18 +62,41 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   const allJsModules = [...cjsModules, ...fixFilenameExtensions(localModules, '.js')]
   debug('debug:local-modules', _localModules)
 
+  return {
+    outDir,
+    isSource,
+    ignore,
+    allJsModules,
+    allModules,
+    _localModules,
+    localModules
+  }
+}
+
+const patch = async (ctx: TFixContext, options: IFixOptionsNormalized) => {
+  const {cwd, unlink, sourceMap} = options
+  const {
+    outDir,
+    isSource,
+    ignore,
+    allJsModules,
+    allModules,
+    _localModules,
+    localModules
+  } = ctx
+
   await Promise.all(_localModules.map(async (name, i) => {
     // NOTE d.ts may refer to .js ext only
     const all = name.endsWith('.d.ts') ? allJsModules : allModules
     const originName = localModules[i]
-    const nextName = (sources.length === 0 ? name : originName)
+    const nextName = (isSource ? originName : name)
       .replace(
         unixify(cwd),
         unixify(outDir),
       )
     const contents = read(originName)
-    const ctx: TFixContext = {
-      options: _opts,
+    const ctx: TResourceContext = {
+      options,
       contents,
       isSource,
       ignore,
@@ -98,7 +110,7 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
 
     write(nextName, _contents)
 
-    if (sources.length === 0 && unlink && cwd === outDir && nextName !== originName) {
+    if (!isSource && unlink && cwd === outDir && nextName !== originName) {
       remove(originName)
     }
 
@@ -121,7 +133,7 @@ const patchSourceFile = (name: string, nextName: string, unlink = false) => {
   const nextMapfile = `${nextName}.map`
   const contents = readJson(mapfile)
 
-  contents.file = basename(nextName)
+  contents.file = path.basename(nextName)
   write(nextMapfile, JSON.stringify(contents))
 
   if (unlink) {
