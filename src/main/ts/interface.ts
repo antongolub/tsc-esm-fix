@@ -24,6 +24,16 @@ export type TSConfig = {
 export type IFixOptions = Partial<Omit<IFixOptionsNormalized, 'debug'>> & {debug?: boolean | IFunction}
 
 export type TFixContext = {
+  outDir:         string
+  isSource:       boolean
+  ignore:         string[]
+  allJsModules:   string[]
+  allModules:     string[]
+  _localModules:  string[]
+  localModules:   string[]
+}
+
+export type TResourceContext = {
   options:    IFixOptionsNormalized
   contents:   string
   filename:   string
@@ -34,4 +44,4 @@ export type TFixContext = {
   ignore:     string[]
 }
 
-export type TFixer = (ctx: TFixContext) => TFixContext
+export type TFixer = (ctx: TResourceContext) => TResourceContext

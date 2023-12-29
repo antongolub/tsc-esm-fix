@@ -1,8 +1,11 @@
 export {
   fix,
   fixFilenameExtensions,
-  DEFAULT_FIX_OPTIONS,
 } from './fix'
+
+export {
+  DEFAULT_FIX_OPTIONS,
+} from './options'
 
 export {
   fixBlankFiles,
