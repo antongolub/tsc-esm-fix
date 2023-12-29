@@ -1,13 +1,17 @@
 export {
   fix,
+  fixFilenameExtensions,
+  DEFAULT_FIX_OPTIONS,
+} from './fix'
+
+export {
   fixBlankFiles,
   fixContents,
   fixFilenameVar,
   fixDirnameVar,
   fixModuleReferences,
-  fixFilenameExtensions,
-  fixDefaultExport,
   fixSourceMapRef,
-  DEFAULT_FIX_OPTIONS,
-} from './fix'
+  fixDefaultExport,
+} from './legacy'
+
 export * from './interface'

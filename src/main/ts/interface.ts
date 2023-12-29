@@ -1,19 +1,19 @@
 type IFunction<A extends any[] = any[], R = any> = (...args: A) => R
 
 export type IFixOptionsNormalized = {
-  cwd: string
-  debug: IFunction
-  out?: string
-  src?: string | string[]
-  target?: string | string[]
-  tsconfig: string | string[]
-  dirnameVar: boolean
-  filenameVar: boolean
-  fillBlank?: boolean
-  sourceMap?: boolean
-  forceDefaultExport?: boolean
-  ext: boolean | string
-  unlink?: boolean
+  cwd:          string
+  debug:        IFunction
+  out?:         string
+  src?:         string | string[]
+  target?:      string | string[]
+  tsconfig:     string | string[]
+  dirnameVar:   boolean
+  filenameVar:  boolean
+  fillBlank?:   boolean
+  forceDefaultExport?:  boolean
+  sourceMap?:   boolean
+  ext:          boolean | string
+  unlink?:      boolean
 }
 
 export type TSConfig = {
@@ -22,3 +22,16 @@ export type TSConfig = {
 }
 
 export type IFixOptions = Partial<Omit<IFixOptionsNormalized, 'debug'>> & {debug?: boolean | IFunction}
+
+export type TFixContext = {
+  options:    IFixOptionsNormalized
+  contents:   string
+  filename:   string
+  filenames:  string[]
+  originName: string
+  nextName:   string
+  isSource:   boolean
+  ignore:     string[]
+}
+
+export type TFixer = (ctx: TFixContext) => TFixContext
