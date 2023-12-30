@@ -1,3 +1,9 @@
+## [2.20.19](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.18...v2.20.19) (2023-12-30)
+
+### Fixes & improvements
+* refactor: separate `fix` into `resolve` and `patch` stages ([925346a](https://github.com/antongolub/tsc-esm-fix/commit/925346ac13231ee4486fa28f09ac5c58c8dec391))
+* refactor: decompose fix.ts ([9bebde8](https://github.com/antongolub/tsc-esm-fix/commit/9bebde8e165ccfc93cbea0d694bc1d93071bcdc4))
+
 ## [2.20.18](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.17...v2.20.18) (2023-12-02)
 
 ### Fixes & improvements
