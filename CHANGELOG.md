@@ -1,3 +1,8 @@
+## [2.20.21](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.20...v2.20.21) (2023-12-31)
+
+### Fixes & improvements
+* docs: fix badges urls ([d49c67a](https://github.com/antongolub/tsc-esm-fix/commit/d49c67a2ef98285fa43152c11fc3c297256e6fea))
+
 ## [2.20.20](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.19...v2.20.20) (2023-12-31)
 
 ### Fixes & improvements
