@@ -37,7 +37,7 @@ Moreover, if understand [TS/49271](https://github.com/microsoft/TypeScript/issue
 
 ### Solutions
 1. Post-process tsc-compiled outputs each time after build.
-2. Patch project sources once as Sindre recommends in [ESM migration guide](https://github.com/sindresorhus/meta/discussions/15)
+2. Patch project sources once as Sindre recommends in [the ESM migration guide](https://github.com/sindresorhus/meta/discussions/15)
 3. Use [ttypescript](https://github.com/cevek/ttypescript) with [transformer-append-js-ext plugin](https://github.com/Zoltu/typescript-transformer-append-js-extension/)
 
 This lib covers options 1 and 2.
@@ -52,6 +52,7 @@ This lib covers options 1 and 2.
     * `export * from '.'` → `export * from './index.js'`
     * `export * from '..'` → `export * from '../index.js'`
   * Injects `.js` extensions into  `.d.ts` libdef files
+  * Does not affect string literals and comments: [depseek](https://github.com/antongolub/misc/tree/master/packages/dep/depseek)
 * Handles conditional exports (https://nodejs.org/api/packages.html#conditional-exports)
 * Follows `outDir` found in **tsconfig.json**.  
 * Searches and replaces `__dirname` and `__filename` refs with `import.meta`.

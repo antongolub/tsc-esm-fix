@@ -1,19 +1,25 @@
 import {dirname, resolve} from 'node:path'
 import {TFixer} from '../interface'
 import {unixify} from '../util'
+import { depseekSync } from 'depseek'
 
 export const fixModuleReferences: TFixer = (ctx) => {
   const { contents, filename, filenames, options: {cwd}, ignore } = ctx
-  const _contents = contents.replace(
-    /((?:\s|^)import\s+|\s+from\s+|\W(?:import|require)\s*\()(["'])([^"']+\/[^"']+|\.{1,2})\/?(["'])/g,
-    (_matched, control, q1, from, q2) =>
-      `${control}${q1}${ignore.includes(from) ? from : resolveDependency(
-        filename,
-        from,
-        filenames,
-        cwd,
-      )}${q2}`,
-  )
+  const deps = depseekSync(contents)
+  let pos = 0
+  let _contents = ''
+
+  for (const {index, value} of deps) {
+    const len = value.length
+    const v = value.endsWith('/') ? value.slice(0, -1) : value
+    const _value = (v.includes('/') || v === '.' || v === '..') && !ignore.includes(v)
+      ? resolveDependency(filename, v, filenames, cwd)
+      : value
+
+    _contents = _contents + contents.slice(pos, index) + _value
+    pos = index + len
+  }
+  _contents = _contents + contents.slice(pos)
 
   return {...ctx, contents: _contents}
 }
