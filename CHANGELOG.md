@@ -1,3 +1,8 @@
+## [2.20.20](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.19...v2.20.20) (2023-12-31)
+
+### Fixes & improvements
+* fix: use depseek to avoid comments and string literals affects ([6f843ca](https://github.com/antongolub/tsc-esm-fix/commit/6f843cafe979a57f23b400c666a240655f953603))
+
 ## [2.20.19](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.18...v2.20.19) (2023-12-30)
 
 ### Fixes & improvements
