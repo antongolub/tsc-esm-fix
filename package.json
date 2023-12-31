@@ -46,6 +46,7 @@
     "publish:rc": "npm publish --no-git-tag-version --tag rc"
   },
   "dependencies": {
+    "depseek": "^0.2.1",
     "fs-extra": "^11.2.0",
     "globby": "^13.2.2",
     "json5": "^2.2.3",
