@@ -1,3 +1,8 @@
+## [2.20.22](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.21...v2.20.22) (2024-01-28)
+
+### Fixes & improvements
+* refactor: use depseek patchRefs api ([96c826a](https://github.com/antongolub/tsc-esm-fix/commit/96c826a3354ca6029fb4f44f5f32b5cfb879d9b0))
+
 ## [2.20.21](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.20...v2.20.21) (2023-12-31)
 
 ### Fixes & improvements
