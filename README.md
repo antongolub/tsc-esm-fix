@@ -1,5 +1,5 @@
 # tsc-esm-fix
-Make TS projects compatible with [esm/mjs requirements](https://nodejs.org/api/esm.html#esm_packages)
+> Make TS projects compatible with [esm/mjs requirements](https://nodejs.org/api/esm.html#esm_packages)
 
 [![CI](https://github.com/antongolub/tsc-esm-fix/workflows/CI/badge.svg)](https://github.com/antongolub/tsc-esm-fix/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/1ca2196057a3184d63d0/maintainability)](https://codeclimate.com/github/antongolub/tsc-esm-fix/maintainability)
@@ -25,6 +25,7 @@ This workaround is aimed to bypass a bunch of **tsc**, **ts-jest** and **esbuild
 * [TS/13422](https://github.com/microsoft/TypeScript/issues/13422) / [TS/16577](https://github.com/microsoft/TypeScript/issues/16577): **tsc** should add `.js` extensions for relative module paths if compiled as [`es2020/esnext`](https://www.typescriptlang.org/tsconfig/#module).
 * [ts-jest/1174](https://github.com/kulshekhar/ts-jest/issues/1174): `import.meta` is not allowed.
 * [esbuild/1043](https://github.com/evanw/esbuild/issues/1043): empty output for interface files that breaks reimport.
+* [TS/4433](https://github.com/microsoft/TypeScript/issues/4433): extensions in module declarations force tsconfig changes for dependent projects. See [tsc-dts-fix](https://github.com/antongolub/misc/tree/master/packages/dep/tsc-dts-fix) for details.
 
 #### moduleResolution: nodenext
 [Nightly build TypeScript 4.7](https://www.typescriptlang.org/docs/handbook/nightly-builds.html) provides [experimental esm support](https://www.typescriptlang.org/docs/handbook/esm-node.html). But it still forces to add extensions by hand (tested on [4.7.0-dev.20220408](https://www.npmjs.com/package/typescript/v/4.7.0-dev.20220408)).
@@ -33,7 +34,7 @@ src/main/ts/q/u/x/index.ts:1:21 - error TS2835: Relative import paths need expli
 
 1 import { foo } from '../../../foo'
 ```
-Moreover, if understand [TS/49271](https://github.com/microsoft/TypeScript/issues/49271) correctly, `nodenext` + pkg.json `type: module` requires `.js` extension to be added to all `.d.ts` files of **external** ESM packages too. Well, good luck with that.
+Moreover, if understand [TS/49271](https://github.com/microsoft/TypeScript/issues/49271) correctly, `nodenext` + pkg.json `type: module` requires `.js` extension to be added to all `.d.ts` files of **external** ESM packages too. Well, good luck with that.  
 
 ### Solutions
 1. Post-process tsc-compiled outputs each time after build.
@@ -66,7 +67,7 @@ This lib covers options 1 and 2.
 ### Requirements
 Node.js `>=16.0.0`
 
-### Fetching
+### Install
 ```shell
 npm i -dev tsc-esm-fix
 yarn add -D tsc-esm-fix
