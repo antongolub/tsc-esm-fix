@@ -1,25 +1,16 @@
 import {dirname, resolve} from 'node:path'
 import {TFixer} from '../interface'
 import {unixify} from '../util'
-import { depseekSync } from 'depseek'
+import { patchRefs } from 'depseek'
 
 export const fixModuleReferences: TFixer = (ctx) => {
   const { contents, filename, filenames, options: {cwd}, ignore } = ctx
-  const deps = depseekSync(contents)
-  let pos = 0
-  let _contents = ''
-
-  for (const {index, value} of deps) {
-    const len = value.length
+  const _contents = patchRefs(contents, (value) => {
     const v = value.endsWith('/') ? value.slice(0, -1) : value
-    const _value = (v.includes('/') || v === '.' || v === '..') && !ignore.includes(v)
+    return (v.includes('/') || v === '.' || v === '..') && !ignore.includes(v)
       ? resolveDependency(filename, v, filenames, cwd)
       : value
-
-    _contents = _contents + contents.slice(pos, index) + _value
-    pos = index + len
-  }
-  _contents = _contents + contents.slice(pos)
+  })
 
   return {...ctx, contents: _contents}
 }

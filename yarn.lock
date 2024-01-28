@@ -2570,10 +2570,10 @@ define-properties@^1.1.3, define-properties@^1.2.0, define-properties@^1.2.1:
     has-property-descriptors "^1.0.0"
     object-keys "^1.1.1"
 
-depseek@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/depseek/-/depseek-0.2.1.tgz#dc8d565d0ff839fa23f9d2a515756942a46e44cd"
-  integrity sha512-LLWAVkTGDzGvAe5647Gyf6ggKHCA6TacjsPU4SDXpXn237Bcq62GCXRXy4MJfTyjjnth0v8Jkv038CdqEHu6NA==
+depseek@^0.2.4:
+  version "0.2.4"
+  resolved "https://registry.yarnpkg.com/depseek/-/depseek-0.2.4.tgz#93c857191be14f73f6fef674c44f7dd88732af4e"
+  integrity sha512-MneWFr//kZfwpJNiVfb4QkFLU9e3G78ZoAxEHYhd7MuCIRRBqMDVq1kkyeOcFkvybLFwGsnO+VGuEjncmedczQ==
 
 detect-newline@^3.0.0:
   version "3.1.0"
