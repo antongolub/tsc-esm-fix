@@ -1,3 +1,8 @@
+## [2.20.23](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.22...v2.20.23) (2024-02-05)
+
+### Fixes & improvements
+* perf: tech release to fix readme on npm ([2372dad](https://github.com/antongolub/tsc-esm-fix/commit/2372dad0aad131eb1437c759c7e98fae8ab5c89c))
+
 ## [2.20.22](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.21...v2.20.22) (2024-01-28)
 
 ### Fixes & improvements
