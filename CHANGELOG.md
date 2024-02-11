@@ -1,3 +1,8 @@
+## [2.20.24](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.23...v2.20.24) (2024-02-11)
+
+### Fixes & improvements
+* perf: up dev deps, repack ([a5c9e18](https://github.com/antongolub/tsc-esm-fix/commit/a5c9e180d5574dd5bdba70bd60ef6dc4433911de))
+
 ## [2.20.23](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.22...v2.20.23) (2024-02-05)
 
 ### Fixes & improvements
