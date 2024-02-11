@@ -1,10 +1,6 @@
 {
   "name": "tsc-esm-fix",
   "version": "2.20.23",
-  "private": false,
-  "publishConfig": {
-    "access": "public"
-  },
   "bin": {
     "tsc-esm-fix": "./target/es6/cli.mjs"
   },
@@ -57,8 +53,8 @@
     "@qiwi/npm-run-all": "^4.1.7",
     "@types/fs-extra": "^11.0.4",
     "@types/jest": "^29.5.12",
-    "@types/node": "^20.11.16",
-    "@types/semver": "^7.5.6",
+    "@types/node": "^20.11.17",
+    "@types/semver": "^7.5.7",
     "cpy-cli": "^5.0.0",
     "cross-env": "^7.0.3",
     "eslint": "^8.56.0",
@@ -71,10 +67,10 @@
     "prettier": "^3.2.5",
     "prettier-config-qiwi": "^2.1.2",
     "rimraf": "^5.0.5",
-    "semver": "^7.5.4",
+    "semver": "^7.6.0",
     "tempy": "^3.1.0",
     "ts-jest": "^29.1.2",
-    "typedoc": "^0.25.7",
+    "typedoc": "^0.25.8",
     "typescript": "^5.3.3"
   },
   "repository": {
