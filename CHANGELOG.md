@@ -1,3 +1,8 @@
+## [2.20.26](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.25...v2.20.26) (2024-02-20)
+
+### Fixes & improvements
+* fix(deps): update dependency depseek to ^0.4.0 ([a024fb9](https://github.com/antongolub/tsc-esm-fix/commit/a024fb92e424c96d854193d257d0fa09c95cfebc))
+
 ## [2.20.25](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.24...v2.20.25) (2024-02-20)
 
 ### Fixes & improvements
