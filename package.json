@@ -1,6 +1,6 @@
 {
   "name": "tsc-esm-fix",
-  "version": "2.20.24",
+  "version": "2.20.25",
   "bin": {
     "tsc-esm-fix": "./target/es6/cli.mjs"
   },
