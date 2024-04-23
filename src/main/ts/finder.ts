@@ -61,12 +61,20 @@ const getPatterns = (sources: string[], targets: string[]): string[] =>
 // https://webpack.js.org/guides/package-exports/
 type Entry = string | string[] | Record<string, string | string[] | Record<string, string | string[]>>
 
-const getExportsEntries = (exports: string | Entry): [string, string[]][] => {
-  const entries: [string, Entry][] = Object.entries(exports)
-  const parseConditional = (e: Entry): string[] => typeof e === 'string' ? [e] : Object.values(e).map(parseConditional).flat(2)
+export const parseConditional = (e: Entry): string[] => e
+  ? typeof e === 'string'
+    ? [e]
+    : Object.values(e).map(parseConditional).flat(2)
+  : []
+
+export const getExportsEntries = (exports: string | Entry): [string, string[]][] => {
+  if (!exports) {
+    return []
+  }
 
   // has subpaths
-  if (typeof exports !== 'string' && Object.keys(exports).some((k) => k.startsWith('.'))) {
+  if (Object.keys(exports).some((k) => k.startsWith('.'))) {
+    const entries: [string, Entry][] = Object.entries(exports)
     return entries.map(([k, v]) => [k, parseConditional(v)])
   }
 
