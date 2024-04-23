@@ -1,3 +1,8 @@
+## [2.20.27](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.26...v2.20.27) (2024-04-23)
+
+### Fixes & improvements
+* fix: handle malformed exports map ([f845eee](https://github.com/antongolub/tsc-esm-fix/commit/f845eee7056c630911a6a029fb5c4313f0ed4df0))
+
 ## [2.20.26](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.25...v2.20.26) (2024-02-20)
 
 ### Fixes & improvements
