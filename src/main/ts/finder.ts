@@ -1,6 +1,16 @@
 import { dirname, join, resolve } from 'node:path'
-import { asArray, globby, readJson, resolveTsConfig } from './util'
-import { Options as GlobbyOptions } from 'globby'
+import {asArray, glob, readJson, resolveTsConfig} from './util'
+
+type TPackageExports = [string, string[]][]
+
+type TPackageEntry = {
+  name: string
+  root: string
+  manifest: any
+  main?: string
+  exports: TPackageExports
+  type?: string
+}
 
 export const getTsconfigTargets = (
   tsconfig: string | string[],
@@ -20,37 +30,40 @@ export const getTsconfigTargets = (
     return targets
   }, [])
 
-export const getLocalModules = (sources: string[], targets: string[], cwd: string) => globby(
+export const getLocalModules = (sources: string[], targets: string[], cwd: string) => glob(
   getPatterns(sources, targets),
   {
     cwd,
     onlyFiles: true,
     absolute: true,
-  } as GlobbyOptions)
+  })
 
-export const getExternalModules = async (cwd: string): Promise<{cjsModules: string[], esmModules: string[], allPackages: string[] }> => {
-  const {names, files: esmModules} = await getExternalEsmModules(cwd)
-  const cjsModules = await globby(
-    [
-      '!node_modules/.cache',
-      '!node_modules/.bin',
-      '!node_modules/**/node_modules',
-      ...names.map(m => `!node_modules/${m}`),
-      'node_modules/**/*.(m|c)?js',
-    ],
-    {
-      cwd,
-      onlyFiles: true,
-      absolute: true,
-    } as GlobbyOptions,
-  )
+export const getExternalModules = async (cwd: string): Promise<{exportedModules: string[], anyModules: string[], allPackageNames: string[] }> => {
+  const allPackages = await getExternalPackages(cwd)
+  const allPackageNames = allPackages.map(p => p.name)
+  const exportedModules = (await Promise.all(allPackages.map(getPackageEntryPoints))).flat()
+  const anyModules = await getAllModules(cwd)
 
   return {
-    cjsModules,
-    esmModules,
-    allPackages: names,
+    exportedModules,
+    anyModules,
+    allPackageNames,
   }
 }
+
+const getAllModules = async (cwd: string): Promise<string[]> => glob(
+  [
+    '!node_modules/.cache',
+    '!node_modules/.bin',
+    '!node_modules/**/node_modules',
+    'node_modules/**/*.{js,mjs,cjs}',
+  ],
+  {
+    cwd,
+    onlyFiles: true,
+    absolute: true,
+  },
+)
 
 const getPatterns = (sources: string[], targets: string[]): string[] =>
   sources.length > 0
@@ -81,50 +94,38 @@ export const getExportsEntries = (exports: string | Entry): [string, string[]][]
   return [['.', parseConditional(exports)]]
 }
 
-const getExternalEsmModules = (cwd: string): Promise<{ names: string[], files: string[] }> =>
-  globby(['node_modules/*/package.json', 'node_modules/@*/*/package.json'], {
+const getExternalPackages = async (cwd: string): Promise<TPackageEntry[]> =>
+  glob(['node_modules/*/package.json', 'node_modules/@*/*/package.json'], {
     cwd,
     onlyFiles: true,
     absolute: true,
-  } as GlobbyOptions).then(async (files: string[]) =>
-    (await Promise.all(files
-      .map(async (f: string): Promise<{ name?: string, files?: string[] }> => {
-        const {name, exports} = await readJson(f)
+  })
+    .then(async (files: string[]) => Promise.all(files.map(async file => {
+      const manifest = await readJson(file)
+      const root = dirname(file)
+      const exports = getExportsEntries(manifest.exports)
 
-        if (!exports) {
-          return {name}
-        }
-
-        const _dir = dirname(f)
-        const exportsEntries = getExportsEntries(exports)
-
-        return {
-          name,
-          files: (await Promise.all(exportsEntries.map(([key, values]) =>
-
-            Promise.all(values.map(async(value) =>
-                (await globby(value, {cwd: _dir, onlyFiles: true, absolute: false}))
-                  .map(file => join(file)
-                    .replace(
-                      resolvePrefix('.', value),
-                      resolvePrefix(name, key)))
-              )
-
-            )))).flat(2)
-        }
-
-      }))).reduce<{ names: string[], files: string[] }>((m, {name, files: _files}) => {
-      if (name) {
-        m.names.push(name)
+      return {
+        name: manifest.name,
+        type: manifest.type,
+        main: manifest.main,
+        manifest,
+        file,
+        root,
+        exports
       }
+    })))
 
-      if (_files) {
-        m.files.push(..._files)
-      }
-
-      return m
-    }, {names: [], files: []}),
-  )
+const getPackageEntryPoints = async ({name, exports, root, main}: TPackageEntry): Promise<string[]> =>
+  (await Promise.all(exports.map(([key, values]) =>
+    Promise.all(values.map(async(value) =>
+        (await glob(value, {cwd: root, onlyFiles: true, absolute: false}))
+          .map(file => join(file)
+            .replace(
+              resolvePrefix('.', value),
+              resolvePrefix(name, key)))
+      )
+    )))).flat(2)
 
 const resolvePrefix = (prefix: string, pattern?: string): string => {
   if (!pattern) {

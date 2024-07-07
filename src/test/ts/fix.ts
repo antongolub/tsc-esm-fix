@@ -3,7 +3,6 @@ import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import fse from 'fs-extra'
-import { globbySync } from 'globby'
 import semver from 'semver'
 import { temporaryDirectory } from 'tempy'
 
@@ -18,7 +17,7 @@ import {
   fixModuleReferences,
 } from '../../main/ts'
 import { normalizeOptions} from '../../main/ts/options'
-import { read, readJson } from '../../main/ts/util'
+import { read, readJson, glob } from '../../main/ts/util'
 
 const __dirname = dirname(fileURLToPath(import.meta.url))
 const fakeProject = resolve(__dirname, '../fixtures/ts-project')
@@ -111,7 +110,7 @@ describe('patches', () => {
   })
 
   describe('contents', () => {
-    const files = globbySync(
+    const files = glob.sync(
       [
         'target/**/*.(m|c)?js',
         'node_modules/**/*.(m|c)?js',
@@ -193,7 +192,7 @@ describe('patches', () => {
     it('fixContents() patches `require` args', () => {
       const file = resolve(nestjsSwaggerProject, 'event.dto.js')
       const content = read(file)
-      const files = globbySync(
+      const files = glob.sync(
           [
             '**/*.js',
           ],

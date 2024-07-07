@@ -1,10 +1,16 @@
 import path from 'node:path'
 
 import { fixContents } from './fixes'
-import {IFixOptions, IFixOptionsNormalized, TFixContext, TResourceContext} from './interface'
+import {
+  IFixOptions,
+  IFixOptionsNormalized,
+  TFixContext,
+  TResourceContext
+} from './interface'
 import {
   asArray,
   existsSync,
+  glob,
   read,
   readJson,
   remove,
@@ -21,7 +27,6 @@ import {
 import {
   normalizeOptions
 } from './options'
-
 
 export const fixFilenameExtensions = (names: string[], ext: string): string[] =>
   names.map((name) =>
@@ -49,17 +54,19 @@ const resolve = async (opts: IFixOptionsNormalized): Promise<TFixContext> => {
   const isSource = sources.length > 0
   const localModules = await getLocalModules(sources, targets, cwd)
   const {
-    cjsModules,
-    esmModules,
-    allPackages
+    exportedModules,
+    anyModules,
+    allPackageNames,
   } = await getExternalModules(cwd)
-  debug('debug:external-cjs-modules', cjsModules)
-  debug('debug:external-esm-modules', esmModules)
 
-  const ignore = [...esmModules, ...allPackages]
+  debug('debug:external-package-names', allPackageNames)
+  debug('debug:external-exported-modules', exportedModules)
+  debug('debug:external-any-modules', anyModules)
+
+  const ignore = [...exportedModules, ...allPackageNames]
   const _localModules = typeof ext === 'string' ? fixFilenameExtensions(localModules, ext) : localModules
-  const allModules = [...cjsModules, ..._localModules]
-  const allJsModules = [...cjsModules, ...fixFilenameExtensions(localModules, '.js')]
+  const allModules = [...anyModules, ..._localModules]
+  const allJsModules = [...anyModules, ...fixFilenameExtensions(localModules, '.js')]
   debug('debug:local-modules', _localModules)
 
   return {
