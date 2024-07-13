@@ -1,12 +1,11 @@
 #!/usr/bin/env node
 
-import meow from 'meow'
+import { typeFlag } from 'type-flag'
 
 import { fix } from './fix'
 import { IFixOptions } from './interface'
 
-const cli = meow(
-  `
+const help = `
 	Usage
 	  $ tsc-esm-fix [options]
 
@@ -26,51 +25,58 @@ const cli = meow(
 
 	Examples
 	  $ tsc-esm-fix --ext=.mjs --out=foo
-`,
+`
+
+const parsed = typeFlag(
   {
-    importMeta: import.meta,
-    flags: {
-      ext: {
-        type: 'string',
-      },
-      unlink: {
-        type: 'boolean',
-        default: true,
-      },
-      tsconfig: {
-        isMultiple: true,
-        type: 'string',
-      },
-      dirnameVar: {
-        type: 'boolean',
-        default: true,
-      },
-      filenameVar: {
-        type: 'boolean',
-        default: true,
-      },
-      cwd: {
-        type: 'string',
-      },
-      target: {
-        type: 'string',
-        isMultiple: true,
-      },
-      src: {
-        type: 'string',
-        isMultiple: true,
-      },
-      fillBlank: {
-        type: 'boolean',
-      },
-      forceDefaultExport: {
-        type: 'boolean',
-      },
-      sourceMap: {
-        type: 'boolean',
-      },
+    ext: {
+      type: String,
+    },
+    unlink: {
+      type: Boolean,
+      default: true,
+    },
+    tsconfig: {
+      isMultiple: true,
+      type: String,
+    },
+    dirnameVar: {
+      type: Boolean,
+      default: true,
+    },
+    filenameVar: {
+      type: Boolean,
+      default: true,
+    },
+    cwd: {
+      type: String,
+    },
+    target: {
+      type: [String],
+    },
+    src: {
+      type: [String],
+    },
+    fillBlank: {
+      type: Boolean,
+    },
+    forceDefaultExport: {
+      type: Boolean,
+    },
+    sourceMap: {
+      type: Boolean,
+    },
+    help: {
+      type: Boolean,
+      alias: 'h'
     },
   },
 )
 
-fix(cli.flags as IFixOptions)
+if (parsed.flags.help) {
+  console.log(help)
+  process.exit(0)
+} else {
+  fix(parsed.flags as IFixOptions)
+    .then(() => process.exit(0), () => process.exit(1))
+}

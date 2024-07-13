@@ -2,7 +2,7 @@
   "extends": "./tsconfig.json",
   "compilerOptions": {
     "target": "es6",
-    "outDir": "target/es6",
+    "outDir": "target/esm",
     "module": "esnext"
   },
   "include": ["src/main/**/*.ts"]
