@@ -1,3 +1,16 @@
+## [3.0.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.27...v3.0.0) (2024-07-13)
+
+### Features
+* feat: update node engine range, require v18 ([5881b67](https://github.com/antongolub/tsc-esm-fix/commit/5881b672ba953c6e9910c6a3722f96b9bbf45d4a))
+
+### BREAKING CHANGES
+* following deps, require Node.js >= 18 ([5881b67](https://github.com/antongolub/tsc-esm-fix/commit/5881b672ba953c6e9910c6a3722f96b9bbf45d4a))
+
+### Fixes & improvements
+* refactor: update bin entry point ([320a756](https://github.com/antongolub/tsc-esm-fix/commit/320a756fe4c6d3d58ec6e2a0329927d928f20cfe))
+* refactor: replace meow → type-flag, microbundle → esbuild ([1cc1a1a](https://github.com/antongolub/tsc-esm-fix/commit/1cc1a1a6fb27769c80f32cc6e1f6159b4f2552d1))
+* refactor: replace globby with fast-glob ([2c3b91a](https://github.com/antongolub/tsc-esm-fix/commit/2c3b91a2add5975116b1d0f6d3225d5658024568))
+
 ## [2.20.27](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.26...v2.20.27) (2024-04-23)
 
 ### Fixes & improvements
