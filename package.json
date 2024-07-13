@@ -2,7 +2,7 @@
   "name": "tsc-esm-fix",
   "version": "2.20.27",
   "bin": {
-    "tsc-esm-fix": "./target/es6/cli.mjs"
+    "tsc-esm-fix": "./target/esm/cli.mjs"
   },
   "description": "Make tsc-compiled `es2020/esnext` bundles compatible with esm/mjs requirements",
   "type": "module",
