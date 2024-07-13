@@ -1,4 +1,4 @@
-import { fix } from '../../target/bundle/tsc-esm-fix.mjs'
+import { fix } from '../../target/cjs/index.cjs'
 
 fix({
   tsconfig: ['tsconfig.es6.json'],
