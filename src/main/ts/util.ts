@@ -5,7 +5,7 @@ import json5 from 'json5'
 
 import { TSConfig } from './interface'
 
-export { default as glob, type Options as GlobOptions } from 'fast-glob'
+export { default as glob } from 'fast-glob'
 
 export { existsSync } from 'node:fs'
 
