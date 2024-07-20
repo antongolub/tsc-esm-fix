@@ -39,3 +39,6 @@ export const resolveTsConfig = (file: string): TSConfig => {
 
   return data
 }
+
+export const omitUndefinedKeys = <T extends Record<string, any>>(obj: T): T  =>
+  Object.fromEntries(Object.entries(obj).filter(([, value]) => value !== undefined)) as T

@@ -78,5 +78,8 @@ if (parsed.flags.help) {
   process.exit(0)
 } else {
   fix(parsed.flags as IFixOptions)
-    .then(() => process.exit(0), () => process.exit(1))
+    .then(() => process.exit(0), (e) => {
+      console.error(e)
+      process.exit(1)
+    })
 }
