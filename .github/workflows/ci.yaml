@@ -22,13 +22,14 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 22.4.1
           # cache: 'yarn'
 
       - name: Fetch deps
         run: |
           yarn --mutex network --frozen-lockfile --network-concurrency 25 --silent --disable-self-update-check
-          ls -l node_modules/.bin
+          pwd
+          ls -l ./node_modules/.bin
 
       - name: Build
         run: yarn build
