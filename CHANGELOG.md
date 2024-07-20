@@ -1,3 +1,8 @@
+## [3.0.1](https://github.com/antongolub/tsc-esm-fix/compare/v3.0.0...v3.0.1) (2024-07-20)
+
+### Fixes & improvements
+* fix(cli): omit empty opts ([a76f044](https://github.com/antongolub/tsc-esm-fix/commit/a76f044bfe1845d9cc4f27fa11aac1509dc17a8b))
+
 ## [3.0.0](https://github.com/antongolub/tsc-esm-fix/compare/v2.20.27...v3.0.0) (2024-07-13)
 
 ### Features
