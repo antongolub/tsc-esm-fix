@@ -1,3 +1,8 @@
+## [3.0.2](https://github.com/antongolub/tsc-esm-fix/compare/v3.0.1...v3.0.2) (2024-08-05)
+
+### Fixes & improvements
+* fix: `target` opt should override tsconfig specified defaults ([b365c46](https://github.com/antongolub/tsc-esm-fix/commit/b365c466f012f470e1ee84dc9f5b14beed1dba60))
+
 ## [3.0.1](https://github.com/antongolub/tsc-esm-fix/compare/v3.0.0...v3.0.1) (2024-07-20)
 
 ### Fixes & improvements
