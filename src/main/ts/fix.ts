@@ -10,7 +10,6 @@ import {
 import {
   asArray,
   existsSync,
-  glob,
   read,
   readJson,
   remove,
@@ -45,7 +44,8 @@ const resolve = async (opts: IFixOptionsNormalized): Promise<TFixContext> => {
   const {cwd, target, src, tsconfig, out = cwd, ext, debug, unlink, sourceMap} = opts
   const outDir = path.resolve(cwd, out)
   const sources = asArray<string>(src)
-  const targets = [...asArray<string>(target), ...getTsconfigTargets(tsconfig, cwd)]
+  const _targets = asArray<string>(target)
+  const targets = _targets.length > 0 ? _targets : getTsconfigTargets(tsconfig, cwd)
   debug('debug:cwd', cwd)
   debug('debug:outdir', outDir)
   debug('debug:sources', sources)
