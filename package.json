@@ -53,13 +53,13 @@
   "devDependencies": {
     "@qiwi/npm-run-all": "^4.1.7",
     "@types/fs-extra": "^11.0.4",
-    "@types/jest": "^29.5.12",
-    "@types/node": "^22.1.0",
+    "@types/jest": "^29.5.13",
+    "@types/node": "^22.7.4",
     "@types/semver": "^7.5.8",
     "cpy-cli": "^5.0.0",
     "cross-env": "^7.0.3",
     "esbuild": "^0.24.0",
-    "esbuild-node-externals": "^1.14.0",
+    "esbuild-node-externals": "^1.15.0",
     "esbuild-plugin-entry-chunks": "^0.1.15",
     "esbuild-plugin-extract-helpers": "^0.0.6",
     "eslint": "^8.56.0",
@@ -74,10 +74,10 @@
     "rimraf": "^5.0.8",
     "semver": "^7.6.3",
     "tempy": "^3.1.0",
-    "ts-jest": "^29.2.4",
-    "typedoc": "^0.26.5",
-    "typescript": "^5.5.4",
-    "zx": "^8.1.4"
+    "ts-jest": "^29.2.5",
+    "typedoc": "^0.26.8",
+    "typescript": "^5.6.2",
+    "zx": "^8.1.8"
   },
   "repository": {
     "type": "git",
