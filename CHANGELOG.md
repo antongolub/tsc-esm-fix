@@ -1,3 +1,11 @@
+## [3.1.0](https://github.com/antongolub/tsc-esm-fix/compare/v3.0.2...v3.1.0) (2024-10-05)
+
+### Fixes & improvements
+* docs: mention `jsExt` and `tsExt` options ([b0fd156](https://github.com/antongolub/tsc-esm-fix/commit/b0fd156a5037b283c547d70dc26d43a719eb77af))
+
+### Features
+* feat: allow configure `js` and `ts` extensions lists ([938320f](https://github.com/antongolub/tsc-esm-fix/commit/938320f893806f9469940922acaeb0341fccb972))
+
 ## [3.0.2](https://github.com/antongolub/tsc-esm-fix/compare/v3.0.1...v3.0.2) (2024-08-05)
 
 ### Fixes & improvements
