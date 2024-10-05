@@ -179,6 +179,8 @@ tsc-esm-fix [opts]
 | `--dirnameVar`         | Replace `__dirname` usages with `import.meta`                                                  | true                                                                     |
 | `--filenameVar`        | Replace `__filename` var references with `import.meta` statements                              | true                                                                     |
 | `--ext`                | Append extension to relative imports/re-exports                                                | `.js`                                                                    |
+| `--ts-ext`             | Known TS extensions                                                                            | `.ts,.tsx,.mts,.mtsx,.cts,.ctsx`                                         |
+| `--js-ext`             | Known JS extensions                                                                            | `.js,.jsx,.mjs,.mjsx,.cjs,.cjsx`                                         |
 | `--unlink`             | Remove original files if ext changes                                                           | true                                                                     |
 | `--fillBlank`          | Fill blank files with `export {}`                                                              | false                                                                    |
 | `--forceDefaultExport` | Injects `export default undefined` if not present                                              | false                                                                    |
@@ -227,6 +229,8 @@ export interface IFixOptions {
   forceDefaultExport?: boolean
   sourceMap?: boolean
   ext: boolean | string
+  tsExt: string | string[]
+  jsExt: string | string[]
   unlink?: boolean,
   debug?: boolean | IFunction
 }
