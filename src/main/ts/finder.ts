@@ -1,5 +1,6 @@
 import { dirname, join, resolve } from 'node:path'
-import {asArray, glob, readJson, resolveTsConfig} from './util'
+import {asArray, extToGlob, glob, readJson, resolveTsConfig} from './util'
+import {DEFAULT_FIX_OPTIONS} from "./options";
 
 type TPackageExports = [string, string[]][]
 
@@ -30,19 +31,19 @@ export const getTsconfigTargets = (
     return targets
   }, [])
 
-export const getLocalModules = (sources: string[], targets: string[], cwd: string) => glob(
-  getPatterns(sources, targets),
+export const getLocalModules = (sources: string[], targets: string[], cwd: string, tsExt: string[] = DEFAULT_FIX_OPTIONS.tsExt) => glob(
+  getPatterns(sources, targets, tsExt),
   {
     cwd,
     onlyFiles: true,
     absolute: true,
   })
 
-export const getExternalModules = async (cwd: string): Promise<{exportedModules: string[], anyModules: string[], allPackageNames: string[] }> => {
+export const getExternalModules = async (cwd: string, jsExt: string[] = DEFAULT_FIX_OPTIONS.jsExt): Promise<{exportedModules: string[], anyModules: string[], allPackageNames: string[] }> => {
   const allPackages = await getExternalPackages(cwd)
   const allPackageNames = allPackages.map(p => p.name)
   const exportedModules = (await Promise.all(allPackages.map(getPackageEntryPoints))).flat()
-  const anyModules = await getAllModules(cwd)
+  const anyModules = await getAllModules(cwd, jsExt)
 
   return {
     exportedModules,
@@ -51,12 +52,12 @@ export const getExternalModules = async (cwd: string): Promise<{exportedModules:
   }
 }
 
-const getAllModules = async (cwd: string): Promise<string[]> => glob(
+const getAllModules = async (cwd: string, jsExt: string[] = DEFAULT_FIX_OPTIONS.jsExt): Promise<string[]> => glob(
   [
     '!node_modules/.cache',
     '!node_modules/.bin',
     '!node_modules/**/node_modules',
-    'node_modules/**/*.{js,mjs,cjs}',
+    `node_modules/${extToGlob(jsExt)}`,
   ],
   {
     cwd,
@@ -65,9 +66,9 @@ const getAllModules = async (cwd: string): Promise<string[]> => glob(
   },
 )
 
-const getPatterns = (sources: string[], targets: string[]): string[] =>
+const getPatterns = (sources: string[], targets: string[], tsExt: string[]): string[] =>
   sources.length > 0
-    ? sources.map((src) => src.includes('*') ? src : `${src}/**/*.{ts,tsx}`)
+    ? sources.map((src) => src.includes('*') ? src : `${src}/${extToGlob(tsExt)}`)
     : targets.map((target) => target.includes('*') ? target : `${target}/**/*.{js,d.ts}`)
 
 // https://nodejs.org/api/packages.html
