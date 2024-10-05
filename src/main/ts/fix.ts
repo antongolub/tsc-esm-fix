@@ -8,7 +8,6 @@ import {
   TResourceContext
 } from './interface'
 import {
-  asArray,
   existsSync,
   read,
   readJson,
@@ -40,11 +39,9 @@ export const fix = async (opts?: IFixOptions): Promise<void> => {
   await patch(ctx, options)
 }
 
-const resolve = async (opts: IFixOptionsNormalized): Promise<TFixContext> => {
-  const {cwd, target, src, tsconfig, out = cwd, ext, debug, unlink, sourceMap} = opts
+const resolve = async (options: IFixOptionsNormalized): Promise<TFixContext> => {
+  const {cwd, target: _targets, src: sources, tsconfig, out = cwd, ext, debug, tsExt, jsExt} = options
   const outDir = path.resolve(cwd, out)
-  const sources = asArray<string>(src)
-  const _targets = asArray<string>(target)
   const targets = _targets.length > 0 ? _targets : getTsconfigTargets(tsconfig, cwd)
   debug('debug:cwd', cwd)
   debug('debug:outdir', outDir)
@@ -52,12 +49,12 @@ const resolve = async (opts: IFixOptionsNormalized): Promise<TFixContext> => {
   debug('debug:targets', targets)
 
   const isSource = sources.length > 0
-  const localModules = await getLocalModules(sources, targets, cwd)
+  const localModules = await getLocalModules(sources, targets, cwd, tsExt)
   const {
     exportedModules,
     anyModules,
     allPackageNames,
-  } = await getExternalModules(cwd)
+  } = await getExternalModules(cwd, jsExt)
 
   debug('debug:external-package-names', allPackageNames)
   debug('debug:external-exported-modules', exportedModules)
@@ -76,12 +73,13 @@ const resolve = async (opts: IFixOptionsNormalized): Promise<TFixContext> => {
     allJsModules,
     allModules,
     _localModules,
-    localModules
+    localModules,
+    options
   }
 }
 
 const patch = async (ctx: TFixContext, options: IFixOptionsNormalized) => {
-  const {cwd, unlink, sourceMap} = options
+  const {cwd, unlink, sourceMap, tsExt, jsExt} = options
   const {
     outDir,
     isSource,

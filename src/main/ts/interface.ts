@@ -4,8 +4,8 @@ export type IFixOptionsNormalized = {
   cwd:          string
   debug:        IFunction
   out?:         string
-  src?:         string | string[]
-  target?:      string | string[]
+  src :         string[]
+  target:       string[]
   tsconfig:     string | string[]
   dirnameVar:   boolean
   filenameVar:  boolean
@@ -13,6 +13,8 @@ export type IFixOptionsNormalized = {
   forceDefaultExport?:  boolean
   sourceMap?:   boolean
   ext:          boolean | string
+  tsExt:        string[]
+  jsExt:        string[]
   unlink?:      boolean
 }
 
@@ -21,7 +23,13 @@ export type TSConfig = {
   compilerOptions?: Record<string, any>
 }
 
-export type IFixOptions = Partial<Omit<IFixOptionsNormalized, 'debug'>> & {debug?: boolean | IFunction}
+export type IFixOptions = Partial<Omit<IFixOptionsNormalized, 'debug'>>& {
+  debug?: boolean | IFunction
+  src?:   string | string[]
+  target?:string | string[]
+  tsExt?: string | string[]
+  jsExt?: string | string[]
+}
 
 export type TFixContext = {
   outDir:         string
@@ -31,10 +39,10 @@ export type TFixContext = {
   allModules:     string[]
   _localModules:  string[]
   localModules:   string[]
+  options:        IFixOptionsNormalized
 }
 
 export type TResourceContext = {
-  options:    IFixOptionsNormalized
   contents:   string
   filename:   string
   filenames:  string[]
@@ -42,6 +50,7 @@ export type TResourceContext = {
   nextName:   string
   isSource:   boolean
   ignore:     string[]
+  options:    IFixOptionsNormalized
 }
 
 export type TFixer = (ctx: TResourceContext) => TResourceContext

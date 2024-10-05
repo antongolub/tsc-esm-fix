@@ -39,6 +39,10 @@ describe('normalizeOptions()', () => {
       filenameVar: true,
       ext: true,
       unlink: true,
+      src: [],
+      target: [],
+      jsExt: DEFAULT_FIX_OPTIONS.jsExt,
+      tsExt: DEFAULT_FIX_OPTIONS.tsExt,
     })
   })
 })
@@ -168,7 +172,11 @@ describe('patches', () => {
           filenameVar: false,
           dirnameVar: false,
           tsconfig: './tsconfig.json', // eslint-disable-line
-          debug: () => {}, // eslint-disable-line
+          debug(){}, // eslint-disable-line
+          jsExt: DEFAULT_FIX_OPTIONS.jsExt,
+          tsExt: DEFAULT_FIX_OPTIONS.tsExt,
+          src: [],
+          target: [],
         }),
       ).toEqual(content)
     })
@@ -184,7 +192,11 @@ describe('patches', () => {
           filenameVar: false,
           dirnameVar: false,
           tsconfig: './tsconfig.json',
-          debug: () => {}, // eslint-disable-line
+          debug() {}, // eslint-disable-line
+          jsExt: DEFAULT_FIX_OPTIONS.jsExt,
+          tsExt: DEFAULT_FIX_OPTIONS.tsExt,
+          src: [],
+          target: [],
         }),
       ).toMatchSnapshot()
     })
@@ -209,7 +221,11 @@ describe('patches', () => {
             filenameVar: false,
             dirnameVar: false,
             tsconfig: './tsconfig.json', // eslint-disable-line
-            debug: () => {}, // eslint-disable-line
+            debug() {}, // eslint-disable-line @typescript-eslint/no-empty-function,
+            jsExt: DEFAULT_FIX_OPTIONS.jsExt,
+            tsExt: DEFAULT_FIX_OPTIONS.tsExt,
+            src: [],
+            target: [],
           }),
       ).toMatchSnapshot()
     })

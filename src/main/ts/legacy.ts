@@ -8,6 +8,7 @@ import {
   fixModuleReferences as _fixModuleReferences,
   fixSourceMapRef as _fixSourceMapRef,
 } from './fixes'
+import {DEFAULT_FIX_OPTIONS} from './options'
 
 export const fixModuleReferences = (
   contents: string,
@@ -16,7 +17,17 @@ export const fixModuleReferences = (
   cwd: string,
   ignore: string[],
 ): string =>
-  _fixModuleReferences({contents, filename, filenames, options: {cwd}, ignore} as TResourceContext).contents
+  _fixModuleReferences({
+    contents,
+    filename,
+    filenames,
+    options: {
+      cwd,
+      tsExt: DEFAULT_FIX_OPTIONS.tsExt,
+      jsExt: DEFAULT_FIX_OPTIONS.jsExt,
+    },
+    ignore
+  } as TResourceContext).contents
 
 export const fixDirnameVar = (contents: string, isSource?: boolean): string =>
   _fixDirnameVar({contents, isSource} as TResourceContext).contents

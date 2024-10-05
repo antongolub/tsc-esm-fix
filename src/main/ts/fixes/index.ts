@@ -1,16 +1,16 @@
 import {TFixer} from '../interface'
 
-export {fixBlankFiles} from './fix-blank-files'
-export {fixFilenameVar, fixDirnameVar} from './fix-dirname-var'
-export {fixModuleReferences} from './fix-module-ref'
-export {fixSourceMapRef} from './fix-sourcemap-ref'
-export {fixDefaultExport} from './fix-default-export'
-
 import { fixBlankFiles } from './fix-blank-files'
 import { fixDefaultExport } from './fix-default-export'
 import { fixDirnameVar, fixFilenameVar } from './fix-dirname-var'
 import { fixModuleReferences } from './fix-module-ref'
 import { fixSourceMapRef } from './fix-sourcemap-ref'
+
+export { fixBlankFiles } from './fix-blank-files'
+export { fixFilenameVar, fixDirnameVar } from './fix-dirname-var'
+export { fixModuleReferences } from './fix-module-ref'
+export { fixSourceMapRef } from './fix-sourcemap-ref'
+export { fixDefaultExport } from './fix-default-export'
 
 export const fixContents: TFixer = (
   ctx

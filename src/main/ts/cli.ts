@@ -16,6 +16,8 @@ const help = `
 	  --target      Specify target/outDir. Suppresses 'tsconfig.compilerOptions.outDir'.
 	  --src         Specify src dir for patching. Suppresses '--target' option.
 	  --ext         Append extension (like '.mjs') to relative imports/re-exports
+	  --ts-ext      Specify TS extensions. Defaults to '.ts,.tsx,.mts,.mtsx,.cts,.ctsx'
+	  --js-ext      Specify JS extensions. Defaults to '.js,.jsx,.mjs,.mjsx,.cjs,.cjsx'
 	  --unlink      Remove original files if ext changes
 	  --dirnameVar  Replace __dirname refs with import.meta
 	  --filenameVar Replace __filename with import.meta
@@ -30,6 +32,12 @@ const help = `
 const parsed = typeFlag(
   {
     ext: {
+      type: String,
+    },
+    tsExt: {
+      type: String,
+    },
+    jsExt: {
       type: String,
     },
     unlink: {

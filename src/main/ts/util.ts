@@ -42,3 +42,5 @@ export const resolveTsConfig = (file: string): TSConfig => {
 
 export const omitUndefinedKeys = <T extends Record<string, any>>(obj: T): T  =>
   Object.fromEntries(Object.entries(obj).filter(([, value]) => value !== undefined)) as T
+
+export const extToGlob = (ext: string[]): string => `**/*.{${ext.map(e => e.slice(1)).join(',')}}`
