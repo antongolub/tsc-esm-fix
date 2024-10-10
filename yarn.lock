@@ -859,7 +859,7 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
-"@trivago/prettier-plugin-sort-imports@^4.1.1":
+"@trivago/prettier-plugin-sort-imports@^4.3.0":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@trivago/prettier-plugin-sort-imports/-/prettier-plugin-sort-imports-4.3.0.tgz#725f411646b3942193a37041c84e0b2116339789"
   integrity sha512-r3n0onD3BTOVUNPhR4lhVK4/pABGpbA7bW3eumZnYdKaHkf1qEC+Mag6DPbGNuuh0eG8AaYj+YqmVHSiGslaTQ==
@@ -3954,12 +3954,12 @@ prelude-ls@^1.2.1:
   resolved "https://registry.yarnpkg.com/prelude-ls/-/prelude-ls-1.2.1.tgz#debc6489d7a6e6b0e7611888cec880337d316396"
   integrity sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==
 
-prettier-config-qiwi@^2.1.2:
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/prettier-config-qiwi/-/prettier-config-qiwi-2.1.2.tgz#ca9526f45ae6003552df94c61a2db4bc71e42e2d"
-  integrity sha512-u2SVc5IQi22J0qOKtAPEDzRngA8UKGT4b+r3aw+9gNdNXce6yddklucF/XGFSvVA6Za3bATJ4UKsVHHu5BNxzg==
+prettier-config-qiwi@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/prettier-config-qiwi/-/prettier-config-qiwi-3.0.0.tgz#532addf37b0765cda7c82a86a764f8aabb0e9f38"
+  integrity sha512-GWK5n+sW3juKjjKbDqfGMG6psOgtpv4DI7m6ffOfiiFqu33wYw6F0ZqKUWXckub9mxiHa808XhYxG13RvWBwWg==
   dependencies:
-    "@trivago/prettier-plugin-sort-imports" "^4.1.1"
+    "@trivago/prettier-plugin-sort-imports" "^4.3.0"
 
 prettier@^3.3.3:
   version "3.3.3"
