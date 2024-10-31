@@ -65,7 +65,7 @@
     "esbuild-plugin-extract-helpers": "^0.0.6",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-config-qiwi": "^2.1.6",
+    "eslint-config-qiwi": "^2.1.7",
     "glob-runner": "^2.1.1",
     "jest": "^29.7.0",
     "minimist": "^1.2.8",
