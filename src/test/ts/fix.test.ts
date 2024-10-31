@@ -1,5 +1,5 @@
 import * as cp from 'node:child_process'
-import { dirname, resolve } from 'node:path'
+import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 
 import fse from 'fs-extra'
@@ -19,9 +19,9 @@ import {
 import { normalizeOptions} from '../../main/ts/options'
 import { read, readJson, glob } from '../../main/ts/util'
 
-const __dirname = dirname(fileURLToPath(import.meta.url))
-const fakeProject = resolve(__dirname, '../fixtures/ts-project')
-const nestjsSwaggerProject = resolve(__dirname, '../fixtures/nestjs-swagger-project')
+const __dirname = path.dirname(fileURLToPath(import.meta.url))
+const fakeProject = path.resolve(__dirname, '../fixtures/ts-project')
+const nestjsSwaggerProject = path.resolve(__dirname, '../fixtures/nestjs-swagger-project')
 
 describe('normalizeOptions()', () => {
   it('merges DEFAULT_FIX_OPTIONS with specified opts input', () => {
@@ -51,7 +51,7 @@ describe('patches', () => {
   describe('fix()', () => {
     it('patches ts sources as required by opts', async () => {
       const temp = temporaryDirectory()
-      const cwd = resolve(temp)
+      const cwd = path.resolve(temp)
 
       fse.copySync(fakeProject, cwd)
 
@@ -64,15 +64,15 @@ describe('patches', () => {
         filenameVar: false,
       })
 
-      expect(read(resolve(temp, 'src/main/ts/index.ts'))).toMatchSnapshot()
-      expect(read(resolve(temp, 'src/main/ts/index-ref.ts'))).toMatchSnapshot()
-      expect(read(resolve(temp, 'src/main/ts/index-ref-2/index.ts'))).toMatchSnapshot()
+      expect(read(path.resolve(temp, 'src/main/ts/index.ts'))).toMatchSnapshot()
+      expect(read(path.resolve(temp, 'src/main/ts/index-ref.ts'))).toMatchSnapshot()
+      expect(read(path.resolve(temp, 'src/main/ts/index-ref-2/index.ts'))).toMatchSnapshot()
     })
 
     it('patches target (tsc-compiled) files as required by opts', async () => {
       const temp = temporaryDirectory()
-      const cwd = resolve(temp)
-      const out = resolve(temp)
+      const cwd = path.resolve(temp)
+      const out = path.resolve(temp)
 
       fse.copySync(fakeProject, cwd)
 
@@ -86,7 +86,7 @@ describe('patches', () => {
         sourceMap: true
       })
 
-      const res = resolve(temp, 'target/es6/index.mjs')
+      const res = path.resolve(temp, 'target/es6/index.mjs')
       const contents = read(res)
 
       // NodeJS v16.14.0+ requires {assert: {type: 'json'}} for json imports
@@ -96,10 +96,10 @@ describe('patches', () => {
         fse.writeFileSync(res, contents.replace(` assert { type: 'json' };`, ''))
       }
 
-      expect(read(resolve(temp, 'target/es6/index.d.ts'))).toMatchSnapshot()
-      expect(read(resolve(temp, 'target/es6/only-types.mjs'))).toMatchSnapshot()
-      expect(read(resolve(temp, 'target/es6/index.mjs'))).toMatchSnapshot()
-      expect(readJson(resolve(temp, 'target/es6/index.mjs.map')).file).toBe('index.mjs')
+      expect(read(path.resolve(temp, 'target/es6/index.d.ts'))).toMatchSnapshot()
+      expect(read(path.resolve(temp, 'target/es6/only-types.mjs'))).toMatchSnapshot()
+      expect(read(path.resolve(temp, 'target/es6/index.mjs'))).toMatchSnapshot()
+      expect(readJson(path.resolve(temp, 'target/es6/index.mjs.map')).file).toBe('index.mjs')
       expect(
         cp
           .execSync(`node --experimental-top-level-await --experimental-json-modules ${res}`, {
@@ -128,7 +128,7 @@ describe('patches', () => {
         absolute: true,
       },
     )
-    const file = resolve(fakeProject, 'target/es6/index.js')
+    const file = path.resolve(fakeProject, 'target/es6/index.js')
     const content = read(file)
 
     it('fixRelativeModuleReferences() appends file ext to module refs except for the ones that declare "exports" in pkg.json', () => {
@@ -182,7 +182,7 @@ describe('patches', () => {
     })
 
     it('fixContents() replaces `.` with `./index.cjs`', () => {
-      const file = resolve(fakeProject, 'target/es6/index-ref.js')
+      const file = path.resolve(fakeProject, 'target/es6/index-ref.js')
       const content = read(file)
       const _files = files.map(f => f.replace(/\.js$/, '.cjs'))
       expect(
@@ -202,7 +202,7 @@ describe('patches', () => {
     })
 
     it('fixContents() patches `require` args', () => {
-      const file = resolve(nestjsSwaggerProject, 'event.dto.js')
+      const file = path.resolve(nestjsSwaggerProject, 'event.dto.js')
       const content = read(file)
       const files = glob.sync(
           [

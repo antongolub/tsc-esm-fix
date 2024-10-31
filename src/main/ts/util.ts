@@ -1,8 +1,6 @@
-import { dirname, resolve } from 'node:path'
-
 import fse from 'fs-extra'
 import json5 from 'json5'
-import { populateSync } from "@topoconfig/extends";
+import { populateSync } from '@topoconfig/extends'
 
 import { TSConfig } from './interface'
 

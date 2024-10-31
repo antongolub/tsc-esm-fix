@@ -1,4 +1,4 @@
-import {basename} from 'node:path'
+import path from 'node:path'
 import {TFixer} from '../interface'
 
 export const fixSourceMapRef: TFixer = (ctx) => {
@@ -7,8 +7,8 @@ export const fixSourceMapRef: TFixer = (ctx) => {
     originName === filename
       ? contents
       : contents.replace(
-        `//# sourceMappingURL=${basename(originName)}.map`,
-        `//# sourceMappingURL=${basename(filename)}.map`
+        `//# sourceMappingURL=${path.basename(originName)}.map`,
+        `//# sourceMappingURL=${path.basename(filename)}.map`
       )
 
   return {...ctx, contents: _contents}
