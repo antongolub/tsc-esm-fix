@@ -859,6 +859,11 @@
   dependencies:
     "@sinonjs/commons" "^3.0.0"
 
+"@topoconfig/extends@^0.16.2":
+  version "0.16.2"
+  resolved "https://registry.yarnpkg.com/@topoconfig/extends/-/extends-0.16.2.tgz#0741dbe5198a28f306a116498f7ded1089d0fadc"
+  integrity sha512-sTF+qpWakr5jf1Hn/kkFSi833xPW15s/loMAiKSYSSVv4vDonxf6hwCGzMXjLq+7HZoaK6BgaV72wXr1eY7FcQ==
+
 "@trivago/prettier-plugin-sort-imports@^4.1.1":
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/@trivago/prettier-plugin-sort-imports/-/prettier-plugin-sort-imports-4.3.0.tgz#725f411646b3942193a37041c84e0b2116339789"

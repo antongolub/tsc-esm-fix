@@ -2,6 +2,7 @@ import { dirname, resolve } from 'node:path'
 
 import fse from 'fs-extra'
 import json5 from 'json5'
+import { populateSync } from "@topoconfig/extends";
 
 import { TSConfig } from './interface'
 
@@ -24,21 +25,9 @@ export const remove = fse.unlinkSync
 
 export const unixify = (path: string): string => path.replace(/\\/g, '/')
 
-export const resolveTsConfig = (file: string): TSConfig => {
-  const data = readJson<TSConfig>(file)
-
-  if (data.extends) {
-    const parent = resolveTsConfig(resolve(dirname(file), data.extends))
-
-    return {
-      ...parent,
-      ...data,
-      compilerOptions: { ...parent.compilerOptions, ...data.compilerOptions },
-    }
-  }
-
-  return data
-}
+export const resolveTsConfig = (file: string): TSConfig => populateSync(file, {
+  compilerOptions: 'merge'
+})
 
 export const omitUndefinedKeys = <T extends Record<string, any>>(obj: T): T  =>
   Object.fromEntries(Object.entries(obj).filter(([, value]) => value !== undefined)) as T
