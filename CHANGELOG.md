@@ -1,3 +1,8 @@
+## [3.1.1](https://github.com/antongolub/tsc-esm-fix/compare/v3.1.0...v3.1.1) (2024-10-31)
+
+### Fixes & improvements
+* fix: replace custom tsConfig resolver with xtends ([9ef4877](https://github.com/antongolub/tsc-esm-fix/commit/9ef487791dc4646398f7faa3212e2879dc9387e9))
+
 ## [3.1.0](https://github.com/antongolub/tsc-esm-fix/compare/v3.0.2...v3.1.0) (2024-10-05)
 
 ### Fixes & improvements
