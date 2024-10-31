@@ -1,4 +1,4 @@
-import { dirname, join, resolve } from 'node:path'
+import path from 'node:path'
 import {asArray, extToGlob, glob, readJson, resolveTsConfig} from './util'
 import {DEFAULT_FIX_OPTIONS} from "./options";
 
@@ -18,7 +18,7 @@ export const getTsconfigTargets = (
   cwd: string,
 ): string[] =>
   asArray(tsconfig).reduce<string[]>((targets, file) => {
-    const tsconfigJson = resolveTsConfig(resolve(cwd, file))
+    const tsconfigJson = resolveTsConfig(path.resolve(cwd, file))
     const outDir = tsconfigJson?.compilerOptions?.outDir
     const module = tsconfigJson?.compilerOptions?.module.toLowerCase?.()
 
@@ -103,7 +103,7 @@ const getExternalPackages = async (cwd: string): Promise<TPackageEntry[]> =>
   })
     .then(async (files: string[]) => Promise.all(files.map(async file => {
       const manifest = await readJson(file)
-      const root = dirname(file)
+      const root = path.dirname(file)
       const exports = getExportsEntries(manifest.exports)
 
       return {
@@ -121,7 +121,7 @@ const getPackageEntryPoints = async ({name, exports, root, main}: TPackageEntry)
   (await Promise.all(exports.map(([key, values]) =>
     Promise.all(values.map(async(value) =>
         (await glob(value, {cwd: root, onlyFiles: true, absolute: false}))
-          .map(file => join(file)
+          .map(file => path.join(file)
             .replace(
               resolvePrefix('.', value),
               resolvePrefix(name, key)))
@@ -143,5 +143,5 @@ const resolvePrefix = (prefix: string, pattern?: string): string => {
     }
   }
 
-  return join(prefix, _pattern)
+  return path.join(prefix, _pattern)
 }

@@ -1,4 +1,4 @@
-import { dirname, resolve } from 'node:path'
+import path from 'node:path'
 import { patchRefs } from 'depseek'
 import { TFixer } from '../interface'
 import { unixify } from '../util'
@@ -23,8 +23,8 @@ export const resolveDependency = (
   cwd: string,
   jsExt: string[] = DEFAULT_FIX_OPTIONS.jsExt,
 ): string => {
-  const dir = dirname(parent)
-  const nmdir = resolve(cwd, 'node_modules')
+  const dir = path.dirname(parent)
+  const nmdir = path.resolve(cwd, 'node_modules')
   const bases = /^\..+\.[^./\\]+$/.test(nested)
     ? [nested, nested.replace(/\.[^./\\]+$/, '')]
     : [nested]
@@ -34,8 +34,8 @@ export const resolveDependency = (
   }, [])
 
   return (
-    variants.find((f) => files.includes(unixify(resolve(dir, f)))) ||
-    variants.find((f) => files.includes(unixify(resolve(nmdir, f)))) ||
+    variants.find((f) => files.includes(unixify(path.resolve(dir, f)))) ||
+    variants.find((f) => files.includes(unixify(path.resolve(nmdir, f)))) ||
     nested
   )
 }
