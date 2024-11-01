@@ -1,3 +1,8 @@
+## [3.1.2](https://github.com/antongolub/tsc-esm-fix/compare/v3.1.1...v3.1.2) (2024-11-01)
+
+### Fixes & improvements
+* fix: reenable json5 parser ([4dadb65](https://github.com/antongolub/tsc-esm-fix/commit/4dadb652dab07564a32fa6ecc928634dfc05d22c))
+
 ## [3.1.1](https://github.com/antongolub/tsc-esm-fix/compare/v3.1.0...v3.1.1) (2024-10-31)
 
 ### Fixes & improvements
