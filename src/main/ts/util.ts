@@ -24,7 +24,14 @@ export const remove = fse.unlinkSync
 export const unixify = (path: string): string => path.replace(/\\/g, '/')
 
 export const resolveTsConfig = (file: string): TSConfig => populateSync(file, {
-  compilerOptions: 'merge'
+  parse({contents, ext}) {
+    if (ext === '.json')
+      return json5.parse(contents)
+    throw new Error(`Unsupported format: ${ext}`)
+  },
+  rules: {
+    compilerOptions: 'merge'
+  }
 })
 
 export const omitUndefinedKeys = <T extends Record<string, any>>(obj: T): T  =>
