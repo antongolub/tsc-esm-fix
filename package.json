@@ -77,7 +77,7 @@
     "tempy": "^3.1.0",
     "ts-jest": "^29.2.5",
     "typedoc": "^0.28.0",
-    "typescript": "^5.6.3",
+    "typescript": "^6.0.0",
     "zx": "^8.1.9"
   },
   "repository": {
