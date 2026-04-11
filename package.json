@@ -62,7 +62,7 @@
     "esbuild": "^0.28.0",
     "esbuild-node-externals": "^1.15.0",
     "esbuild-plugin-entry-chunks": "^0.1.15",
-    "esbuild-plugin-extract-helpers": "^0.0.6",
+    "esbuild-plugin-extract-helpers": "^0.0.8",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^10.0.0",
     "eslint-config-qiwi": "^2.1.7",
