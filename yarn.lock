@@ -3304,22 +3304,22 @@ esbuild-plugin-entry-chunks@^0.1.15:
     depseek "0.4.1"
     esbuild-plugin-utils "0.1.0"
 
-esbuild-plugin-extract-helpers@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/esbuild-plugin-extract-helpers/-/esbuild-plugin-extract-helpers-0.0.8.tgz#918dafa969959a9542ec05de9740ad8d5bdafc59"
-  integrity sha512-vpEpf6aPLHA6KH2Xvr6XP94QTPKryZXL8lwq7qx6M4eVpF3z3jQZIFwNTA4nYSyEB2SnuLWh+9Huukpj6IZqPA==
+esbuild-plugin-extract-helpers@^0.0.10:
+  version "0.0.10"
+  resolved "https://registry.yarnpkg.com/esbuild-plugin-extract-helpers/-/esbuild-plugin-extract-helpers-0.0.10.tgz#26295d4562f28844e933ca5e8787cbec82909e6b"
+  integrity sha512-/4hfZTAENsAEXpuqtFjtFXmnbN840nXnRfEFzvXn8nH+Aya7XJe1CQOkFvKnaM7GLaF9xr51TIk0UDn0NA/Tgg==
   dependencies:
-    esbuild-plugin-utils "0.1.1"
+    esbuild-plugin-utils "0.1.3"
 
 esbuild-plugin-utils@0.1.0:
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/esbuild-plugin-utils/-/esbuild-plugin-utils-0.1.0.tgz#93d9ffddde4f39715691b814e584f809bbe4fa34"
   integrity sha512-WZ8jJ/T8HCs7EVoisKlFszikn8ucafm4q4mkXAgPh2wEk1d/5eGvCldOGQrTs2ti3SP6lRrnMqr3Hkz7iEgvcw==
 
-esbuild-plugin-utils@0.1.1:
-  version "0.1.1"
-  resolved "https://registry.yarnpkg.com/esbuild-plugin-utils/-/esbuild-plugin-utils-0.1.1.tgz#a63c35d5e139b566522460752cab21112005f7ca"
-  integrity sha512-UEqdm2azubn+ObOmy/Nwu3CjJJge7tHrweHtI6TH45T9vO3PLRDhhuIErGTooL4XSZ467DpgR233EV9ut1oCXA==
+esbuild-plugin-utils@0.1.3:
+  version "0.1.3"
+  resolved "https://registry.yarnpkg.com/esbuild-plugin-utils/-/esbuild-plugin-utils-0.1.3.tgz#e0d2d7acdb42ebcc19e20e7e0b0918a00b34fb68"
+  integrity sha512-7ByzOkp5YcIfO1Zrg8hCxR/tpDSFJGTdeoLKRTMbXnHTC4Se7ETYRR0s/4f0VgwvzLaUCgVZmf0skxRyxtJJEQ==
 
 esbuild@^0.28.0:
   version "0.28.0"
